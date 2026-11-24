@@ -1,0 +1,106 @@
+articolo;descrizione;varieta;calibro;formato;imballo;cliente;kg_per_collo;colli_per_pedana;componente;quantita;riferimento;costo_unitario
+ART001;Abate Fetel 65-70 - Cartone 40x60 - Cartone marchio cliente;Abate Fetel;65-70;Cartone 40x60;Cartone marchio cliente;C01;13.0;48;Cartone 40x60 stampato;1;collo;0.62
+ART001;Abate Fetel 65-70 - Cartone 40x60 - Cartone marchio cliente;Abate Fetel;65-70;Cartone 40x60;Cartone marchio cliente;C01;13.0;48;Alveolo;2;collo;0.06
+ART001;Abate Fetel 65-70 - Cartone 40x60 - Cartone marchio cliente;Abate Fetel;65-70;Cartone 40x60;Cartone marchio cliente;C01;13.0;48;Etichetta;1;collo;0.012
+ART001;Abate Fetel 65-70 - Cartone 40x60 - Cartone marchio cliente;Abate Fetel;65-70;Cartone 40x60;Cartone marchio cliente;C01;13.0;48;Pedana legno;1;pedana;7.5
+ART001;Abate Fetel 65-70 - Cartone 40x60 - Cartone marchio cliente;Abate Fetel;65-70;Cartone 40x60;Cartone marchio cliente;C01;13.0;48;Angolari e reggia;1;pedana;1.1
+ART002;Abate Fetel 70-75 - Cartone 40x60 - Cartone marchio cliente;Abate Fetel;70-75;Cartone 40x60;Cartone marchio cliente;C01;13.0;48;Cartone 40x60 stampato;1;collo;0.62
+ART002;Abate Fetel 70-75 - Cartone 40x60 - Cartone marchio cliente;Abate Fetel;70-75;Cartone 40x60;Cartone marchio cliente;C01;13.0;48;Alveolo;2;collo;0.06
+ART002;Abate Fetel 70-75 - Cartone 40x60 - Cartone marchio cliente;Abate Fetel;70-75;Cartone 40x60;Cartone marchio cliente;C01;13.0;48;Etichetta;1;collo;0.012
+ART002;Abate Fetel 70-75 - Cartone 40x60 - Cartone marchio cliente;Abate Fetel;70-75;Cartone 40x60;Cartone marchio cliente;C01;13.0;48;Pedana legno;1;pedana;7.5
+ART002;Abate Fetel 70-75 - Cartone 40x60 - Cartone marchio cliente;Abate Fetel;70-75;Cartone 40x60;Cartone marchio cliente;C01;13.0;48;Angolari e reggia;1;pedana;1.1
+ART003;Abate Fetel 65-70 - Cartone 40x60 - Cartone neutro;Abate Fetel;65-70;Cartone 40x60;Cartone neutro;;13.0;48;Cartone 40x60 neutro;1;collo;0.48
+ART003;Abate Fetel 65-70 - Cartone 40x60 - Cartone neutro;Abate Fetel;65-70;Cartone 40x60;Cartone neutro;;13.0;48;Alveolo;2;collo;0.06
+ART003;Abate Fetel 65-70 - Cartone 40x60 - Cartone neutro;Abate Fetel;65-70;Cartone 40x60;Cartone neutro;;13.0;48;Etichetta;1;collo;0.012
+ART003;Abate Fetel 65-70 - Cartone 40x60 - Cartone neutro;Abate Fetel;65-70;Cartone 40x60;Cartone neutro;;13.0;48;Pedana legno;1;pedana;7.5
+ART003;Abate Fetel 65-70 - Cartone 40x60 - Cartone neutro;Abate Fetel;65-70;Cartone 40x60;Cartone neutro;;13.0;48;Angolari e reggia;1;pedana;1.1
+ART004;Abate Fetel 70-75 - Cartone 40x60 - Cartone neutro;Abate Fetel;70-75;Cartone 40x60;Cartone neutro;;13.0;48;Cartone 40x60 neutro;1;collo;0.48
+ART004;Abate Fetel 70-75 - Cartone 40x60 - Cartone neutro;Abate Fetel;70-75;Cartone 40x60;Cartone neutro;;13.0;48;Alveolo;2;collo;0.06
+ART004;Abate Fetel 70-75 - Cartone 40x60 - Cartone neutro;Abate Fetel;70-75;Cartone 40x60;Cartone neutro;;13.0;48;Etichetta;1;collo;0.012
+ART004;Abate Fetel 70-75 - Cartone 40x60 - Cartone neutro;Abate Fetel;70-75;Cartone 40x60;Cartone neutro;;13.0;48;Pedana legno;1;pedana;7.5
+ART004;Abate Fetel 70-75 - Cartone 40x60 - Cartone neutro;Abate Fetel;70-75;Cartone 40x60;Cartone neutro;;13.0;48;Angolari e reggia;1;pedana;1.1
+ART005;Abate Fetel 75+ - Cartone 40x60 - Cartone export;Abate Fetel;75+;Cartone 40x60;Cartone export;C05;13.0;48;Cartone 40x60 rinforzato;1;collo;0.7
+ART005;Abate Fetel 75+ - Cartone 40x60 - Cartone export;Abate Fetel;75+;Cartone 40x60;Cartone export;C05;13.0;48;Alveolo;2;collo;0.06
+ART005;Abate Fetel 75+ - Cartone 40x60 - Cartone export;Abate Fetel;75+;Cartone 40x60;Cartone export;C05;13.0;48;Sacchetto;1;collo;0.035
+ART005;Abate Fetel 75+ - Cartone 40x60 - Cartone export;Abate Fetel;75+;Cartone 40x60;Cartone export;C05;13.0;48;Etichetta;1;collo;0.012
+ART005;Abate Fetel 75+ - Cartone 40x60 - Cartone export;Abate Fetel;75+;Cartone 40x60;Cartone export;C05;13.0;48;Pedana legno;1;pedana;7.5
+ART005;Abate Fetel 75+ - Cartone 40x60 - Cartone export;Abate Fetel;75+;Cartone 40x60;Cartone export;C05;13.0;48;Angolari e reggia;1;pedana;1.1
+ART006;Abate Fetel 60-65 - Cassetta 30x40 - Cassetta legno;Abate Fetel;60-65;Cassetta 30x40;Cassetta legno;;6.0;96;Cassetta legno 30x40;1;collo;0.42
+ART006;Abate Fetel 60-65 - Cassetta 30x40 - Cassetta legno;Abate Fetel;60-65;Cassetta 30x40;Cassetta legno;;6.0;96;Carta velina;1;collo;0.03
+ART006;Abate Fetel 60-65 - Cassetta 30x40 - Cassetta legno;Abate Fetel;60-65;Cassetta 30x40;Cassetta legno;;6.0;96;Etichetta;1;collo;0.012
+ART006;Abate Fetel 60-65 - Cassetta 30x40 - Cassetta legno;Abate Fetel;60-65;Cassetta 30x40;Cassetta legno;;6.0;96;Pedana legno;1;pedana;7.5
+ART006;Abate Fetel 60-65 - Cassetta 30x40 - Cassetta legno;Abate Fetel;60-65;Cassetta 30x40;Cassetta legno;;6.0;96;Angolari e reggia;1;pedana;1.1
+ART007;Abate Fetel 65-70 - Cassetta 30x40 - Cassetta plastica a rendere;Abate Fetel;65-70;Cassetta 30x40;Cassetta plastica a rendere;C02;6.0;96;Nolo cassetta plastica;1;collo;0.18
+ART007;Abate Fetel 65-70 - Cassetta 30x40 - Cassetta plastica a rendere;Abate Fetel;65-70;Cassetta 30x40;Cassetta plastica a rendere;C02;6.0;96;Etichetta;1;collo;0.012
+ART007;Abate Fetel 65-70 - Cassetta 30x40 - Cassetta plastica a rendere;Abate Fetel;65-70;Cassetta 30x40;Cassetta plastica a rendere;C02;6.0;96;Pedana legno;1;pedana;7.5
+ART007;Abate Fetel 65-70 - Cassetta 30x40 - Cassetta plastica a rendere;Abate Fetel;65-70;Cassetta 30x40;Cassetta plastica a rendere;C02;6.0;96;Angolari e reggia;1;pedana;1.1
+ART008;Abate Fetel 60-65 - Cestino 1 kg - Cestino flowpack;Abate Fetel;60-65;Cestino 1 kg;Cestino flowpack;C01;8.0;80;Cestino;8;collo;0.045
+ART008;Abate Fetel 60-65 - Cestino 1 kg - Cestino flowpack;Abate Fetel;60-65;Cestino 1 kg;Cestino flowpack;C01;8.0;80;Film flowpack;8;collo;0.02
+ART008;Abate Fetel 60-65 - Cestino 1 kg - Cestino flowpack;Abate Fetel;60-65;Cestino 1 kg;Cestino flowpack;C01;8.0;80;Cartone 30x40;1;collo;0.38
+ART008;Abate Fetel 60-65 - Cestino 1 kg - Cestino flowpack;Abate Fetel;60-65;Cestino 1 kg;Cestino flowpack;C01;8.0;80;Etichetta;8;collo;0.012
+ART008;Abate Fetel 60-65 - Cestino 1 kg - Cestino flowpack;Abate Fetel;60-65;Cestino 1 kg;Cestino flowpack;C01;8.0;80;Pedana legno;1;pedana;7.5
+ART008;Abate Fetel 60-65 - Cestino 1 kg - Cestino flowpack;Abate Fetel;60-65;Cestino 1 kg;Cestino flowpack;C01;8.0;80;Angolari e reggia;1;pedana;1.1
+ART009;Abate Fetel 65-70 - Vassoio 6 frutti - Vassoio filmato;Abate Fetel;65-70;Vassoio 6 frutti;Vassoio filmato;C03;9.0;60;Vassoio;10;collo;0.05
+ART009;Abate Fetel 65-70 - Vassoio 6 frutti - Vassoio filmato;Abate Fetel;65-70;Vassoio 6 frutti;Vassoio filmato;C03;9.0;60;Film;10;collo;0.018
+ART009;Abate Fetel 65-70 - Vassoio 6 frutti - Vassoio filmato;Abate Fetel;65-70;Vassoio 6 frutti;Vassoio filmato;C03;9.0;60;Cartone 30x40;1;collo;0.4
+ART009;Abate Fetel 65-70 - Vassoio 6 frutti - Vassoio filmato;Abate Fetel;65-70;Vassoio 6 frutti;Vassoio filmato;C03;9.0;60;Etichetta;10;collo;0.012
+ART009;Abate Fetel 65-70 - Vassoio 6 frutti - Vassoio filmato;Abate Fetel;65-70;Vassoio 6 frutti;Vassoio filmato;C03;9.0;60;Pedana legno;1;pedana;7.5
+ART009;Abate Fetel 65-70 - Vassoio 6 frutti - Vassoio filmato;Abate Fetel;65-70;Vassoio 6 frutti;Vassoio filmato;C03;9.0;60;Angolari e reggia;1;pedana;1.1
+ART010;Pera Dorata 65-70 - Cartone 40x60 - Cartone neutro;Pera Dorata;65-70;Cartone 40x60;Cartone neutro;;13.0;48;Cartone 40x60 neutro;1;collo;0.48
+ART010;Pera Dorata 65-70 - Cartone 40x60 - Cartone neutro;Pera Dorata;65-70;Cartone 40x60;Cartone neutro;;13.0;48;Alveolo;2;collo;0.06
+ART010;Pera Dorata 65-70 - Cartone 40x60 - Cartone neutro;Pera Dorata;65-70;Cartone 40x60;Cartone neutro;;13.0;48;Etichetta;1;collo;0.012
+ART010;Pera Dorata 65-70 - Cartone 40x60 - Cartone neutro;Pera Dorata;65-70;Cartone 40x60;Cartone neutro;;13.0;48;Pedana legno;1;pedana;7.5
+ART010;Pera Dorata 65-70 - Cartone 40x60 - Cartone neutro;Pera Dorata;65-70;Cartone 40x60;Cartone neutro;;13.0;48;Angolari e reggia;1;pedana;1.1
+ART011;Pera Dorata 60-65 - Cestino 1 kg - Cestino flowpack;Pera Dorata;60-65;Cestino 1 kg;Cestino flowpack;C03;8.0;80;Cestino;8;collo;0.045
+ART011;Pera Dorata 60-65 - Cestino 1 kg - Cestino flowpack;Pera Dorata;60-65;Cestino 1 kg;Cestino flowpack;C03;8.0;80;Film flowpack;8;collo;0.02
+ART011;Pera Dorata 60-65 - Cestino 1 kg - Cestino flowpack;Pera Dorata;60-65;Cestino 1 kg;Cestino flowpack;C03;8.0;80;Cartone 30x40;1;collo;0.38
+ART011;Pera Dorata 60-65 - Cestino 1 kg - Cestino flowpack;Pera Dorata;60-65;Cestino 1 kg;Cestino flowpack;C03;8.0;80;Etichetta;8;collo;0.012
+ART011;Pera Dorata 60-65 - Cestino 1 kg - Cestino flowpack;Pera Dorata;60-65;Cestino 1 kg;Cestino flowpack;C03;8.0;80;Pedana legno;1;pedana;7.5
+ART011;Pera Dorata 60-65 - Cestino 1 kg - Cestino flowpack;Pera Dorata;60-65;Cestino 1 kg;Cestino flowpack;C03;8.0;80;Angolari e reggia;1;pedana;1.1
+ART012;Pera Brunella 65-70 - Cassetta 30x40 - Cassetta legno;Pera Brunella;65-70;Cassetta 30x40;Cassetta legno;;6.0;96;Cassetta legno 30x40;1;collo;0.42
+ART012;Pera Brunella 65-70 - Cassetta 30x40 - Cassetta legno;Pera Brunella;65-70;Cassetta 30x40;Cassetta legno;;6.0;96;Carta velina;1;collo;0.03
+ART012;Pera Brunella 65-70 - Cassetta 30x40 - Cassetta legno;Pera Brunella;65-70;Cassetta 30x40;Cassetta legno;;6.0;96;Etichetta;1;collo;0.012
+ART012;Pera Brunella 65-70 - Cassetta 30x40 - Cassetta legno;Pera Brunella;65-70;Cassetta 30x40;Cassetta legno;;6.0;96;Pedana legno;1;pedana;7.5
+ART012;Pera Brunella 65-70 - Cassetta 30x40 - Cassetta legno;Pera Brunella;65-70;Cassetta 30x40;Cassetta legno;;6.0;96;Angolari e reggia;1;pedana;1.1
+ART013;Pera Brunella 70-75 - Cartone 40x60 - Cartone neutro;Pera Brunella;70-75;Cartone 40x60;Cartone neutro;;13.0;48;Cartone 40x60 neutro;1;collo;0.48
+ART013;Pera Brunella 70-75 - Cartone 40x60 - Cartone neutro;Pera Brunella;70-75;Cartone 40x60;Cartone neutro;;13.0;48;Alveolo;2;collo;0.06
+ART013;Pera Brunella 70-75 - Cartone 40x60 - Cartone neutro;Pera Brunella;70-75;Cartone 40x60;Cartone neutro;;13.0;48;Etichetta;1;collo;0.012
+ART013;Pera Brunella 70-75 - Cartone 40x60 - Cartone neutro;Pera Brunella;70-75;Cartone 40x60;Cartone neutro;;13.0;48;Pedana legno;1;pedana;7.5
+ART013;Pera Brunella 70-75 - Cartone 40x60 - Cartone neutro;Pera Brunella;70-75;Cartone 40x60;Cartone neutro;;13.0;48;Angolari e reggia;1;pedana;1.1
+ART014;Mela Rubina 75-80 - Cartone 40x60 - Cartone marchio cliente;Mela Rubina;75-80;Cartone 40x60;Cartone marchio cliente;C01;13.0;48;Cartone 40x60 stampato;1;collo;0.62
+ART014;Mela Rubina 75-80 - Cartone 40x60 - Cartone marchio cliente;Mela Rubina;75-80;Cartone 40x60;Cartone marchio cliente;C01;13.0;48;Alveolo;2;collo;0.06
+ART014;Mela Rubina 75-80 - Cartone 40x60 - Cartone marchio cliente;Mela Rubina;75-80;Cartone 40x60;Cartone marchio cliente;C01;13.0;48;Etichetta;1;collo;0.012
+ART014;Mela Rubina 75-80 - Cartone 40x60 - Cartone marchio cliente;Mela Rubina;75-80;Cartone 40x60;Cartone marchio cliente;C01;13.0;48;Pedana legno;1;pedana;7.5
+ART014;Mela Rubina 75-80 - Cartone 40x60 - Cartone marchio cliente;Mela Rubina;75-80;Cartone 40x60;Cartone marchio cliente;C01;13.0;48;Angolari e reggia;1;pedana;1.1
+ART015;Mela Rubina 70-75 - Cassetta 30x40 - Cassetta plastica a rendere;Mela Rubina;70-75;Cassetta 30x40;Cassetta plastica a rendere;C02;6.0;96;Nolo cassetta plastica;1;collo;0.18
+ART015;Mela Rubina 70-75 - Cassetta 30x40 - Cassetta plastica a rendere;Mela Rubina;70-75;Cassetta 30x40;Cassetta plastica a rendere;C02;6.0;96;Etichetta;1;collo;0.012
+ART015;Mela Rubina 70-75 - Cassetta 30x40 - Cassetta plastica a rendere;Mela Rubina;70-75;Cassetta 30x40;Cassetta plastica a rendere;C02;6.0;96;Pedana legno;1;pedana;7.5
+ART015;Mela Rubina 70-75 - Cassetta 30x40 - Cassetta plastica a rendere;Mela Rubina;70-75;Cassetta 30x40;Cassetta plastica a rendere;C02;6.0;96;Angolari e reggia;1;pedana;1.1
+ART016;Mela Rubina 70-75 - Vassoio 6 frutti - Vassoio filmato;Mela Rubina;70-75;Vassoio 6 frutti;Vassoio filmato;C04;9.0;60;Vassoio;10;collo;0.05
+ART016;Mela Rubina 70-75 - Vassoio 6 frutti - Vassoio filmato;Mela Rubina;70-75;Vassoio 6 frutti;Vassoio filmato;C04;9.0;60;Film;10;collo;0.018
+ART016;Mela Rubina 70-75 - Vassoio 6 frutti - Vassoio filmato;Mela Rubina;70-75;Vassoio 6 frutti;Vassoio filmato;C04;9.0;60;Cartone 30x40;1;collo;0.4
+ART016;Mela Rubina 70-75 - Vassoio 6 frutti - Vassoio filmato;Mela Rubina;70-75;Vassoio 6 frutti;Vassoio filmato;C04;9.0;60;Etichetta;10;collo;0.012
+ART016;Mela Rubina 70-75 - Vassoio 6 frutti - Vassoio filmato;Mela Rubina;70-75;Vassoio 6 frutti;Vassoio filmato;C04;9.0;60;Pedana legno;1;pedana;7.5
+ART016;Mela Rubina 70-75 - Vassoio 6 frutti - Vassoio filmato;Mela Rubina;70-75;Vassoio 6 frutti;Vassoio filmato;C04;9.0;60;Angolari e reggia;1;pedana;1.1
+ART017;Mela Verdea 75-80 - Cartone 40x60 - Cartone neutro;Mela Verdea;75-80;Cartone 40x60;Cartone neutro;;13.0;48;Cartone 40x60 neutro;1;collo;0.48
+ART017;Mela Verdea 75-80 - Cartone 40x60 - Cartone neutro;Mela Verdea;75-80;Cartone 40x60;Cartone neutro;;13.0;48;Alveolo;2;collo;0.06
+ART017;Mela Verdea 75-80 - Cartone 40x60 - Cartone neutro;Mela Verdea;75-80;Cartone 40x60;Cartone neutro;;13.0;48;Etichetta;1;collo;0.012
+ART017;Mela Verdea 75-80 - Cartone 40x60 - Cartone neutro;Mela Verdea;75-80;Cartone 40x60;Cartone neutro;;13.0;48;Pedana legno;1;pedana;7.5
+ART017;Mela Verdea 75-80 - Cartone 40x60 - Cartone neutro;Mela Verdea;75-80;Cartone 40x60;Cartone neutro;;13.0;48;Angolari e reggia;1;pedana;1.1
+ART018;Mela Verdea 70-75 - Cestino 1 kg - Cestino rete;Mela Verdea;70-75;Cestino 1 kg;Cestino rete;C04;8.0;80;Cestino;8;collo;0.045
+ART018;Mela Verdea 70-75 - Cestino 1 kg - Cestino rete;Mela Verdea;70-75;Cestino 1 kg;Cestino rete;C04;8.0;80;Rete;8;collo;0.03
+ART018;Mela Verdea 70-75 - Cestino 1 kg - Cestino rete;Mela Verdea;70-75;Cestino 1 kg;Cestino rete;C04;8.0;80;Cartone 30x40;1;collo;0.38
+ART018;Mela Verdea 70-75 - Cestino 1 kg - Cestino rete;Mela Verdea;70-75;Cestino 1 kg;Cestino rete;C04;8.0;80;Etichetta;8;collo;0.012
+ART018;Mela Verdea 70-75 - Cestino 1 kg - Cestino rete;Mela Verdea;70-75;Cestino 1 kg;Cestino rete;C04;8.0;80;Pedana legno;1;pedana;7.5
+ART018;Mela Verdea 70-75 - Cestino 1 kg - Cestino rete;Mela Verdea;70-75;Cestino 1 kg;Cestino rete;C04;8.0;80;Angolari e reggia;1;pedana;1.1
+ART019;Abate Fetel 70-75 - Cassetta 30x40 - Cassetta legno;Abate Fetel;70-75;Cassetta 30x40;Cassetta legno;;6.0;96;Cassetta legno 30x40;1;collo;0.42
+ART019;Abate Fetel 70-75 - Cassetta 30x40 - Cassetta legno;Abate Fetel;70-75;Cassetta 30x40;Cassetta legno;;6.0;96;Carta velina;1;collo;0.03
+ART019;Abate Fetel 70-75 - Cassetta 30x40 - Cassetta legno;Abate Fetel;70-75;Cassetta 30x40;Cassetta legno;;6.0;96;Etichetta;1;collo;0.012
+ART019;Abate Fetel 70-75 - Cassetta 30x40 - Cassetta legno;Abate Fetel;70-75;Cassetta 30x40;Cassetta legno;;6.0;96;Pedana legno;1;pedana;7.5
+ART019;Abate Fetel 70-75 - Cassetta 30x40 - Cassetta legno;Abate Fetel;70-75;Cassetta 30x40;Cassetta legno;;6.0;96;Angolari e reggia;1;pedana;1.1
+ART020;Mela Rubina 80+ - Cartone 40x60 - Cartone export;Mela Rubina;80+;Cartone 40x60;Cartone export;C05;13.0;48;Cartone 40x60 rinforzato;1;collo;0.7
+ART020;Mela Rubina 80+ - Cartone 40x60 - Cartone export;Mela Rubina;80+;Cartone 40x60;Cartone export;C05;13.0;48;Alveolo;2;collo;0.06
+ART020;Mela Rubina 80+ - Cartone 40x60 - Cartone export;Mela Rubina;80+;Cartone 40x60;Cartone export;C05;13.0;48;Sacchetto;1;collo;0.035
+ART020;Mela Rubina 80+ - Cartone 40x60 - Cartone export;Mela Rubina;80+;Cartone 40x60;Cartone export;C05;13.0;48;Etichetta;1;collo;0.012
+ART020;Mela Rubina 80+ - Cartone 40x60 - Cartone export;Mela Rubina;80+;Cartone 40x60;Cartone export;C05;13.0;48;Pedana legno;1;pedana;7.5
+ART020;Mela Rubina 80+ - Cartone 40x60 - Cartone export;Mela Rubina;80+;Cartone 40x60;Cartone export;C05;13.0;48;Angolari e reggia;1;pedana;1.1

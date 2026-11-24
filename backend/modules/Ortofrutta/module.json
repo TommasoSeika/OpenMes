@@ -1,0 +1,15 @@
+{
+    "name": "Ortofrutta",
+    "display_name": "Ortofrutta (packing house)",
+    "version": "0.1.0",
+    "description": "Proof of concept for a fruit packing house: deliveries weighed into cold-storage cells, the orders of the day, a per-line plan with changeover times and truck deadlines, crews, work sheets costed in €/kg, margins per lot, producer and customer. Runs on simulated data loaded from CSV files. Screens are in Italian.",
+    "author": "SEIKA Innovation",
+    "provider": "Modules\\Ortofrutta\\Providers\\OrtofruttaServiceProvider",
+    "requires_core": ">=0.29.0",
+    "hooks": [
+        "Menu\\addGroup",
+        "Menu\\addGroupItem",
+        "Filter\\tabs.registry"
+    ],
+    "requires": []
+}

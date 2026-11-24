@@ -39,4 +39,8 @@ Thumbs.db
 !/modules/ExampleHooks
 !/modules/ExampleShowcase
 !/modules/OrderPinger
+# Ortofrutta proof of concept (fork-only): tracked here so the Docker build bundles its pages.
+!/modules/Ortofrutta
+# Mount point created by the Codespaces overlay when the dev overlay bind-mounts config/.
+/config/octane.php
 backend/test-results/

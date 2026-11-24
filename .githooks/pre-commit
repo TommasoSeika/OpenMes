@@ -7,7 +7,7 @@
 # allowed through; everything else under there belongs to its own repository.
 STAGED_MODULES=$(git diff --cached --name-only \
     | grep -E "^(modules/|backend/modules/)" \
-    | grep -vE "^backend/modules/(README\.md|\.gitkeep|ExampleHooks/|ExampleShowcase/|OrderPinger/)" \
+    | grep -vE "^backend/modules/(README\.md|\.gitkeep|ExampleHooks/|ExampleShowcase/|OrderPinger/|Ortofrutta/)" \
     | grep -vE "^modules/README\.md$")
 
 if [ -n "$STAGED_MODULES" ]; then

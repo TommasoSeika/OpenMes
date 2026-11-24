@@ -74,15 +74,28 @@ random_app_key() { # Laravel key format, as install.sh generates it
 # In a codespace that is GitHub's forwarded address for port 8080, served over
 # HTTPS. The Codespaces Caddyfile tells the application about it.
 
+# Development mode adds docker-compose.dev.yml: the source is bind-mounted into
+# the containers and a watcher rebuilds the frontend on every save, so changes
+# show without rebuilding the image. Turn it on once with
+#   OPENMES_DEV=1 bash .devcontainer/start.sh
+# (and off with OPENMES_DEV=0); the choice is remembered in .env.
+if [ -n "${OPENMES_DEV:-}" ]; then
+    env_set OPENMES_DEV "$OPENMES_DEV"
+fi
+DEV_MODE="$(env_get OPENMES_DEV)"
+COMPOSE_FILES="docker-compose.yml"
+if [ "$DEV_MODE" = "1" ]; then
+    COMPOSE_FILES="${COMPOSE_FILES}:docker-compose.dev.yml"
+fi
+
 if [ -n "${CODESPACE_NAME:-}" ]; then
     PUBLIC_HOST="${CODESPACE_NAME}-${HTTP_PORT}.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN:-app.github.dev}"
     APP_URL="https://${PUBLIC_HOST}"
-    COMPOSE_FILES="docker-compose.yml:.devcontainer/docker-compose.codespaces.yml"
+    COMPOSE_FILES="${COMPOSE_FILES}:.devcontainer/docker-compose.codespaces.yml"
     STATEFUL_DOMAINS="${PUBLIC_HOST},localhost:${HTTP_PORT},127.0.0.1:${HTTP_PORT},localhost"
 else
     PUBLIC_HOST="localhost"
     APP_URL="http://localhost:${HTTP_PORT}"
-    COMPOSE_FILES="docker-compose.yml"
     STATEFUL_DOMAINS="localhost,localhost:${HTTP_PORT},localhost:${HTTPS_PORT},127.0.0.1:${HTTP_PORT}"
 fi
 
@@ -149,9 +162,12 @@ docker compose up -d --build
 # and Caddy is proxying. Up to 5 minutes for a cold first start.
 
 say "Waiting for the application (the first start creates the database)..."
+if [ "$DEV_MODE" = "1" ]; then
+    warn "Development mode: the frontend watcher installs its packages and builds first. Allow about 5 minutes."
+fi
 ready=0
 code=""
-for _ in $(seq 1 150); do
+for _ in $(seq 1 "$([ "$DEV_MODE" = "1" ] && echo 300 || echo 150)"); do
     code="$(curl -s -o /dev/null -w '%{http_code}' "http://localhost:${HTTP_PORT}/login" 2> /dev/null || true)"
     if [ "$code" = "200" ]; then
         ready=1
