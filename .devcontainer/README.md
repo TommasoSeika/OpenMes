@@ -48,6 +48,35 @@ application.
 A public port lets anyone with the link reach the login page. Set it back to
 Private when you are done.
 
+## The Ortofrutta module (branch `ortofrutta-poc`)
+
+On that branch the repository also contains a fruit packing house module with
+simulated data. Once the application is up, one command enables it and loads the
+data; the name is what the header of its screens shows:
+
+```text
+docker compose exec backend sh modules/Ortofrutta/bin/attiva-demo.sh "Company name"
+```
+
+Then open **Ortofrutta** in the menu. `backend/modules/Ortofrutta/README.md` has
+the demo script, and `bash backend/modules/Ortofrutta/bin/prova-http.sh` checks
+every screen and action.
+
+## Development mode
+
+By default the codespace runs the application as built into the Docker image:
+a code change shows after `bash .devcontainer/start.sh` has rebuilt the image.
+Development mode mounts the source into the containers and rebuilds the frontend
+on every save, so a change shows after a page reload:
+
+```text
+OPENMES_DEV=1 bash .devcontainer/start.sh     # on
+OPENMES_DEV=0 bash .devcontainer/start.sh     # off
+```
+
+The choice is remembered in `.env`. PHP changes also need
+`docker compose exec backend php artisan octane:reload`.
+
 ## Good to know
 
 - **Cost.** A codespace uses your GitHub Codespaces quota while it runs. It

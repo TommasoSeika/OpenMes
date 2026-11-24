@@ -41,6 +41,7 @@ send() { # send METHOD PATH [json]
         -H 'Content-Type: application/json' -d "${3:-{\}}" "$ORTO$2"
 }
 field() { printf '%s' "$BODY" | grep -oE "\"$1\":[^,}]+" | head -n1 | cut -d: -f2-; }
+sql() { docker compose exec -T postgres psql -U "$(env_get POSTGRES_USER)" -d "$(env_get POSTGRES_DB)" -Atc "$1" 2>/dev/null | tr -d '[:space:]'; }
 
 page() { # page PATH COMPONENT
     get "$1"
@@ -78,7 +79,7 @@ page /fogli WorkSheets
 page /margini Margins
 page /missioni Missions
 page "/ordini?giorno=2026-11-20" Orders
-SHEET="$(docker compose exec -T postgres psql -U "$(env_get POSTGRES_USER)" -d "$(env_get POSTGRES_DB)" -Atc 'select id from orto_work_sheets order by number desc limit 1' 2>/dev/null | tr -d '[:space:]')"
+SHEET="$(sql 'select id from orto_work_sheets order by number desc limit 1')"
 page "/fogli/$SHEET" WorkSheet
 
 echo "Copione della demo"
@@ -109,6 +110,30 @@ send POST /piano/lancia "{\"line_id\":$LINE}"
 NEW="$(field sheet_id)"
 [ "$STATUS" = 200 ] && [ -n "$NEW" ] && ok "lancia: creato un foglio di lavorazione" || fail "lancia -> HTTP $STATUS  $(printf '%s' "$BODY" | cut -c1-200) $(why)"
 [ -n "$NEW" ] && page "/fogli/$NEW" WorkSheet
+
+# Fill in the new sheet: one lot of the right variety, 3,000 kg in, 280 kg of waste.
+if [ -n "$NEW" ]; then
+    LOT="$(sql "select l.id from orto_lots l join orto_items i on i.variety = l.variety join orto_work_sheets s on s.item_id = i.id where s.id = $NEW order by l.received_at desc limit 1")"
+    send PUT "/fogli/$NEW" "{\"lots\":[{\"lot_id\":$LOT,\"kg_in\":3000,\"kg_packed\":2700,\"kg_waste_cider\":180,\"kg_waste_industry\":100}]}"
+    COST="$(sql "select cost_per_kg from orto_work_sheets where id = $NEW")"
+    [ "$STATUS" = 302 ] && [ -n "$COST" ] && ok "foglio salvato senza digitare costi: lavorazione $COST €/kg" || fail "salva foglio -> HTTP $STATUS  $(printf '%s' "$BODY" | cut -c1-200) $(why)"
+    send POST "/fogli/$NEW/chiudi"
+    [ "$STATUS" = 302 ] && [ "$(sql "select status from orto_work_sheets where id = $NEW")" = closed ] && ok "foglio chiuso" || fail "chiudi foglio -> HTTP $STATUS  $(why)"
+    NUMBER="$(sql "select number from orto_work_sheets where id = $NEW")"
+    get /margini
+    SAME="$(printf '%s' "$BODY" | grep -oE "\"number\":$NUMBER,[^}]*\"processing\":[0-9.]+" | grep -oE '[0-9.]+$')"
+    [ -n "$SAME" ] && [ "$(printf '%.4f' "$SAME")" = "$(printf '%.4f' "$COST")" ] && ok "stesso €/kg nel foglio e nei margini ($SAME)" || fail "il foglio $NUMBER nei margini ha lavorazione '$SAME', nel foglio '$COST'"
+fi
+
+echo "Altre azioni"
+send PATCH "/ordini/$ORDER/priorita" '{"priority":1}'
+[ "$STATUS" = 302 ] && ok "priorità di uscita modificata dall'ufficio" || fail "priorità -> HTTP $STATUS  $(why)"
+send POST /ordini/scorta "{\"item_id\":$(sql 'select id from orto_items order by code limit 1'),\"pallets\":4}"
+[ "$STATUS" = 302 ] && [ "$(sql "select count(*) from orto_orders where type = 'stock' and number like 'SC%'")" = 1 ] && ok "riga di scorta aggiunta" || fail "scorta -> HTTP $STATUS  $(why)"
+LOTS="$(sql 'select count(*) from orto_lots')"
+CELL="$(sql 'select c.id from orto_cells c where not exists (select 1 from orto_lots l where l.cell_id = c.id) order by c.code limit 1')"
+send POST /conferimenti "{\"producer_id\":$(sql 'select id from orto_producers order by code limit 1'),\"variety\":\"Abate Fetel\",\"gross_kg\":9990,\"bins\":30,\"bin_tare_kg\":33,\"cell_id\":$CELL,\"purchase_price_kg\":1.02}"
+[ "$STATUS" = 302 ] && [ "$(sql 'select count(*) from orto_lots')" = "$((LOTS + 1))" ] && ok "conferimento pesato e messo in cella: netto $(sql 'select net_kg from orto_lots order by id desc limit 1') kg" || fail "conferimento -> HTTP $STATUS  $(printf '%s' "$BODY" | cut -c1-200) $(why)"
 
 send POST /margini/simula '{"purchase_price":1,"yield_pct":100,"processing":0.2,"discount_pct":0}'
 [ "$(field minimum_net)" = "1.2" ] && ok "simulatore: 1,00 € + 0,20 € = prezzo minimo 1,20 €" || fail "simulatore -> $(printf '%s' "$BODY" | cut -c1-200)"
