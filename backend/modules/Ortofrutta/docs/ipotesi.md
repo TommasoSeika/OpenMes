@@ -11,7 +11,7 @@ veri. Nessuna blocca la demo.
 | 1 | Le linee sono **4**, tutte nell'Edificio 2, chiamate Linea 1, 2, 4 e 6. | La planimetria ne disegna 4; nell'incontro sono state citate la 4 e la 6. Il brief ne ipotizzava 6. | `seed/linee.csv` |
 | 2 | Le celle frigo sono **24**: 16 nell'Edificio 2 (due blocchi da 8) e 8 nell'Edificio 1. | Planimetria. | `seed/celle.csv` |
 | 3 | La zona verde dell'Edificio 1 è confezionamento pedane e carico camion. | Planimetria ("packaging"). | — |
-| 4 | Una linea richiede 22 persone (Linea 1); le altre 18, 14 e 12. | 22 è il numero citato nell'incontro; gli altri sono inventati. | `seed/linee.csv` |
+| 4 | Una linea richiede 22 persone (Linea 1); le altre 16, 14 e 10. | 22 è il numero citato nell'incontro; gli altri sono inventati. | `seed/linee.csv` |
 | 5 | Capacità delle linee in pedane/ora per formato: da 2 a 6. | Inventate. Il dato reale di partenza è il tempo di una pedana di Abate. | `seed/linee.csv` |
 | 6 | Un lotto sta in una sola cella. Capacità cella 280–360 bins, un bin circa 300 kg netti, tara 33 kg. | Inventate. | `seed/celle.csv`, `seed/conferimenti_pesa.csv` |
 
@@ -23,7 +23,7 @@ veri. Nessuna blocca la demo.
 | 8 | Durata di un blocco = pedane ÷ capacità + **avvio** se è il primo blocco della giornata, oppure **cambio** rispetto al blocco prima. Avvio e cambio non si sommano. | `Domain/LinePlanner.php` |
 | 9 | Tre durate di cambio: varietà 25 minuti (pulizia), formato 15, imballo 8. Se ne servono più insieme **conta il più pesante**, non la somma. Cambiare solo calibro non ferma la linea. | `seed/regole_cambio.csv` (anche regole per coppia di articoli) |
 | 10 | Un blocco non può iniziare prima che il suo ordine sia arrivato. | `Domain/LinePlanner.php` |
-| 11 | "Proponi sequenza": ordini presi per ora del camion e poi per priorità dell'ufficio; ciascuno va dove costa meno (prima nessun camion perso, poi finire presto, poi meno cambi). Su ogni linea si resta in ordine di camion. | `Domain/LinePlanner.php` |
+| 11 | "Proponi sequenza": ordini presi per ora del camion e poi per priorità dell'ufficio; ciascuno va dove costa meno (prima nessun camion perso, poi finire presto, poi meno cambi). Su ogni linea si resta in ordine di camion. La priorità pesa sul finire presto (alta conta tre volte, bassa una), ma non fa aspettare una linea per un ordine che deve ancora arrivare. | `Domain/LinePlanner.php` |
 | 12 | Blocchi consecutivi dello stesso articolo sulla stessa linea sono **un solo lancio**, quindi un solo foglio. Un ordine lanciato non si sposta più. | `Services/PlanService.php` |
 | 13 | Pause e fermi macchina non sono considerati. | — |
 

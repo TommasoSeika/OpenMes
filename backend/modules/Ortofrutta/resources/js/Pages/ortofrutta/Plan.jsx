@@ -4,7 +4,7 @@ import AppLayout from '@core/layouts/AppLayout';
 import { apiCall } from '@core/lib/http';
 import Shell from '../../ortofrutta/Shell';
 import { Btn, Chip } from '../../ortofrutta/ui';
-import { BASE, ORDER_TYPES, SETUP_LABELS, num } from '../../ortofrutta/format';
+import { BASE, ORDER_TYPES, SETUP_LABELS, num, plural } from '../../ortofrutta/format';
 
 const BACKLOG = 'backlog';
 const END = 500;
@@ -238,7 +238,7 @@ export default function Plan({ board: initial }) {
                 {board.trucks.map((t) => (
                     <div key={t.time} className={`rounded-lg border px-3 py-1.5 text-sm ${t.late > 0 ? 'border-red-400 bg-red-50 dark:border-red-700 dark:bg-red-950/40' : 'border-om-line bg-om-card'}`}>
                         <span className="font-semibold tabular-nums text-om-ink">Camion {t.time}</span>
-                        <span className="text-om-muted"> · {t.orders} ordini · {num(t.pallets)} pedane</span>
+                        <span className="text-om-muted"> · {plural(t.orders, 'ordine', 'ordini')} · {plural(t.pallets, 'pedana', 'pedane')}</span>
                         {t.late > 0 && <span className="font-medium text-red-700 dark:text-red-300"> · {t.late} a rischio</span>}
                         {t.unplanned > 0 && <span className="text-amber-700 dark:text-amber-300"> · {t.unplanned} da pianificare</span>}
                         {t.late === 0 && t.unplanned === 0 && <span className="text-emerald-700 dark:text-emerald-400"> · in orario</span>}

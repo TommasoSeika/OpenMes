@@ -51,7 +51,7 @@ export default function Shell({ title, active = '', dayPicker = false, actions =
                     {orto.loaded && (
                         <div className="text-sm text-om-ink">
                             <span className="text-om-muted">Giornata demo </span>
-                            <span className="font-medium capitalize">{orto.day_label}</span>
+                            <span className="font-medium">{orto.day_label}</span>
                             <span className="text-om-muted"> · ore </span>
                             <span className="font-semibold tabular-nums">{orto.clock}</span>
                         </div>
@@ -87,7 +87,7 @@ export default function Shell({ title, active = '', dayPicker = false, actions =
 
             {dayPicker && orto.loaded && !orto.is_demo_day && (
                 <p className="mb-4 rounded-lg border border-om-line bg-om-chip px-3 py-2 text-sm text-om-muted">
-                    Stai guardando <span className="font-medium capitalize text-om-ink">{orto.viewing_label}</span>, una giornata già chiusa: è in sola lettura.
+                    Stai guardando <span className="font-medium text-om-ink">{orto.viewing_label}</span>, una giornata già chiusa: è in sola lettura.
                 </p>
             )}
 

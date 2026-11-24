@@ -92,9 +92,10 @@ final class LinePlanner
      *
      * Orders are taken by truck time, then by the office's priority, and each
      * one is inserted where it costs least: no block past its truck first,
-     * then finishing early, then fewer changeovers. On every line the blocks
-     * stay in truck order; within the same truck the cheapest position wins,
-     * which puts equal items next to each other.
+     * then finishing early (high-priority orders count more), then fewer
+     * changeovers. On every line the blocks stay in truck order; within the
+     * same truck the cheapest position wins, which puts equal items next to
+     * each other and never makes a line wait for an order that could run later.
      *
      * @param  array<string, array>  $lines  line definitions keyed by code
      * @param  list<array>  $orders  blocks to place
@@ -110,8 +111,7 @@ final class LinePlanner
             $lockedCount[$code] = count($sequences[$code]);
         }
 
-        usort($orders, fn (array $a, array $b) => [...$this->bucket($a, $dayStart), $this->minutes($a['arrived_at'] ?? null, $dayStart), (string) $a['id']]
-            <=> [...$this->bucket($b, $dayStart), $this->minutes($b['arrived_at'] ?? null, $dayStart), (string) $b['id']]);
+        usort($orders, fn (array $a, array $b) => $this->sortKey($a, $dayStart) <=> $this->sortKey($b, $dayStart));
 
         $unplaced = [];
         foreach ($orders as $order) {
@@ -195,12 +195,16 @@ final class LinePlanner
         return $out;
     }
 
-    /** What a sequence costs: lateness first, then the sum of end times, then stops. */
+    /**
+     * What a sequence costs: lateness first, then the sum of end times weighted
+     * by priority (1 counts three times, 3 once), then stops.
+     */
     private function cost(array $line, array $blocks, DateTimeImmutable $dayStart): int
     {
         $cost = 0;
         foreach ($this->timeline($line, $blocks, $dayStart) as $i => $t) {
-            $cost += self::LATE_WEIGHT * $t['late'] + $t['end'];
+            $priority = max(1, min(3, (int) ($blocks[$i]['priority'] ?? 2)));
+            $cost += self::LATE_WEIGHT * $t['late'] + (4 - $priority) * $t['end'];
             if ($i > 0) {
                 $cost += self::SETUP_WEIGHT * $t['setup'];
             }
@@ -209,16 +213,24 @@ final class LinePlanner
         return $cost;
     }
 
+    /** Truck time in minutes; an order with no truck goes last. Lines stay in this order. */
+    private function bucket(array $block, DateTimeImmutable $dayStart): int
+    {
+        return $this->minutes($block['truck_at'] ?? null, $dayStart) ?? PHP_INT_MAX;
+    }
+
     /**
-     * Sort key that keeps a line in truck order: truck time (none goes last), then priority.
+     * The order in which blocks are placed: truck, priority, arrival.
      *
-     * @return array{0: int, 1: int}
+     * @return array{0: int, 1: int, 2: int, 3: string}
      */
-    private function bucket(array $block, DateTimeImmutable $dayStart): array
+    private function sortKey(array $block, DateTimeImmutable $dayStart): array
     {
         return [
-            $this->minutes($block['truck_at'] ?? null, $dayStart) ?? PHP_INT_MAX,
+            $this->bucket($block, $dayStart),
             (int) ($block['priority'] ?? 2),
+            $this->minutes($block['arrived_at'] ?? null, $dayStart) ?? 0,
+            (string) $block['id'],
         ];
     }
 

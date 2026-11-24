@@ -51,11 +51,11 @@ def scrivi(nome, intestazione, righe):
 LINEE = [
     ("L1", "Linea 1", "Calibratrice grande", "Edificio 2", 22, 15,
      {"Cartone 40x60": 6.0, "Cassetta 30x40": 5.0}),
-    ("L2", "Linea 2", "Calibratrice media", "Edificio 2", 18, 15,
+    ("L2", "Linea 2", "Calibratrice media", "Edificio 2", 16, 15,
      {"Cartone 40x60": 5.5, "Cassetta 30x40": 4.5, "Vassoio 6 frutti": 3.0}),
     ("L4", "Linea 4", "Cestini e vassoi", "Edificio 2", 14, 20,
      {"Cestino 1 kg": 2.5, "Vassoio 6 frutti": 3.5}),
-    ("L6", "Linea 6", "Polivalente", "Edificio 2", 12, 10,
+    ("L6", "Linea 6", "Polivalente", "Edificio 2", 10, 10,
      {"Cartone 40x60": 4.0, "Cassetta 30x40": 3.5, "Cestino 1 kg": 2.0}),
 ]
 CAP = {l[0]: l[6] for l in LINEE}
@@ -257,7 +257,7 @@ for _ in range(15):
     aggiungi(random.choice(["Addetto confezionamento", "Addetto cernita"]), "Squadra L4", ["L4"])
 for _ in range(24):
     aggiungi(random.choice(["Addetto cernita", "Addetto confezionamento"]), "Squadra L1", ["L1", "L2"])
-for _ in range(12):
+for _ in range(14):
     aggiungi(random.choice(["Addetto cernita", "Addetto confezionamento"]), "Squadra L2", ["L1", "L2", "L6"])
 for _ in range(10):
     aggiungi(random.choice(["Addetto cernita", "Addetto confezionamento"]), "Squadra L6", ["L2", "L6"])
@@ -266,7 +266,7 @@ for _ in range(6):
     aggiungi("Carrellista", "Carrellisti", [])
 for _ in range(3):
     aggiungi("Controllo qualita'", "Qualita'", [])
-for _ in range(5):
+for _ in range(3):
     aggiungi("Addetto pedane", "Confezionamento", [])
 assert len(PERSONE) == 80, len(PERSONE)
 
@@ -424,6 +424,9 @@ for o in ORDINI:
 LOTTI = []
 TARA_BINS = 33
 celle_usate = defaultdict(list)
+# Le celle vuote si riempiono in ordine sparso, cosi' i lotti finiscono in tutti
+# e due gli edifici.
+ORDINE_CELLE = random.sample([c[0] for c in CELLE], len(CELLE))
 
 
 def scegli_cella(varieta, bins):
@@ -433,9 +436,9 @@ def scegli_cella(varieta, bins):
                  if lotti and lotti[0]["varieta"] == varieta and sum(x["bins"] for x in lotti) + bins <= capienza[c]]
     if candidate:
         return candidate[0]
-    for c in CELLE:
-        if c[0] not in celle_usate:
-            return c[0]
+    for c in ORDINE_CELLE:
+        if c not in celle_usate:
+            return c
     return min(capienza, key=lambda c: sum(x["bins"] for x in celle_usate[c]))
 
 

@@ -12,7 +12,7 @@ M010;Bogdan Nardelli;Squadra L4;Addetto confezionamento;L4;2026-11-16;Presente;0
 M011;Walter Hoxhaj;Squadra L4;Addetto confezionamento;L4;2026-11-16;Presente;07:00;19:30
 M012;Mirco Fontechiara;Squadra L4;Addetto cernita;L4;2026-11-16;Presente;07:00;19:30
 M013;Lara Bonaccorsi;Squadra L4;Addetto cernita;L4;2026-11-16;Presente;07:00;19:30
-M014;Elena Dellarocca;Squadra L4;Addetto cernita;L4;2026-11-16;Uscita anticipata;07:00;12:30
+M014;Elena Dellarocca;Squadra L4;Addetto cernita;L4;2026-11-16;Malattia;;
 M015;Anna Ferraguti;Squadra L4;Addetto cernita;L4;2026-11-16;Presente;07:00;19:30
 M016;Anna Venturoli;Squadra L4;Addetto cernita;L4;2026-11-16;Presente;07:00;19:30
 M017;Gino Dumitrescu;Squadra L4;Addetto confezionamento;L4;2026-11-16;Presente;07:00;19:30
@@ -23,7 +23,7 @@ M021;Marta El Amrani;Squadra L1;Addetto cernita;L1|L2;2026-11-16;Presente;07:00;
 M022;Elira Ervani;Squadra L1;Addetto confezionamento;L1|L2;2026-11-16;Presente;07:00;19:30
 M023;Rocco Marzocca;Squadra L1;Addetto confezionamento;L1|L2;2026-11-16;Presente;07:00;19:30
 M024;Karim Ferraguti;Squadra L1;Addetto cernita;L1|L2;2026-11-16;Presente;07:00;19:30
-M025;Ugo Venturoli;Squadra L1;Addetto confezionamento;L1|L2;2026-11-16;Permesso;;
+M025;Ugo Venturoli;Squadra L1;Addetto confezionamento;L1|L2;2026-11-16;Ferie;;
 M026;Sara Dellarocca;Squadra L1;Addetto cernita;L1|L2;2026-11-16;Presente;07:00;19:30
 M027;Nino Fontechiara;Squadra L1;Addetto cernita;L1|L2;2026-11-16;Presente;07:00;19:30
 M028;Franca Hoxhaj;Squadra L1;Addetto confezionamento;L1|L2;2026-11-16;Presente;07:00;19:30
@@ -31,7 +31,7 @@ M029;Tina Salvioli;Squadra L1;Addetto confezionamento;L1|L2;2026-11-16;Presente;
 M030;Amina Hoxhaj;Squadra L1;Addetto confezionamento;L1|L2;2026-11-16;Presente;07:00;19:30
 M031;Nadia El Amrani;Squadra L1;Addetto confezionamento;L1|L2;2026-11-16;Presente;07:00;19:30
 M032;Fabio Albanti;Squadra L1;Addetto confezionamento;L1|L2;2026-11-16;Presente;07:00;19:30
-M033;Gino Tommasini;Squadra L1;Addetto confezionamento;L1|L2;2026-11-16;Presente;07:00;19:30
+M033;Gino Tommasini;Squadra L1;Addetto confezionamento;L1|L2;2026-11-16;Uscita anticipata;07:00;12:30
 M034;Lino Castelvetri;Squadra L1;Addetto confezionamento;L1|L2;2026-11-16;Presente;07:00;19:30
 M035;Zeno Rossetti;Squadra L1;Addetto cernita;L1|L2;2026-11-16;Presente;07:00;19:30
 M036;Dario Ervani;Squadra L1;Addetto cernita;L1|L2;2026-11-16;Presente;07:00;19:30
@@ -55,30 +55,30 @@ M053;Silvio Quarenghi;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-16;Pre
 M054;Lara Ubaldini;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-16;Presente;07:00;19:30
 M055;Carla Hoxhaj;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-16;Presente;07:00;19:30
 M056;Vera Bergoli;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-16;Presente;07:00;19:30
-M057;Ada Dumitrescu;Squadra L6;Addetto confezionamento;L2|L6;2026-11-16;Presente;07:00;19:30
-M058;Rocco Castelvetri;Squadra L6;Addetto cernita;L2|L6;2026-11-16;Presente;07:00;19:30
+M057;Ada Dumitrescu;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-16;Presente;07:00;19:30
+M058;Rocco Castelvetri;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-16;Presente;07:00;19:30
 M059;Karim Marzocca;Squadra L6;Addetto confezionamento;L2|L6;2026-11-16;Presente;07:00;19:30
 M060;Zeno Venturoli;Squadra L6;Addetto cernita;L2|L6;2026-11-16;Presente;07:00;19:30
-M061;Bruna Caminati;Squadra L6;Addetto cernita;L2|L6;2026-11-16;Presente;07:00;19:30
-M062;Tina Pratesi;Squadra L6;Addetto confezionamento;L2|L6;2026-11-16;Uscita anticipata;07:00;12:30
+M061;Bruna Caminati;Squadra L6;Addetto cernita;L2|L6;2026-11-16;Permesso;;
+M062;Tina Pratesi;Squadra L6;Addetto confezionamento;L2|L6;2026-11-16;Presente;07:00;19:30
 M063;Elira Ferraguti;Squadra L6;Addetto cernita;L2|L6;2026-11-16;Presente;07:00;19:30
 M064;Dario Dellarocca;Squadra L6;Addetto cernita;L2|L6;2026-11-16;Presente;07:00;19:30
-M065;Ada Dellarocca;Squadra L6;Addetto cernita;L2|L6;2026-11-16;Ferie;;
+M065;Ada Dellarocca;Squadra L6;Addetto cernita;L2|L6;2026-11-16;Presente;07:00;19:30
 M066;Rita Ubaldini;Squadra L6;Addetto cernita;L2|L6;2026-11-16;Presente;07:00;19:30
-M067;Bruna Venturoli;Carrellisti;Carrellista;;2026-11-16;Presente;07:00;19:30
-M068;Walter Quarenghi;Carrellisti;Carrellista;;2026-11-16;Presente;07:00;19:30
-M069;Fatima Salvioli;Carrellisti;Carrellista;;2026-11-16;Presente;07:00;19:30
-M070;Fabio El Amrani;Carrellisti;Carrellista;;2026-11-16;Presente;07:00;19:30
-M071;Lara Pratesi;Carrellisti;Carrellista;;2026-11-16;Presente;07:00;19:30
-M072;Luca Salvioli;Carrellisti;Carrellista;;2026-11-16;Presente;07:00;19:30
-M073;Ada Caminati;Qualita';Controllo qualita';;2026-11-16;Presente;07:00;19:30
-M074;Ilaria Imbriali;Qualita';Controllo qualita';;2026-11-16;Presente;07:00;19:30
-M075;Amina Lodesani;Qualita';Controllo qualita';;2026-11-16;Presente;07:00;19:30
-M076;Fatima Caminati;Confezionamento;Addetto pedane;;2026-11-16;Presente;07:00;19:30
-M077;Fatima Fontechiara;Confezionamento;Addetto pedane;;2026-11-16;Presente;07:00;19:30
-M078;Ilaria Bergoli;Confezionamento;Addetto pedane;;2026-11-16;Malattia;;
-M079;Marta Imbriali;Confezionamento;Addetto pedane;;2026-11-16;Presente;07:00;19:30
-M080;Rita Kovaci;Confezionamento;Addetto pedane;;2026-11-16;Presente;07:00;19:30
+M067;Elira Salvioli;Squadra L6;Addetto cernita;L2|L6;2026-11-16;Presente;07:00;19:30
+M068;Fatima Salvioli;Squadra L6;Addetto confezionamento;L2|L6;2026-11-16;Presente;07:00;19:30
+M069;Fabio El Amrani;Carrellisti;Carrellista;;2026-11-16;Presente;07:00;19:30
+M070;Lara Pratesi;Carrellisti;Carrellista;;2026-11-16;Presente;07:00;19:30
+M071;Luca Salvioli;Carrellisti;Carrellista;;2026-11-16;Presente;07:00;19:30
+M072;Ada Caminati;Carrellisti;Carrellista;;2026-11-16;Presente;07:00;19:30
+M073;Ilaria Imbriali;Carrellisti;Carrellista;;2026-11-16;Presente;07:00;19:30
+M074;Amina Lodesani;Carrellisti;Carrellista;;2026-11-16;Presente;07:00;19:30
+M075;Fatima Caminati;Qualita';Controllo qualita';;2026-11-16;Presente;07:00;19:30
+M076;Fatima Fontechiara;Qualita';Controllo qualita';;2026-11-16;Presente;07:00;19:30
+M077;Ilaria Bergoli;Qualita';Controllo qualita';;2026-11-16;Presente;07:00;19:30
+M078;Marta Imbriali;Confezionamento;Addetto pedane;;2026-11-16;Presente;07:00;19:30
+M079;Rita Kovaci;Confezionamento;Addetto pedane;;2026-11-16;Presente;07:00;19:30
+M080;Bogdan Tommasini;Confezionamento;Addetto pedane;;2026-11-16;Uscita anticipata;07:00;12:30
 M001;Irina Dellarocca;Squadra L1;Capolinea;L1;2026-11-17;Presente;07:00;19:30
 M002;Marta Dellarocca;Squadra L2;Capolinea;L2;2026-11-17;Presente;07:00;19:30
 M003;Fabio Nardelli;Squadra L4;Capolinea;L4;2026-11-17;Presente;07:00;19:30
@@ -104,7 +104,7 @@ M022;Elira Ervani;Squadra L1;Addetto confezionamento;L1|L2;2026-11-17;Presente;0
 M023;Rocco Marzocca;Squadra L1;Addetto confezionamento;L1|L2;2026-11-17;Presente;07:00;19:30
 M024;Karim Ferraguti;Squadra L1;Addetto cernita;L1|L2;2026-11-17;Presente;07:00;19:30
 M025;Ugo Venturoli;Squadra L1;Addetto confezionamento;L1|L2;2026-11-17;Presente;07:00;19:30
-M026;Sara Dellarocca;Squadra L1;Addetto cernita;L1|L2;2026-11-17;Malattia;;
+M026;Sara Dellarocca;Squadra L1;Addetto cernita;L1|L2;2026-11-17;Presente;07:00;19:30
 M027;Nino Fontechiara;Squadra L1;Addetto cernita;L1|L2;2026-11-17;Presente;07:00;19:30
 M028;Franca Hoxhaj;Squadra L1;Addetto confezionamento;L1|L2;2026-11-17;Presente;07:00;19:30
 M029;Tina Salvioli;Squadra L1;Addetto confezionamento;L1|L2;2026-11-17;Presente;07:00;19:30
@@ -123,20 +123,20 @@ M041;Nino Ubaldini;Squadra L1;Addetto confezionamento;L1|L2;2026-11-17;Presente;
 M042;Aldo Fontechiara;Squadra L1;Addetto confezionamento;L1|L2;2026-11-17;Presente;07:00;19:30
 M043;Ivo Kovaci;Squadra L1;Addetto cernita;L1|L2;2026-11-17;Presente;07:00;19:30
 M044;Fabio Bergoli;Squadra L1;Addetto cernita;L1|L2;2026-11-17;Presente;07:00;19:30
-M045;Fabio Ervani;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-17;Presente;07:00;19:30
+M045;Fabio Ervani;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-17;Uscita anticipata;07:00;12:30
 M046;Amina Benali;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-17;Presente;07:00;19:30
 M047;Ugo Rossetti;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-17;Presente;07:00;19:30
 M048;Olga Dumitrescu;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-17;Presente;07:00;19:30
 M049;Paola El Amrani;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-17;Presente;07:00;19:30
 M050;Ada El Amrani;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-17;Presente;07:00;19:30
-M051;Bruna Bergoli;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-17;Presente;07:00;19:30
-M052;Aldo Quarenghi;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-17;Permesso;;
-M053;Silvio Quarenghi;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-17;Uscita anticipata;07:00;12:30
+M051;Bruna Bergoli;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-17;Permesso;;
+M052;Aldo Quarenghi;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-17;Malattia;;
+M053;Silvio Quarenghi;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-17;Presente;07:00;19:30
 M054;Lara Ubaldini;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-17;Presente;07:00;19:30
 M055;Carla Hoxhaj;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-17;Presente;07:00;19:30
 M056;Vera Bergoli;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-17;Presente;07:00;19:30
-M057;Ada Dumitrescu;Squadra L6;Addetto confezionamento;L2|L6;2026-11-17;Presente;07:00;19:30
-M058;Rocco Castelvetri;Squadra L6;Addetto cernita;L2|L6;2026-11-17;Presente;07:00;19:30
+M057;Ada Dumitrescu;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-17;Presente;07:00;19:30
+M058;Rocco Castelvetri;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-17;Presente;07:00;19:30
 M059;Karim Marzocca;Squadra L6;Addetto confezionamento;L2|L6;2026-11-17;Presente;07:00;19:30
 M060;Zeno Venturoli;Squadra L6;Addetto cernita;L2|L6;2026-11-17;Presente;07:00;19:30
 M061;Bruna Caminati;Squadra L6;Addetto cernita;L2|L6;2026-11-17;Presente;07:00;19:30
@@ -145,20 +145,20 @@ M063;Elira Ferraguti;Squadra L6;Addetto cernita;L2|L6;2026-11-17;Presente;07:00;
 M064;Dario Dellarocca;Squadra L6;Addetto cernita;L2|L6;2026-11-17;Presente;07:00;19:30
 M065;Ada Dellarocca;Squadra L6;Addetto cernita;L2|L6;2026-11-17;Presente;07:00;19:30
 M066;Rita Ubaldini;Squadra L6;Addetto cernita;L2|L6;2026-11-17;Presente;07:00;19:30
-M067;Bruna Venturoli;Carrellisti;Carrellista;;2026-11-17;Presente;07:00;19:30
-M068;Walter Quarenghi;Carrellisti;Carrellista;;2026-11-17;Presente;07:00;19:30
-M069;Fatima Salvioli;Carrellisti;Carrellista;;2026-11-17;Presente;07:00;19:30
-M070;Fabio El Amrani;Carrellisti;Carrellista;;2026-11-17;Presente;07:00;19:30
-M071;Lara Pratesi;Carrellisti;Carrellista;;2026-11-17;Presente;07:00;19:30
-M072;Luca Salvioli;Carrellisti;Carrellista;;2026-11-17;Presente;07:00;19:30
-M073;Ada Caminati;Qualita';Controllo qualita';;2026-11-17;Presente;07:00;19:30
-M074;Ilaria Imbriali;Qualita';Controllo qualita';;2026-11-17;Presente;07:00;19:30
-M075;Amina Lodesani;Qualita';Controllo qualita';;2026-11-17;Presente;07:00;19:30
-M076;Fatima Caminati;Confezionamento;Addetto pedane;;2026-11-17;Presente;07:00;19:30
-M077;Fatima Fontechiara;Confezionamento;Addetto pedane;;2026-11-17;Malattia;;
-M078;Ilaria Bergoli;Confezionamento;Addetto pedane;;2026-11-17;Presente;07:00;19:30
-M079;Marta Imbriali;Confezionamento;Addetto pedane;;2026-11-17;Presente;07:00;19:30
-M080;Rita Kovaci;Confezionamento;Addetto pedane;;2026-11-17;Presente;07:00;19:30
+M067;Elira Salvioli;Squadra L6;Addetto cernita;L2|L6;2026-11-17;Presente;07:00;19:30
+M068;Fatima Salvioli;Squadra L6;Addetto confezionamento;L2|L6;2026-11-17;Presente;07:00;19:30
+M069;Fabio El Amrani;Carrellisti;Carrellista;;2026-11-17;Presente;07:00;19:30
+M070;Lara Pratesi;Carrellisti;Carrellista;;2026-11-17;Presente;07:00;19:30
+M071;Luca Salvioli;Carrellisti;Carrellista;;2026-11-17;Presente;07:00;19:30
+M072;Ada Caminati;Carrellisti;Carrellista;;2026-11-17;Presente;07:00;19:30
+M073;Ilaria Imbriali;Carrellisti;Carrellista;;2026-11-17;Presente;07:00;19:30
+M074;Amina Lodesani;Carrellisti;Carrellista;;2026-11-17;Presente;07:00;19:30
+M075;Fatima Caminati;Qualita';Controllo qualita';;2026-11-17;Presente;07:00;19:30
+M076;Fatima Fontechiara;Qualita';Controllo qualita';;2026-11-17;Presente;07:00;19:30
+M077;Ilaria Bergoli;Qualita';Controllo qualita';;2026-11-17;Ferie;;
+M078;Marta Imbriali;Confezionamento;Addetto pedane;;2026-11-17;Presente;07:00;19:30
+M079;Rita Kovaci;Confezionamento;Addetto pedane;;2026-11-17;Presente;07:00;19:30
+M080;Bogdan Tommasini;Confezionamento;Addetto pedane;;2026-11-17;Presente;07:00;19:30
 M001;Irina Dellarocca;Squadra L1;Capolinea;L1;2026-11-18;Presente;07:00;19:30
 M002;Marta Dellarocca;Squadra L2;Capolinea;L2;2026-11-18;Presente;07:00;19:30
 M003;Fabio Nardelli;Squadra L4;Capolinea;L4;2026-11-18;Presente;07:00;19:30
@@ -168,12 +168,12 @@ M006;Carla Albanti;Squadra L4;Addetto confezionamento;L4;2026-11-18;Presente;07:
 M007;Mirco Imbriali;Squadra L4;Addetto confezionamento;L4;2026-11-18;Presente;07:00;19:30
 M008;Olga Rossetti;Squadra L4;Addetto cernita;L4;2026-11-18;Presente;07:00;19:30
 M009;Lino Albanti;Squadra L4;Addetto cernita;L4;2026-11-18;Presente;07:00;19:30
-M010;Bogdan Nardelli;Squadra L4;Addetto confezionamento;L4;2026-11-18;Permesso;;
+M010;Bogdan Nardelli;Squadra L4;Addetto confezionamento;L4;2026-11-18;Malattia;;
 M011;Walter Hoxhaj;Squadra L4;Addetto confezionamento;L4;2026-11-18;Presente;07:00;19:30
 M012;Mirco Fontechiara;Squadra L4;Addetto cernita;L4;2026-11-18;Presente;07:00;19:30
 M013;Lara Bonaccorsi;Squadra L4;Addetto cernita;L4;2026-11-18;Presente;07:00;19:30
 M014;Elena Dellarocca;Squadra L4;Addetto cernita;L4;2026-11-18;Presente;07:00;19:30
-M015;Anna Ferraguti;Squadra L4;Addetto cernita;L4;2026-11-18;Malattia;;
+M015;Anna Ferraguti;Squadra L4;Addetto cernita;L4;2026-11-18;Presente;07:00;19:30
 M016;Anna Venturoli;Squadra L4;Addetto cernita;L4;2026-11-18;Presente;07:00;19:30
 M017;Gino Dumitrescu;Squadra L4;Addetto confezionamento;L4;2026-11-18;Presente;07:00;19:30
 M018;Amina Imbriali;Squadra L4;Addetto confezionamento;L4;2026-11-18;Presente;07:00;19:30
@@ -190,8 +190,8 @@ M028;Franca Hoxhaj;Squadra L1;Addetto confezionamento;L1|L2;2026-11-18;Presente;
 M029;Tina Salvioli;Squadra L1;Addetto confezionamento;L1|L2;2026-11-18;Presente;07:00;19:30
 M030;Amina Hoxhaj;Squadra L1;Addetto confezionamento;L1|L2;2026-11-18;Presente;07:00;19:30
 M031;Nadia El Amrani;Squadra L1;Addetto confezionamento;L1|L2;2026-11-18;Presente;07:00;19:30
-M032;Fabio Albanti;Squadra L1;Addetto confezionamento;L1|L2;2026-11-18;Presente;07:00;19:30
-M033;Gino Tommasini;Squadra L1;Addetto confezionamento;L1|L2;2026-11-18;Uscita anticipata;07:00;12:30
+M032;Fabio Albanti;Squadra L1;Addetto confezionamento;L1|L2;2026-11-18;Uscita anticipata;07:00;12:30
+M033;Gino Tommasini;Squadra L1;Addetto confezionamento;L1|L2;2026-11-18;Presente;07:00;19:30
 M034;Lino Castelvetri;Squadra L1;Addetto confezionamento;L1|L2;2026-11-18;Presente;07:00;19:30
 M035;Zeno Rossetti;Squadra L1;Addetto cernita;L1|L2;2026-11-18;Presente;07:00;19:30
 M036;Dario Ervani;Squadra L1;Addetto cernita;L1|L2;2026-11-18;Presente;07:00;19:30
@@ -214,9 +214,9 @@ M052;Aldo Quarenghi;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-18;Prese
 M053;Silvio Quarenghi;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-18;Presente;07:00;19:30
 M054;Lara Ubaldini;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-18;Presente;07:00;19:30
 M055;Carla Hoxhaj;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-18;Presente;07:00;19:30
-M056;Vera Bergoli;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-18;Presente;07:00;19:30
-M057;Ada Dumitrescu;Squadra L6;Addetto confezionamento;L2|L6;2026-11-18;Presente;07:00;19:30
-M058;Rocco Castelvetri;Squadra L6;Addetto cernita;L2|L6;2026-11-18;Presente;07:00;19:30
+M056;Vera Bergoli;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-18;Uscita anticipata;07:00;12:30
+M057;Ada Dumitrescu;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-18;Presente;07:00;19:30
+M058;Rocco Castelvetri;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-18;Presente;07:00;19:30
 M059;Karim Marzocca;Squadra L6;Addetto confezionamento;L2|L6;2026-11-18;Presente;07:00;19:30
 M060;Zeno Venturoli;Squadra L6;Addetto cernita;L2|L6;2026-11-18;Presente;07:00;19:30
 M061;Bruna Caminati;Squadra L6;Addetto cernita;L2|L6;2026-11-18;Malattia;;
@@ -225,24 +225,24 @@ M063;Elira Ferraguti;Squadra L6;Addetto cernita;L2|L6;2026-11-18;Presente;07:00;
 M064;Dario Dellarocca;Squadra L6;Addetto cernita;L2|L6;2026-11-18;Presente;07:00;19:30
 M065;Ada Dellarocca;Squadra L6;Addetto cernita;L2|L6;2026-11-18;Presente;07:00;19:30
 M066;Rita Ubaldini;Squadra L6;Addetto cernita;L2|L6;2026-11-18;Presente;07:00;19:30
-M067;Bruna Venturoli;Carrellisti;Carrellista;;2026-11-18;Presente;07:00;19:30
-M068;Walter Quarenghi;Carrellisti;Carrellista;;2026-11-18;Presente;07:00;19:30
-M069;Fatima Salvioli;Carrellisti;Carrellista;;2026-11-18;Presente;07:00;19:30
-M070;Fabio El Amrani;Carrellisti;Carrellista;;2026-11-18;Presente;07:00;19:30
-M071;Lara Pratesi;Carrellisti;Carrellista;;2026-11-18;Presente;07:00;19:30
-M072;Luca Salvioli;Carrellisti;Carrellista;;2026-11-18;Presente;07:00;19:30
-M073;Ada Caminati;Qualita';Controllo qualita';;2026-11-18;Presente;07:00;19:30
-M074;Ilaria Imbriali;Qualita';Controllo qualita';;2026-11-18;Presente;07:00;19:30
-M075;Amina Lodesani;Qualita';Controllo qualita';;2026-11-18;Uscita anticipata;07:00;12:30
-M076;Fatima Caminati;Confezionamento;Addetto pedane;;2026-11-18;Presente;07:00;19:30
-M077;Fatima Fontechiara;Confezionamento;Addetto pedane;;2026-11-18;Presente;07:00;19:30
-M078;Ilaria Bergoli;Confezionamento;Addetto pedane;;2026-11-18;Presente;07:00;19:30
-M079;Marta Imbriali;Confezionamento;Addetto pedane;;2026-11-18;Presente;07:00;19:30
-M080;Rita Kovaci;Confezionamento;Addetto pedane;;2026-11-18;Presente;07:00;19:30
+M067;Elira Salvioli;Squadra L6;Addetto cernita;L2|L6;2026-11-18;Presente;07:00;19:30
+M068;Fatima Salvioli;Squadra L6;Addetto confezionamento;L2|L6;2026-11-18;Presente;07:00;19:30
+M069;Fabio El Amrani;Carrellisti;Carrellista;;2026-11-18;Presente;07:00;19:30
+M070;Lara Pratesi;Carrellisti;Carrellista;;2026-11-18;Presente;07:00;19:30
+M071;Luca Salvioli;Carrellisti;Carrellista;;2026-11-18;Presente;07:00;19:30
+M072;Ada Caminati;Carrellisti;Carrellista;;2026-11-18;Malattia;;
+M073;Ilaria Imbriali;Carrellisti;Carrellista;;2026-11-18;Presente;07:00;19:30
+M074;Amina Lodesani;Carrellisti;Carrellista;;2026-11-18;Presente;07:00;19:30
+M075;Fatima Caminati;Qualita';Controllo qualita';;2026-11-18;Presente;07:00;19:30
+M076;Fatima Fontechiara;Qualita';Controllo qualita';;2026-11-18;Presente;07:00;19:30
+M077;Ilaria Bergoli;Qualita';Controllo qualita';;2026-11-18;Presente;07:00;19:30
+M078;Marta Imbriali;Confezionamento;Addetto pedane;;2026-11-18;Presente;07:00;19:30
+M079;Rita Kovaci;Confezionamento;Addetto pedane;;2026-11-18;Presente;07:00;19:30
+M080;Bogdan Tommasini;Confezionamento;Addetto pedane;;2026-11-18;Presente;07:00;19:30
 M001;Irina Dellarocca;Squadra L1;Capolinea;L1;2026-11-19;Presente;07:00;19:30
 M002;Marta Dellarocca;Squadra L2;Capolinea;L2;2026-11-19;Presente;07:00;19:30
 M003;Fabio Nardelli;Squadra L4;Capolinea;L4;2026-11-19;Presente;07:00;19:30
-M004;Dario Salvioli;Squadra L6;Capolinea;L6;2026-11-19;Uscita anticipata;07:00;12:30
+M004;Dario Salvioli;Squadra L6;Capolinea;L6;2026-11-19;Permesso;;
 M005;Gina Venturoli;Jolly;Capolinea;L1|L2|L6;2026-11-19;Presente;07:00;19:30
 M006;Carla Albanti;Squadra L4;Addetto confezionamento;L4;2026-11-19;Presente;07:00;19:30
 M007;Mirco Imbriali;Squadra L4;Addetto confezionamento;L4;2026-11-19;Presente;07:00;19:30
@@ -252,7 +252,7 @@ M010;Bogdan Nardelli;Squadra L4;Addetto confezionamento;L4;2026-11-19;Presente;0
 M011;Walter Hoxhaj;Squadra L4;Addetto confezionamento;L4;2026-11-19;Presente;07:00;19:30
 M012;Mirco Fontechiara;Squadra L4;Addetto cernita;L4;2026-11-19;Presente;07:00;19:30
 M013;Lara Bonaccorsi;Squadra L4;Addetto cernita;L4;2026-11-19;Presente;07:00;19:30
-M014;Elena Dellarocca;Squadra L4;Addetto cernita;L4;2026-11-19;Presente;07:00;19:30
+M014;Elena Dellarocca;Squadra L4;Addetto cernita;L4;2026-11-19;Uscita anticipata;07:00;12:30
 M015;Anna Ferraguti;Squadra L4;Addetto cernita;L4;2026-11-19;Presente;07:00;19:30
 M016;Anna Venturoli;Squadra L4;Addetto cernita;L4;2026-11-19;Presente;07:00;19:30
 M017;Gino Dumitrescu;Squadra L4;Addetto confezionamento;L4;2026-11-19;Presente;07:00;19:30
@@ -261,7 +261,7 @@ M019;Marta Pratesi;Squadra L4;Addetto confezionamento;L4;2026-11-19;Presente;07:
 M020;Bruna Salvioli;Squadra L4;Addetto cernita;L4;2026-11-19;Presente;07:00;19:30
 M021;Marta El Amrani;Squadra L1;Addetto cernita;L1|L2;2026-11-19;Presente;07:00;19:30
 M022;Elira Ervani;Squadra L1;Addetto confezionamento;L1|L2;2026-11-19;Presente;07:00;19:30
-M023;Rocco Marzocca;Squadra L1;Addetto confezionamento;L1|L2;2026-11-19;Ferie;;
+M023;Rocco Marzocca;Squadra L1;Addetto confezionamento;L1|L2;2026-11-19;Permesso;;
 M024;Karim Ferraguti;Squadra L1;Addetto cernita;L1|L2;2026-11-19;Presente;07:00;19:30
 M025;Ugo Venturoli;Squadra L1;Addetto confezionamento;L1|L2;2026-11-19;Presente;07:00;19:30
 M026;Sara Dellarocca;Squadra L1;Addetto cernita;L1|L2;2026-11-19;Presente;07:00;19:30
@@ -272,8 +272,8 @@ M030;Amina Hoxhaj;Squadra L1;Addetto confezionamento;L1|L2;2026-11-19;Presente;0
 M031;Nadia El Amrani;Squadra L1;Addetto confezionamento;L1|L2;2026-11-19;Presente;07:00;19:30
 M032;Fabio Albanti;Squadra L1;Addetto confezionamento;L1|L2;2026-11-19;Presente;07:00;19:30
 M033;Gino Tommasini;Squadra L1;Addetto confezionamento;L1|L2;2026-11-19;Presente;07:00;19:30
-M034;Lino Castelvetri;Squadra L1;Addetto confezionamento;L1|L2;2026-11-19;Uscita anticipata;07:00;12:30
-M035;Zeno Rossetti;Squadra L1;Addetto cernita;L1|L2;2026-11-19;Presente;07:00;19:30
+M034;Lino Castelvetri;Squadra L1;Addetto confezionamento;L1|L2;2026-11-19;Presente;07:00;19:30
+M035;Zeno Rossetti;Squadra L1;Addetto cernita;L1|L2;2026-11-19;Uscita anticipata;07:00;12:30
 M036;Dario Ervani;Squadra L1;Addetto cernita;L1|L2;2026-11-19;Presente;07:00;19:30
 M037;Vera Benali;Squadra L1;Addetto cernita;L1|L2;2026-11-19;Presente;07:00;19:30
 M038;Elira El Amrani;Squadra L1;Addetto cernita;L1|L2;2026-11-19;Presente;07:00;19:30
@@ -295,40 +295,40 @@ M053;Silvio Quarenghi;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-19;Pre
 M054;Lara Ubaldini;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-19;Presente;07:00;19:30
 M055;Carla Hoxhaj;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-19;Presente;07:00;19:30
 M056;Vera Bergoli;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-19;Presente;07:00;19:30
-M057;Ada Dumitrescu;Squadra L6;Addetto confezionamento;L2|L6;2026-11-19;Presente;07:00;19:30
-M058;Rocco Castelvetri;Squadra L6;Addetto cernita;L2|L6;2026-11-19;Presente;07:00;19:30
+M057;Ada Dumitrescu;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-19;Presente;07:00;19:30
+M058;Rocco Castelvetri;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-19;Presente;07:00;19:30
 M059;Karim Marzocca;Squadra L6;Addetto confezionamento;L2|L6;2026-11-19;Presente;07:00;19:30
 M060;Zeno Venturoli;Squadra L6;Addetto cernita;L2|L6;2026-11-19;Presente;07:00;19:30
-M061;Bruna Caminati;Squadra L6;Addetto cernita;L2|L6;2026-11-19;Permesso;;
+M061;Bruna Caminati;Squadra L6;Addetto cernita;L2|L6;2026-11-19;Presente;07:00;19:30
 M062;Tina Pratesi;Squadra L6;Addetto confezionamento;L2|L6;2026-11-19;Presente;07:00;19:30
 M063;Elira Ferraguti;Squadra L6;Addetto cernita;L2|L6;2026-11-19;Presente;07:00;19:30
-M064;Dario Dellarocca;Squadra L6;Addetto cernita;L2|L6;2026-11-19;Permesso;;
+M064;Dario Dellarocca;Squadra L6;Addetto cernita;L2|L6;2026-11-19;Presente;07:00;19:30
 M065;Ada Dellarocca;Squadra L6;Addetto cernita;L2|L6;2026-11-19;Presente;07:00;19:30
 M066;Rita Ubaldini;Squadra L6;Addetto cernita;L2|L6;2026-11-19;Presente;07:00;19:30
-M067;Bruna Venturoli;Carrellisti;Carrellista;;2026-11-19;Presente;07:00;19:30
-M068;Walter Quarenghi;Carrellisti;Carrellista;;2026-11-19;Presente;07:00;19:30
-M069;Fatima Salvioli;Carrellisti;Carrellista;;2026-11-19;Presente;07:00;19:30
-M070;Fabio El Amrani;Carrellisti;Carrellista;;2026-11-19;Presente;07:00;19:30
-M071;Lara Pratesi;Carrellisti;Carrellista;;2026-11-19;Presente;07:00;19:30
-M072;Luca Salvioli;Carrellisti;Carrellista;;2026-11-19;Presente;07:00;19:30
-M073;Ada Caminati;Qualita';Controllo qualita';;2026-11-19;Presente;07:00;19:30
-M074;Ilaria Imbriali;Qualita';Controllo qualita';;2026-11-19;Presente;07:00;19:30
-M075;Amina Lodesani;Qualita';Controllo qualita';;2026-11-19;Presente;07:00;19:30
-M076;Fatima Caminati;Confezionamento;Addetto pedane;;2026-11-19;Presente;07:00;19:30
-M077;Fatima Fontechiara;Confezionamento;Addetto pedane;;2026-11-19;Presente;07:00;19:30
-M078;Ilaria Bergoli;Confezionamento;Addetto pedane;;2026-11-19;Presente;07:00;19:30
-M079;Marta Imbriali;Confezionamento;Addetto pedane;;2026-11-19;Presente;07:00;19:30
-M080;Rita Kovaci;Confezionamento;Addetto pedane;;2026-11-19;Presente;07:00;19:30
+M067;Elira Salvioli;Squadra L6;Addetto cernita;L2|L6;2026-11-19;Presente;07:00;19:30
+M068;Fatima Salvioli;Squadra L6;Addetto confezionamento;L2|L6;2026-11-19;Presente;07:00;19:30
+M069;Fabio El Amrani;Carrellisti;Carrellista;;2026-11-19;Presente;07:00;19:30
+M070;Lara Pratesi;Carrellisti;Carrellista;;2026-11-19;Presente;07:00;19:30
+M071;Luca Salvioli;Carrellisti;Carrellista;;2026-11-19;Presente;07:00;19:30
+M072;Ada Caminati;Carrellisti;Carrellista;;2026-11-19;Presente;07:00;19:30
+M073;Ilaria Imbriali;Carrellisti;Carrellista;;2026-11-19;Presente;07:00;19:30
+M074;Amina Lodesani;Carrellisti;Carrellista;;2026-11-19;Presente;07:00;19:30
+M075;Fatima Caminati;Qualita';Controllo qualita';;2026-11-19;Presente;07:00;19:30
+M076;Fatima Fontechiara;Qualita';Controllo qualita';;2026-11-19;Presente;07:00;19:30
+M077;Ilaria Bergoli;Qualita';Controllo qualita';;2026-11-19;Presente;07:00;19:30
+M078;Marta Imbriali;Confezionamento;Addetto pedane;;2026-11-19;Presente;07:00;19:30
+M079;Rita Kovaci;Confezionamento;Addetto pedane;;2026-11-19;Presente;07:00;19:30
+M080;Bogdan Tommasini;Confezionamento;Addetto pedane;;2026-11-19;Malattia;;
 M001;Irina Dellarocca;Squadra L1;Capolinea;L1;2026-11-20;Presente;07:00;19:30
 M002;Marta Dellarocca;Squadra L2;Capolinea;L2;2026-11-20;Presente;07:00;19:30
 M003;Fabio Nardelli;Squadra L4;Capolinea;L4;2026-11-20;Presente;07:00;19:30
-M004;Dario Salvioli;Squadra L6;Capolinea;L6;2026-11-20;Ferie;;
+M004;Dario Salvioli;Squadra L6;Capolinea;L6;2026-11-20;Malattia;;
 M005;Gina Venturoli;Jolly;Capolinea;L1|L2|L6;2026-11-20;Presente;07:00;19:30
 M006;Carla Albanti;Squadra L4;Addetto confezionamento;L4;2026-11-20;Presente;07:00;19:30
 M007;Mirco Imbriali;Squadra L4;Addetto confezionamento;L4;2026-11-20;Presente;07:00;19:30
 M008;Olga Rossetti;Squadra L4;Addetto cernita;L4;2026-11-20;Presente;07:00;19:30
-M009;Lino Albanti;Squadra L4;Addetto cernita;L4;2026-11-20;Presente;07:00;19:30
-M010;Bogdan Nardelli;Squadra L4;Addetto confezionamento;L4;2026-11-20;Uscita anticipata;07:00;12:30
+M009;Lino Albanti;Squadra L4;Addetto cernita;L4;2026-11-20;Permesso;;
+M010;Bogdan Nardelli;Squadra L4;Addetto confezionamento;L4;2026-11-20;Presente;07:00;19:30
 M011;Walter Hoxhaj;Squadra L4;Addetto confezionamento;L4;2026-11-20;Presente;07:00;19:30
 M012;Mirco Fontechiara;Squadra L4;Addetto cernita;L4;2026-11-20;Presente;07:00;19:30
 M013;Lara Bonaccorsi;Squadra L4;Addetto cernita;L4;2026-11-20;Presente;07:00;19:30
@@ -351,7 +351,7 @@ M029;Tina Salvioli;Squadra L1;Addetto confezionamento;L1|L2;2026-11-20;Presente;
 M030;Amina Hoxhaj;Squadra L1;Addetto confezionamento;L1|L2;2026-11-20;Presente;07:00;19:30
 M031;Nadia El Amrani;Squadra L1;Addetto confezionamento;L1|L2;2026-11-20;Presente;07:00;19:30
 M032;Fabio Albanti;Squadra L1;Addetto confezionamento;L1|L2;2026-11-20;Presente;07:00;19:30
-M033;Gino Tommasini;Squadra L1;Addetto confezionamento;L1|L2;2026-11-20;Presente;07:00;19:30
+M033;Gino Tommasini;Squadra L1;Addetto confezionamento;L1|L2;2026-11-20;Uscita anticipata;07:00;12:30
 M034;Lino Castelvetri;Squadra L1;Addetto confezionamento;L1|L2;2026-11-20;Presente;07:00;19:30
 M035;Zeno Rossetti;Squadra L1;Addetto cernita;L1|L2;2026-11-20;Presente;07:00;19:30
 M036;Dario Ervani;Squadra L1;Addetto cernita;L1|L2;2026-11-20;Presente;07:00;19:30
@@ -369,14 +369,14 @@ M047;Ugo Rossetti;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-20;Presente;07:00;
 M048;Olga Dumitrescu;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-20;Presente;07:00;19:30
 M049;Paola El Amrani;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-20;Presente;07:00;19:30
 M050;Ada El Amrani;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-20;Presente;07:00;19:30
-M051;Bruna Bergoli;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-20;Malattia;;
+M051;Bruna Bergoli;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-20;Presente;07:00;19:30
 M052;Aldo Quarenghi;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-20;Presente;07:00;19:30
 M053;Silvio Quarenghi;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-20;Presente;07:00;19:30
 M054;Lara Ubaldini;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-20;Presente;07:00;19:30
 M055;Carla Hoxhaj;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-20;Presente;07:00;19:30
 M056;Vera Bergoli;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-20;Presente;07:00;19:30
-M057;Ada Dumitrescu;Squadra L6;Addetto confezionamento;L2|L6;2026-11-20;Presente;07:00;19:30
-M058;Rocco Castelvetri;Squadra L6;Addetto cernita;L2|L6;2026-11-20;Presente;07:00;19:30
+M057;Ada Dumitrescu;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-20;Presente;07:00;19:30
+M058;Rocco Castelvetri;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-20;Presente;07:00;19:30
 M059;Karim Marzocca;Squadra L6;Addetto confezionamento;L2|L6;2026-11-20;Presente;07:00;19:30
 M060;Zeno Venturoli;Squadra L6;Addetto cernita;L2|L6;2026-11-20;Presente;07:00;19:30
 M061;Bruna Caminati;Squadra L6;Addetto cernita;L2|L6;2026-11-20;Presente;07:00;19:30
@@ -385,20 +385,20 @@ M063;Elira Ferraguti;Squadra L6;Addetto cernita;L2|L6;2026-11-20;Presente;07:00;
 M064;Dario Dellarocca;Squadra L6;Addetto cernita;L2|L6;2026-11-20;Presente;07:00;19:30
 M065;Ada Dellarocca;Squadra L6;Addetto cernita;L2|L6;2026-11-20;Presente;07:00;19:30
 M066;Rita Ubaldini;Squadra L6;Addetto cernita;L2|L6;2026-11-20;Presente;07:00;19:30
-M067;Bruna Venturoli;Carrellisti;Carrellista;;2026-11-20;Presente;07:00;19:30
-M068;Walter Quarenghi;Carrellisti;Carrellista;;2026-11-20;Presente;07:00;19:30
-M069;Fatima Salvioli;Carrellisti;Carrellista;;2026-11-20;Presente;07:00;19:30
-M070;Fabio El Amrani;Carrellisti;Carrellista;;2026-11-20;Presente;07:00;19:30
-M071;Lara Pratesi;Carrellisti;Carrellista;;2026-11-20;Presente;07:00;19:30
-M072;Luca Salvioli;Carrellisti;Carrellista;;2026-11-20;Presente;07:00;19:30
-M073;Ada Caminati;Qualita';Controllo qualita';;2026-11-20;Presente;07:00;19:30
-M074;Ilaria Imbriali;Qualita';Controllo qualita';;2026-11-20;Permesso;;
-M075;Amina Lodesani;Qualita';Controllo qualita';;2026-11-20;Presente;07:00;19:30
-M076;Fatima Caminati;Confezionamento;Addetto pedane;;2026-11-20;Presente;07:00;19:30
-M077;Fatima Fontechiara;Confezionamento;Addetto pedane;;2026-11-20;Presente;07:00;19:30
-M078;Ilaria Bergoli;Confezionamento;Addetto pedane;;2026-11-20;Presente;07:00;19:30
-M079;Marta Imbriali;Confezionamento;Addetto pedane;;2026-11-20;Uscita anticipata;07:00;12:30
-M080;Rita Kovaci;Confezionamento;Addetto pedane;;2026-11-20;Presente;07:00;19:30
+M067;Elira Salvioli;Squadra L6;Addetto cernita;L2|L6;2026-11-20;Presente;07:00;19:30
+M068;Fatima Salvioli;Squadra L6;Addetto confezionamento;L2|L6;2026-11-20;Presente;07:00;19:30
+M069;Fabio El Amrani;Carrellisti;Carrellista;;2026-11-20;Presente;07:00;19:30
+M070;Lara Pratesi;Carrellisti;Carrellista;;2026-11-20;Presente;07:00;19:30
+M071;Luca Salvioli;Carrellisti;Carrellista;;2026-11-20;Presente;07:00;19:30
+M072;Ada Caminati;Carrellisti;Carrellista;;2026-11-20;Presente;07:00;19:30
+M073;Ilaria Imbriali;Carrellisti;Carrellista;;2026-11-20;Presente;07:00;19:30
+M074;Amina Lodesani;Carrellisti;Carrellista;;2026-11-20;Permesso;;
+M075;Fatima Caminati;Qualita';Controllo qualita';;2026-11-20;Presente;07:00;19:30
+M076;Fatima Fontechiara;Qualita';Controllo qualita';;2026-11-20;Presente;07:00;19:30
+M077;Ilaria Bergoli;Qualita';Controllo qualita';;2026-11-20;Presente;07:00;19:30
+M078;Marta Imbriali;Confezionamento;Addetto pedane;;2026-11-20;Presente;07:00;19:30
+M079;Rita Kovaci;Confezionamento;Addetto pedane;;2026-11-20;Uscita anticipata;07:00;12:30
+M080;Bogdan Tommasini;Confezionamento;Addetto pedane;;2026-11-20;Presente;07:00;19:30
 M001;Irina Dellarocca;Squadra L1;Capolinea;L1;2026-11-23;Presente;07:00;19:30
 M002;Marta Dellarocca;Squadra L2;Capolinea;L2;2026-11-23;Presente;07:00;19:30
 M003;Fabio Nardelli;Squadra L4;Capolinea;L4;2026-11-23;Presente;07:00;19:30
@@ -409,8 +409,8 @@ M007;Mirco Imbriali;Squadra L4;Addetto confezionamento;L4;2026-11-23;Presente;07
 M008;Olga Rossetti;Squadra L4;Addetto cernita;L4;2026-11-23;Presente;07:00;19:30
 M009;Lino Albanti;Squadra L4;Addetto cernita;L4;2026-11-23;Presente;07:00;19:30
 M010;Bogdan Nardelli;Squadra L4;Addetto confezionamento;L4;2026-11-23;Presente;07:00;19:30
-M011;Walter Hoxhaj;Squadra L4;Addetto confezionamento;L4;2026-11-23;Malattia;;
-M012;Mirco Fontechiara;Squadra L4;Addetto cernita;L4;2026-11-23;Ferie;;
+M011;Walter Hoxhaj;Squadra L4;Addetto confezionamento;L4;2026-11-23;Ferie;;
+M012;Mirco Fontechiara;Squadra L4;Addetto cernita;L4;2026-11-23;Malattia;;
 M013;Lara Bonaccorsi;Squadra L4;Addetto cernita;L4;2026-11-23;Presente;07:00;19:30
 M014;Elena Dellarocca;Squadra L4;Addetto cernita;L4;2026-11-23;Presente;07:00;19:30
 M015;Anna Ferraguti;Squadra L4;Addetto cernita;L4;2026-11-23;Presente;07:00;19:30
@@ -455,9 +455,9 @@ M053;Silvio Quarenghi;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-23;Pre
 M054;Lara Ubaldini;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-23;Presente;07:00;19:30
 M055;Carla Hoxhaj;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-23;Presente;07:00;19:30
 M056;Vera Bergoli;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-23;Presente;07:00;19:30
-M057;Ada Dumitrescu;Squadra L6;Addetto confezionamento;L2|L6;2026-11-23;Presente;07:00;19:30
-M058;Rocco Castelvetri;Squadra L6;Addetto cernita;L2|L6;2026-11-23;Presente;07:00;19:30
-M059;Karim Marzocca;Squadra L6;Addetto confezionamento;L2|L6;2026-11-23;Uscita anticipata;07:00;12:30
+M057;Ada Dumitrescu;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-23;Permesso;;
+M058;Rocco Castelvetri;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-23;Uscita anticipata;07:00;12:30
+M059;Karim Marzocca;Squadra L6;Addetto confezionamento;L2|L6;2026-11-23;Presente;07:00;19:30
 M060;Zeno Venturoli;Squadra L6;Addetto cernita;L2|L6;2026-11-23;Presente;07:00;19:30
 M061;Bruna Caminati;Squadra L6;Addetto cernita;L2|L6;2026-11-23;Presente;07:00;19:30
 M062;Tina Pratesi;Squadra L6;Addetto confezionamento;L2|L6;2026-11-23;Presente;07:00;19:30
@@ -465,25 +465,25 @@ M063;Elira Ferraguti;Squadra L6;Addetto cernita;L2|L6;2026-11-23;Presente;07:00;
 M064;Dario Dellarocca;Squadra L6;Addetto cernita;L2|L6;2026-11-23;Presente;07:00;19:30
 M065;Ada Dellarocca;Squadra L6;Addetto cernita;L2|L6;2026-11-23;Presente;07:00;19:30
 M066;Rita Ubaldini;Squadra L6;Addetto cernita;L2|L6;2026-11-23;Presente;07:00;19:30
-M067;Bruna Venturoli;Carrellisti;Carrellista;;2026-11-23;Malattia;;
-M068;Walter Quarenghi;Carrellisti;Carrellista;;2026-11-23;Presente;07:00;19:30
-M069;Fatima Salvioli;Carrellisti;Carrellista;;2026-11-23;Presente;07:00;19:30
-M070;Fabio El Amrani;Carrellisti;Carrellista;;2026-11-23;Presente;07:00;19:30
-M071;Lara Pratesi;Carrellisti;Carrellista;;2026-11-23;Presente;07:00;19:30
-M072;Luca Salvioli;Carrellisti;Carrellista;;2026-11-23;Presente;07:00;19:30
-M073;Ada Caminati;Qualita';Controllo qualita';;2026-11-23;Presente;07:00;19:30
-M074;Ilaria Imbriali;Qualita';Controllo qualita';;2026-11-23;Presente;07:00;19:30
-M075;Amina Lodesani;Qualita';Controllo qualita';;2026-11-23;Presente;07:00;19:30
-M076;Fatima Caminati;Confezionamento;Addetto pedane;;2026-11-23;Presente;07:00;19:30
-M077;Fatima Fontechiara;Confezionamento;Addetto pedane;;2026-11-23;Presente;07:00;19:30
-M078;Ilaria Bergoli;Confezionamento;Addetto pedane;;2026-11-23;Presente;07:00;19:30
-M079;Marta Imbriali;Confezionamento;Addetto pedane;;2026-11-23;Presente;07:00;19:30
-M080;Rita Kovaci;Confezionamento;Addetto pedane;;2026-11-23;Presente;07:00;19:30
+M067;Elira Salvioli;Squadra L6;Addetto cernita;L2|L6;2026-11-23;Presente;07:00;19:30
+M068;Fatima Salvioli;Squadra L6;Addetto confezionamento;L2|L6;2026-11-23;Presente;07:00;19:30
+M069;Fabio El Amrani;Carrellisti;Carrellista;;2026-11-23;Presente;07:00;19:30
+M070;Lara Pratesi;Carrellisti;Carrellista;;2026-11-23;Presente;07:00;19:30
+M071;Luca Salvioli;Carrellisti;Carrellista;;2026-11-23;Presente;07:00;19:30
+M072;Ada Caminati;Carrellisti;Carrellista;;2026-11-23;Presente;07:00;19:30
+M073;Ilaria Imbriali;Carrellisti;Carrellista;;2026-11-23;Presente;07:00;19:30
+M074;Amina Lodesani;Carrellisti;Carrellista;;2026-11-23;Presente;07:00;19:30
+M075;Fatima Caminati;Qualita';Controllo qualita';;2026-11-23;Presente;07:00;19:30
+M076;Fatima Fontechiara;Qualita';Controllo qualita';;2026-11-23;Presente;07:00;19:30
+M077;Ilaria Bergoli;Qualita';Controllo qualita';;2026-11-23;Presente;07:00;19:30
+M078;Marta Imbriali;Confezionamento;Addetto pedane;;2026-11-23;Presente;07:00;19:30
+M079;Rita Kovaci;Confezionamento;Addetto pedane;;2026-11-23;Presente;07:00;19:30
+M080;Bogdan Tommasini;Confezionamento;Addetto pedane;;2026-11-23;Presente;07:00;19:30
 M001;Irina Dellarocca;Squadra L1;Capolinea;L1;2026-11-24;Presente;07:00;19:30
 M002;Marta Dellarocca;Squadra L2;Capolinea;L2;2026-11-24;Presente;07:00;19:30
 M003;Fabio Nardelli;Squadra L4;Capolinea;L4;2026-11-24;Presente;07:00;19:30
 M004;Dario Salvioli;Squadra L6;Capolinea;L6;2026-11-24;Presente;07:00;19:30
-M005;Gina Venturoli;Jolly;Capolinea;L1|L2|L6;2026-11-24;Uscita anticipata;07:00;12:30
+M005;Gina Venturoli;Jolly;Capolinea;L1|L2|L6;2026-11-24;Malattia;;
 M006;Carla Albanti;Squadra L4;Addetto confezionamento;L4;2026-11-24;Presente;07:00;19:30
 M007;Mirco Imbriali;Squadra L4;Addetto confezionamento;L4;2026-11-24;Presente;07:00;19:30
 M008;Olga Rossetti;Squadra L4;Addetto cernita;L4;2026-11-24;Presente;07:00;19:30
@@ -492,8 +492,8 @@ M010;Bogdan Nardelli;Squadra L4;Addetto confezionamento;L4;2026-11-24;Presente;0
 M011;Walter Hoxhaj;Squadra L4;Addetto confezionamento;L4;2026-11-24;Presente;07:00;19:30
 M012;Mirco Fontechiara;Squadra L4;Addetto cernita;L4;2026-11-24;Presente;07:00;19:30
 M013;Lara Bonaccorsi;Squadra L4;Addetto cernita;L4;2026-11-24;Presente;07:00;19:30
-M014;Elena Dellarocca;Squadra L4;Addetto cernita;L4;2026-11-24;Uscita anticipata;07:00;12:30
-M015;Anna Ferraguti;Squadra L4;Addetto cernita;L4;2026-11-24;Presente;07:00;19:30
+M014;Elena Dellarocca;Squadra L4;Addetto cernita;L4;2026-11-24;Presente;07:00;19:30
+M015;Anna Ferraguti;Squadra L4;Addetto cernita;L4;2026-11-24;Uscita anticipata;07:00;12:30
 M016;Anna Venturoli;Squadra L4;Addetto cernita;L4;2026-11-24;Presente;07:00;19:30
 M017;Gino Dumitrescu;Squadra L4;Addetto confezionamento;L4;2026-11-24;Presente;07:00;19:30
 M018;Amina Imbriali;Squadra L4;Addetto confezionamento;L4;2026-11-24;Presente;07:00;19:30
@@ -515,14 +515,14 @@ M033;Gino Tommasini;Squadra L1;Addetto confezionamento;L1|L2;2026-11-24;Presente
 M034;Lino Castelvetri;Squadra L1;Addetto confezionamento;L1|L2;2026-11-24;Presente;07:00;19:30
 M035;Zeno Rossetti;Squadra L1;Addetto cernita;L1|L2;2026-11-24;Presente;07:00;19:30
 M036;Dario Ervani;Squadra L1;Addetto cernita;L1|L2;2026-11-24;Presente;07:00;19:30
-M037;Vera Benali;Squadra L1;Addetto cernita;L1|L2;2026-11-24;Presente;07:00;19:30
+M037;Vera Benali;Squadra L1;Addetto cernita;L1|L2;2026-11-24;Uscita anticipata;07:00;12:30
 M038;Elira El Amrani;Squadra L1;Addetto cernita;L1|L2;2026-11-24;Presente;07:00;19:30
 M039;Elira Hoxhaj;Squadra L1;Addetto confezionamento;L1|L2;2026-11-24;Presente;07:00;19:30
 M040;Tina Ubaldini;Squadra L1;Addetto confezionamento;L1|L2;2026-11-24;Presente;07:00;19:30
 M041;Nino Ubaldini;Squadra L1;Addetto confezionamento;L1|L2;2026-11-24;Presente;07:00;19:30
 M042;Aldo Fontechiara;Squadra L1;Addetto confezionamento;L1|L2;2026-11-24;Presente;07:00;19:30
 M043;Ivo Kovaci;Squadra L1;Addetto cernita;L1|L2;2026-11-24;Presente;07:00;19:30
-M044;Fabio Bergoli;Squadra L1;Addetto cernita;L1|L2;2026-11-24;Malattia;;
+M044;Fabio Bergoli;Squadra L1;Addetto cernita;L1|L2;2026-11-24;Ferie;;
 M045;Fabio Ervani;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-24;Presente;07:00;19:30
 M046;Amina Benali;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-24;Presente;07:00;19:30
 M047;Ugo Rossetti;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-24;Presente;07:00;19:30
@@ -535,8 +535,8 @@ M053;Silvio Quarenghi;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-24;Pre
 M054;Lara Ubaldini;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-24;Presente;07:00;19:30
 M055;Carla Hoxhaj;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-24;Presente;07:00;19:30
 M056;Vera Bergoli;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-24;Presente;07:00;19:30
-M057;Ada Dumitrescu;Squadra L6;Addetto confezionamento;L2|L6;2026-11-24;Presente;07:00;19:30
-M058;Rocco Castelvetri;Squadra L6;Addetto cernita;L2|L6;2026-11-24;Presente;07:00;19:30
+M057;Ada Dumitrescu;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-24;Presente;07:00;19:30
+M058;Rocco Castelvetri;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-24;Presente;07:00;19:30
 M059;Karim Marzocca;Squadra L6;Addetto confezionamento;L2|L6;2026-11-24;Presente;07:00;19:30
 M060;Zeno Venturoli;Squadra L6;Addetto cernita;L2|L6;2026-11-24;Presente;07:00;19:30
 M061;Bruna Caminati;Squadra L6;Addetto cernita;L2|L6;2026-11-24;Presente;07:00;19:30
@@ -545,20 +545,20 @@ M063;Elira Ferraguti;Squadra L6;Addetto cernita;L2|L6;2026-11-24;Presente;07:00;
 M064;Dario Dellarocca;Squadra L6;Addetto cernita;L2|L6;2026-11-24;Presente;07:00;19:30
 M065;Ada Dellarocca;Squadra L6;Addetto cernita;L2|L6;2026-11-24;Presente;07:00;19:30
 M066;Rita Ubaldini;Squadra L6;Addetto cernita;L2|L6;2026-11-24;Presente;07:00;19:30
-M067;Bruna Venturoli;Carrellisti;Carrellista;;2026-11-24;Presente;07:00;19:30
-M068;Walter Quarenghi;Carrellisti;Carrellista;;2026-11-24;Presente;07:00;19:30
-M069;Fatima Salvioli;Carrellisti;Carrellista;;2026-11-24;Presente;07:00;19:30
-M070;Fabio El Amrani;Carrellisti;Carrellista;;2026-11-24;Presente;07:00;19:30
-M071;Lara Pratesi;Carrellisti;Carrellista;;2026-11-24;Presente;07:00;19:30
-M072;Luca Salvioli;Carrellisti;Carrellista;;2026-11-24;Presente;07:00;19:30
-M073;Ada Caminati;Qualita';Controllo qualita';;2026-11-24;Presente;07:00;19:30
-M074;Ilaria Imbriali;Qualita';Controllo qualita';;2026-11-24;Malattia;;
-M075;Amina Lodesani;Qualita';Controllo qualita';;2026-11-24;Presente;07:00;19:30
-M076;Fatima Caminati;Confezionamento;Addetto pedane;;2026-11-24;Presente;07:00;19:30
-M077;Fatima Fontechiara;Confezionamento;Addetto pedane;;2026-11-24;Presente;07:00;19:30
-M078;Ilaria Bergoli;Confezionamento;Addetto pedane;;2026-11-24;Presente;07:00;19:30
-M079;Marta Imbriali;Confezionamento;Addetto pedane;;2026-11-24;Presente;07:00;19:30
-M080;Rita Kovaci;Confezionamento;Addetto pedane;;2026-11-24;Presente;07:00;19:30
+M067;Elira Salvioli;Squadra L6;Addetto cernita;L2|L6;2026-11-24;Presente;07:00;19:30
+M068;Fatima Salvioli;Squadra L6;Addetto confezionamento;L2|L6;2026-11-24;Presente;07:00;19:30
+M069;Fabio El Amrani;Carrellisti;Carrellista;;2026-11-24;Presente;07:00;19:30
+M070;Lara Pratesi;Carrellisti;Carrellista;;2026-11-24;Presente;07:00;19:30
+M071;Luca Salvioli;Carrellisti;Carrellista;;2026-11-24;Presente;07:00;19:30
+M072;Ada Caminati;Carrellisti;Carrellista;;2026-11-24;Presente;07:00;19:30
+M073;Ilaria Imbriali;Carrellisti;Carrellista;;2026-11-24;Presente;07:00;19:30
+M074;Amina Lodesani;Carrellisti;Carrellista;;2026-11-24;Presente;07:00;19:30
+M075;Fatima Caminati;Qualita';Controllo qualita';;2026-11-24;Presente;07:00;19:30
+M076;Fatima Fontechiara;Qualita';Controllo qualita';;2026-11-24;Presente;07:00;19:30
+M077;Ilaria Bergoli;Qualita';Controllo qualita';;2026-11-24;Presente;07:00;19:30
+M078;Marta Imbriali;Confezionamento;Addetto pedane;;2026-11-24;Presente;07:00;19:30
+M079;Rita Kovaci;Confezionamento;Addetto pedane;;2026-11-24;Presente;07:00;19:30
+M080;Bogdan Tommasini;Confezionamento;Addetto pedane;;2026-11-24;Presente;07:00;19:30
 M001;Irina Dellarocca;Squadra L1;Capolinea;L1;2026-11-25;Presente;07:00;19:30
 M002;Marta Dellarocca;Squadra L2;Capolinea;L2;2026-11-25;Presente;07:00;19:30
 M003;Fabio Nardelli;Squadra L4;Capolinea;L4;2026-11-25;Presente;07:00;19:30
@@ -580,8 +580,8 @@ M018;Amina Imbriali;Squadra L4;Addetto confezionamento;L4;2026-11-25;Presente;07
 M019;Marta Pratesi;Squadra L4;Addetto confezionamento;L4;2026-11-25;Presente;07:00;19:30
 M020;Bruna Salvioli;Squadra L4;Addetto cernita;L4;2026-11-25;Presente;07:00;19:30
 M021;Marta El Amrani;Squadra L1;Addetto cernita;L1|L2;2026-11-25;Presente;07:00;19:30
-M022;Elira Ervani;Squadra L1;Addetto confezionamento;L1|L2;2026-11-25;Presente;07:00;19:30
-M023;Rocco Marzocca;Squadra L1;Addetto confezionamento;L1|L2;2026-11-25;Uscita anticipata;07:00;12:30
+M022;Elira Ervani;Squadra L1;Addetto confezionamento;L1|L2;2026-11-25;Permesso;;
+M023;Rocco Marzocca;Squadra L1;Addetto confezionamento;L1|L2;2026-11-25;Presente;07:00;19:30
 M024;Karim Ferraguti;Squadra L1;Addetto cernita;L1|L2;2026-11-25;Presente;07:00;19:30
 M025;Ugo Venturoli;Squadra L1;Addetto confezionamento;L1|L2;2026-11-25;Presente;07:00;19:30
 M026;Sara Dellarocca;Squadra L1;Addetto cernita;L1|L2;2026-11-25;Presente;07:00;19:30
@@ -590,7 +590,7 @@ M028;Franca Hoxhaj;Squadra L1;Addetto confezionamento;L1|L2;2026-11-25;Presente;
 M029;Tina Salvioli;Squadra L1;Addetto confezionamento;L1|L2;2026-11-25;Presente;07:00;19:30
 M030;Amina Hoxhaj;Squadra L1;Addetto confezionamento;L1|L2;2026-11-25;Presente;07:00;19:30
 M031;Nadia El Amrani;Squadra L1;Addetto confezionamento;L1|L2;2026-11-25;Presente;07:00;19:30
-M032;Fabio Albanti;Squadra L1;Addetto confezionamento;L1|L2;2026-11-25;Malattia;;
+M032;Fabio Albanti;Squadra L1;Addetto confezionamento;L1|L2;2026-11-25;Presente;07:00;19:30
 M033;Gino Tommasini;Squadra L1;Addetto confezionamento;L1|L2;2026-11-25;Presente;07:00;19:30
 M034;Lino Castelvetri;Squadra L1;Addetto confezionamento;L1|L2;2026-11-25;Presente;07:00;19:30
 M035;Zeno Rossetti;Squadra L1;Addetto cernita;L1|L2;2026-11-25;Presente;07:00;19:30
@@ -602,7 +602,7 @@ M040;Tina Ubaldini;Squadra L1;Addetto confezionamento;L1|L2;2026-11-25;Presente;
 M041;Nino Ubaldini;Squadra L1;Addetto confezionamento;L1|L2;2026-11-25;Presente;07:00;19:30
 M042;Aldo Fontechiara;Squadra L1;Addetto confezionamento;L1|L2;2026-11-25;Presente;07:00;19:30
 M043;Ivo Kovaci;Squadra L1;Addetto cernita;L1|L2;2026-11-25;Presente;07:00;19:30
-M044;Fabio Bergoli;Squadra L1;Addetto cernita;L1|L2;2026-11-25;Presente;07:00;19:30
+M044;Fabio Bergoli;Squadra L1;Addetto cernita;L1|L2;2026-11-25;Uscita anticipata;07:00;12:30
 M045;Fabio Ervani;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-25;Presente;07:00;19:30
 M046;Amina Benali;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-25;Presente;07:00;19:30
 M047;Ugo Rossetti;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-25;Presente;07:00;19:30
@@ -613,10 +613,10 @@ M051;Bruna Bergoli;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-25;Presente;07:00
 M052;Aldo Quarenghi;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-25;Presente;07:00;19:30
 M053;Silvio Quarenghi;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-25;Presente;07:00;19:30
 M054;Lara Ubaldini;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-25;Presente;07:00;19:30
-M055;Carla Hoxhaj;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-25;Permesso;;
+M055;Carla Hoxhaj;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-25;Ferie;;
 M056;Vera Bergoli;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-25;Presente;07:00;19:30
-M057;Ada Dumitrescu;Squadra L6;Addetto confezionamento;L2|L6;2026-11-25;Presente;07:00;19:30
-M058;Rocco Castelvetri;Squadra L6;Addetto cernita;L2|L6;2026-11-25;Presente;07:00;19:30
+M057;Ada Dumitrescu;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-25;Presente;07:00;19:30
+M058;Rocco Castelvetri;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-25;Presente;07:00;19:30
 M059;Karim Marzocca;Squadra L6;Addetto confezionamento;L2|L6;2026-11-25;Presente;07:00;19:30
 M060;Zeno Venturoli;Squadra L6;Addetto cernita;L2|L6;2026-11-25;Presente;07:00;19:30
 M061;Bruna Caminati;Squadra L6;Addetto cernita;L2|L6;2026-11-25;Presente;07:00;19:30
@@ -625,25 +625,25 @@ M063;Elira Ferraguti;Squadra L6;Addetto cernita;L2|L6;2026-11-25;Presente;07:00;
 M064;Dario Dellarocca;Squadra L6;Addetto cernita;L2|L6;2026-11-25;Presente;07:00;19:30
 M065;Ada Dellarocca;Squadra L6;Addetto cernita;L2|L6;2026-11-25;Presente;07:00;19:30
 M066;Rita Ubaldini;Squadra L6;Addetto cernita;L2|L6;2026-11-25;Presente;07:00;19:30
-M067;Bruna Venturoli;Carrellisti;Carrellista;;2026-11-25;Presente;07:00;19:30
-M068;Walter Quarenghi;Carrellisti;Carrellista;;2026-11-25;Presente;07:00;19:30
-M069;Fatima Salvioli;Carrellisti;Carrellista;;2026-11-25;Presente;07:00;19:30
-M070;Fabio El Amrani;Carrellisti;Carrellista;;2026-11-25;Presente;07:00;19:30
-M071;Lara Pratesi;Carrellisti;Carrellista;;2026-11-25;Presente;07:00;19:30
-M072;Luca Salvioli;Carrellisti;Carrellista;;2026-11-25;Presente;07:00;19:30
-M073;Ada Caminati;Qualita';Controllo qualita';;2026-11-25;Presente;07:00;19:30
-M074;Ilaria Imbriali;Qualita';Controllo qualita';;2026-11-25;Presente;07:00;19:30
-M075;Amina Lodesani;Qualita';Controllo qualita';;2026-11-25;Presente;07:00;19:30
-M076;Fatima Caminati;Confezionamento;Addetto pedane;;2026-11-25;Presente;07:00;19:30
-M077;Fatima Fontechiara;Confezionamento;Addetto pedane;;2026-11-25;Presente;07:00;19:30
-M078;Ilaria Bergoli;Confezionamento;Addetto pedane;;2026-11-25;Presente;07:00;19:30
-M079;Marta Imbriali;Confezionamento;Addetto pedane;;2026-11-25;Presente;07:00;19:30
-M080;Rita Kovaci;Confezionamento;Addetto pedane;;2026-11-25;Presente;07:00;19:30
+M067;Elira Salvioli;Squadra L6;Addetto cernita;L2|L6;2026-11-25;Presente;07:00;19:30
+M068;Fatima Salvioli;Squadra L6;Addetto confezionamento;L2|L6;2026-11-25;Presente;07:00;19:30
+M069;Fabio El Amrani;Carrellisti;Carrellista;;2026-11-25;Presente;07:00;19:30
+M070;Lara Pratesi;Carrellisti;Carrellista;;2026-11-25;Presente;07:00;19:30
+M071;Luca Salvioli;Carrellisti;Carrellista;;2026-11-25;Presente;07:00;19:30
+M072;Ada Caminati;Carrellisti;Carrellista;;2026-11-25;Presente;07:00;19:30
+M073;Ilaria Imbriali;Carrellisti;Carrellista;;2026-11-25;Presente;07:00;19:30
+M074;Amina Lodesani;Carrellisti;Carrellista;;2026-11-25;Presente;07:00;19:30
+M075;Fatima Caminati;Qualita';Controllo qualita';;2026-11-25;Presente;07:00;19:30
+M076;Fatima Fontechiara;Qualita';Controllo qualita';;2026-11-25;Presente;07:00;19:30
+M077;Ilaria Bergoli;Qualita';Controllo qualita';;2026-11-25;Presente;07:00;19:30
+M078;Marta Imbriali;Confezionamento;Addetto pedane;;2026-11-25;Presente;07:00;19:30
+M079;Rita Kovaci;Confezionamento;Addetto pedane;;2026-11-25;Presente;07:00;19:30
+M080;Bogdan Tommasini;Confezionamento;Addetto pedane;;2026-11-25;Presente;07:00;19:30
 M001;Irina Dellarocca;Squadra L1;Capolinea;L1;2026-11-26;Presente;07:00;19:30
 M002;Marta Dellarocca;Squadra L2;Capolinea;L2;2026-11-26;Presente;07:00;19:30
 M003;Fabio Nardelli;Squadra L4;Capolinea;L4;2026-11-26;Presente;07:00;19:30
 M004;Dario Salvioli;Squadra L6;Capolinea;L6;2026-11-26;Presente;07:00;19:30
-M005;Gina Venturoli;Jolly;Capolinea;L1|L2|L6;2026-11-26;Presente;07:00;19:30
+M005;Gina Venturoli;Jolly;Capolinea;L1|L2|L6;2026-11-26;Uscita anticipata;07:00;12:30
 M006;Carla Albanti;Squadra L4;Addetto confezionamento;L4;2026-11-26;Presente;07:00;19:30
 M007;Mirco Imbriali;Squadra L4;Addetto confezionamento;L4;2026-11-26;Presente;07:00;19:30
 M008;Olga Rossetti;Squadra L4;Addetto cernita;L4;2026-11-26;Presente;07:00;19:30
@@ -659,15 +659,15 @@ M017;Gino Dumitrescu;Squadra L4;Addetto confezionamento;L4;2026-11-26;Presente;0
 M018;Amina Imbriali;Squadra L4;Addetto confezionamento;L4;2026-11-26;Presente;07:00;19:30
 M019;Marta Pratesi;Squadra L4;Addetto confezionamento;L4;2026-11-26;Presente;07:00;19:30
 M020;Bruna Salvioli;Squadra L4;Addetto cernita;L4;2026-11-26;Presente;07:00;19:30
-M021;Marta El Amrani;Squadra L1;Addetto cernita;L1|L2;2026-11-26;Uscita anticipata;07:00;12:30
+M021;Marta El Amrani;Squadra L1;Addetto cernita;L1|L2;2026-11-26;Malattia;;
 M022;Elira Ervani;Squadra L1;Addetto confezionamento;L1|L2;2026-11-26;Presente;07:00;19:30
 M023;Rocco Marzocca;Squadra L1;Addetto confezionamento;L1|L2;2026-11-26;Presente;07:00;19:30
 M024;Karim Ferraguti;Squadra L1;Addetto cernita;L1|L2;2026-11-26;Presente;07:00;19:30
-M025;Ugo Venturoli;Squadra L1;Addetto confezionamento;L1|L2;2026-11-26;Presente;07:00;19:30
+M025;Ugo Venturoli;Squadra L1;Addetto confezionamento;L1|L2;2026-11-26;Uscita anticipata;07:00;12:30
 M026;Sara Dellarocca;Squadra L1;Addetto cernita;L1|L2;2026-11-26;Presente;07:00;19:30
 M027;Nino Fontechiara;Squadra L1;Addetto cernita;L1|L2;2026-11-26;Presente;07:00;19:30
 M028;Franca Hoxhaj;Squadra L1;Addetto confezionamento;L1|L2;2026-11-26;Presente;07:00;19:30
-M029;Tina Salvioli;Squadra L1;Addetto confezionamento;L1|L2;2026-11-26;Permesso;;
+M029;Tina Salvioli;Squadra L1;Addetto confezionamento;L1|L2;2026-11-26;Presente;07:00;19:30
 M030;Amina Hoxhaj;Squadra L1;Addetto confezionamento;L1|L2;2026-11-26;Presente;07:00;19:30
 M031;Nadia El Amrani;Squadra L1;Addetto confezionamento;L1|L2;2026-11-26;Presente;07:00;19:30
 M032;Fabio Albanti;Squadra L1;Addetto confezionamento;L1|L2;2026-11-26;Presente;07:00;19:30
@@ -676,12 +676,12 @@ M034;Lino Castelvetri;Squadra L1;Addetto confezionamento;L1|L2;2026-11-26;Presen
 M035;Zeno Rossetti;Squadra L1;Addetto cernita;L1|L2;2026-11-26;Presente;07:00;19:30
 M036;Dario Ervani;Squadra L1;Addetto cernita;L1|L2;2026-11-26;Presente;07:00;19:30
 M037;Vera Benali;Squadra L1;Addetto cernita;L1|L2;2026-11-26;Presente;07:00;19:30
-M038;Elira El Amrani;Squadra L1;Addetto cernita;L1|L2;2026-11-26;Presente;07:00;19:30
-M039;Elira Hoxhaj;Squadra L1;Addetto confezionamento;L1|L2;2026-11-26;Uscita anticipata;07:00;12:30
+M038;Elira El Amrani;Squadra L1;Addetto cernita;L1|L2;2026-11-26;Malattia;;
+M039;Elira Hoxhaj;Squadra L1;Addetto confezionamento;L1|L2;2026-11-26;Presente;07:00;19:30
 M040;Tina Ubaldini;Squadra L1;Addetto confezionamento;L1|L2;2026-11-26;Presente;07:00;19:30
 M041;Nino Ubaldini;Squadra L1;Addetto confezionamento;L1|L2;2026-11-26;Presente;07:00;19:30
 M042;Aldo Fontechiara;Squadra L1;Addetto confezionamento;L1|L2;2026-11-26;Presente;07:00;19:30
-M043;Ivo Kovaci;Squadra L1;Addetto cernita;L1|L2;2026-11-26;Ferie;;
+M043;Ivo Kovaci;Squadra L1;Addetto cernita;L1|L2;2026-11-26;Malattia;;
 M044;Fabio Bergoli;Squadra L1;Addetto cernita;L1|L2;2026-11-26;Presente;07:00;19:30
 M045;Fabio Ervani;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-26;Presente;07:00;19:30
 M046;Amina Benali;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-26;Presente;07:00;19:30
@@ -695,8 +695,8 @@ M053;Silvio Quarenghi;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-26;Pre
 M054;Lara Ubaldini;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-26;Presente;07:00;19:30
 M055;Carla Hoxhaj;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-26;Presente;07:00;19:30
 M056;Vera Bergoli;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-26;Presente;07:00;19:30
-M057;Ada Dumitrescu;Squadra L6;Addetto confezionamento;L2|L6;2026-11-26;Presente;07:00;19:30
-M058;Rocco Castelvetri;Squadra L6;Addetto cernita;L2|L6;2026-11-26;Presente;07:00;19:30
+M057;Ada Dumitrescu;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-26;Presente;07:00;19:30
+M058;Rocco Castelvetri;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-26;Presente;07:00;19:30
 M059;Karim Marzocca;Squadra L6;Addetto confezionamento;L2|L6;2026-11-26;Presente;07:00;19:30
 M060;Zeno Venturoli;Squadra L6;Addetto cernita;L2|L6;2026-11-26;Presente;07:00;19:30
 M061;Bruna Caminati;Squadra L6;Addetto cernita;L2|L6;2026-11-26;Presente;07:00;19:30
@@ -705,28 +705,28 @@ M063;Elira Ferraguti;Squadra L6;Addetto cernita;L2|L6;2026-11-26;Presente;07:00;
 M064;Dario Dellarocca;Squadra L6;Addetto cernita;L2|L6;2026-11-26;Presente;07:00;19:30
 M065;Ada Dellarocca;Squadra L6;Addetto cernita;L2|L6;2026-11-26;Presente;07:00;19:30
 M066;Rita Ubaldini;Squadra L6;Addetto cernita;L2|L6;2026-11-26;Presente;07:00;19:30
-M067;Bruna Venturoli;Carrellisti;Carrellista;;2026-11-26;Presente;07:00;19:30
-M068;Walter Quarenghi;Carrellisti;Carrellista;;2026-11-26;Presente;07:00;19:30
-M069;Fatima Salvioli;Carrellisti;Carrellista;;2026-11-26;Presente;07:00;19:30
-M070;Fabio El Amrani;Carrellisti;Carrellista;;2026-11-26;Presente;07:00;19:30
-M071;Lara Pratesi;Carrellisti;Carrellista;;2026-11-26;Presente;07:00;19:30
-M072;Luca Salvioli;Carrellisti;Carrellista;;2026-11-26;Ferie;;
-M073;Ada Caminati;Qualita';Controllo qualita';;2026-11-26;Presente;07:00;19:30
-M074;Ilaria Imbriali;Qualita';Controllo qualita';;2026-11-26;Presente;07:00;19:30
-M075;Amina Lodesani;Qualita';Controllo qualita';;2026-11-26;Presente;07:00;19:30
-M076;Fatima Caminati;Confezionamento;Addetto pedane;;2026-11-26;Presente;07:00;19:30
-M077;Fatima Fontechiara;Confezionamento;Addetto pedane;;2026-11-26;Presente;07:00;19:30
-M078;Ilaria Bergoli;Confezionamento;Addetto pedane;;2026-11-26;Presente;07:00;19:30
-M079;Marta Imbriali;Confezionamento;Addetto pedane;;2026-11-26;Presente;07:00;19:30
-M080;Rita Kovaci;Confezionamento;Addetto pedane;;2026-11-26;Presente;07:00;19:30
+M067;Elira Salvioli;Squadra L6;Addetto cernita;L2|L6;2026-11-26;Presente;07:00;19:30
+M068;Fatima Salvioli;Squadra L6;Addetto confezionamento;L2|L6;2026-11-26;Presente;07:00;19:30
+M069;Fabio El Amrani;Carrellisti;Carrellista;;2026-11-26;Presente;07:00;19:30
+M070;Lara Pratesi;Carrellisti;Carrellista;;2026-11-26;Presente;07:00;19:30
+M071;Luca Salvioli;Carrellisti;Carrellista;;2026-11-26;Presente;07:00;19:30
+M072;Ada Caminati;Carrellisti;Carrellista;;2026-11-26;Presente;07:00;19:30
+M073;Ilaria Imbriali;Carrellisti;Carrellista;;2026-11-26;Presente;07:00;19:30
+M074;Amina Lodesani;Carrellisti;Carrellista;;2026-11-26;Presente;07:00;19:30
+M075;Fatima Caminati;Qualita';Controllo qualita';;2026-11-26;Presente;07:00;19:30
+M076;Fatima Fontechiara;Qualita';Controllo qualita';;2026-11-26;Presente;07:00;19:30
+M077;Ilaria Bergoli;Qualita';Controllo qualita';;2026-11-26;Presente;07:00;19:30
+M078;Marta Imbriali;Confezionamento;Addetto pedane;;2026-11-26;Presente;07:00;19:30
+M079;Rita Kovaci;Confezionamento;Addetto pedane;;2026-11-26;Presente;07:00;19:30
+M080;Bogdan Tommasini;Confezionamento;Addetto pedane;;2026-11-26;Presente;07:00;19:30
 M001;Irina Dellarocca;Squadra L1;Capolinea;L1;2026-11-27;Presente;07:00;19:30
 M002;Marta Dellarocca;Squadra L2;Capolinea;L2;2026-11-27;Presente;07:00;19:30
 M003;Fabio Nardelli;Squadra L4;Capolinea;L4;2026-11-27;Presente;07:00;19:30
 M004;Dario Salvioli;Squadra L6;Capolinea;L6;2026-11-27;Presente;07:00;19:30
 M005;Gina Venturoli;Jolly;Capolinea;L1|L2|L6;2026-11-27;Presente;07:00;19:30
-M006;Carla Albanti;Squadra L4;Addetto confezionamento;L4;2026-11-27;Permesso;;
-M007;Mirco Imbriali;Squadra L4;Addetto confezionamento;L4;2026-11-27;Ferie;;
-M008;Olga Rossetti;Squadra L4;Addetto cernita;L4;2026-11-27;Permesso;;
+M006;Carla Albanti;Squadra L4;Addetto confezionamento;L4;2026-11-27;Ferie;;
+M007;Mirco Imbriali;Squadra L4;Addetto confezionamento;L4;2026-11-27;Malattia;;
+M008;Olga Rossetti;Squadra L4;Addetto cernita;L4;2026-11-27;Ferie;;
 M009;Lino Albanti;Squadra L4;Addetto cernita;L4;2026-11-27;Uscita anticipata;07:00;12:30
 M010;Bogdan Nardelli;Squadra L4;Addetto confezionamento;L4;2026-11-27;Presente;07:00;19:30
 M011;Walter Hoxhaj;Squadra L4;Addetto confezionamento;L4;2026-11-27;Presente;07:00;19:30
@@ -749,7 +749,7 @@ M027;Nino Fontechiara;Squadra L1;Addetto cernita;L1|L2;2026-11-27;Presente;07:00
 M028;Franca Hoxhaj;Squadra L1;Addetto confezionamento;L1|L2;2026-11-27;Presente;07:00;19:30
 M029;Tina Salvioli;Squadra L1;Addetto confezionamento;L1|L2;2026-11-27;Presente;07:00;19:30
 M030;Amina Hoxhaj;Squadra L1;Addetto confezionamento;L1|L2;2026-11-27;Presente;07:00;19:30
-M031;Nadia El Amrani;Squadra L1;Addetto confezionamento;L1|L2;2026-11-27;Ferie;;
+M031;Nadia El Amrani;Squadra L1;Addetto confezionamento;L1|L2;2026-11-27;Malattia;;
 M032;Fabio Albanti;Squadra L1;Addetto confezionamento;L1|L2;2026-11-27;Presente;07:00;19:30
 M033;Gino Tommasini;Squadra L1;Addetto confezionamento;L1|L2;2026-11-27;Presente;07:00;19:30
 M034;Lino Castelvetri;Squadra L1;Addetto confezionamento;L1|L2;2026-11-27;Presente;07:00;19:30
@@ -775,8 +775,8 @@ M053;Silvio Quarenghi;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-27;Pre
 M054;Lara Ubaldini;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-27;Presente;07:00;19:30
 M055;Carla Hoxhaj;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-27;Presente;07:00;19:30
 M056;Vera Bergoli;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-27;Presente;07:00;19:30
-M057;Ada Dumitrescu;Squadra L6;Addetto confezionamento;L2|L6;2026-11-27;Presente;07:00;19:30
-M058;Rocco Castelvetri;Squadra L6;Addetto cernita;L2|L6;2026-11-27;Presente;07:00;19:30
+M057;Ada Dumitrescu;Squadra L2;Addetto confezionamento;L1|L2|L6;2026-11-27;Presente;07:00;19:30
+M058;Rocco Castelvetri;Squadra L2;Addetto cernita;L1|L2|L6;2026-11-27;Presente;07:00;19:30
 M059;Karim Marzocca;Squadra L6;Addetto confezionamento;L2|L6;2026-11-27;Presente;07:00;19:30
 M060;Zeno Venturoli;Squadra L6;Addetto cernita;L2|L6;2026-11-27;Presente;07:00;19:30
 M061;Bruna Caminati;Squadra L6;Addetto cernita;L2|L6;2026-11-27;Presente;07:00;19:30
@@ -785,17 +785,17 @@ M063;Elira Ferraguti;Squadra L6;Addetto cernita;L2|L6;2026-11-27;Presente;07:00;
 M064;Dario Dellarocca;Squadra L6;Addetto cernita;L2|L6;2026-11-27;Presente;07:00;19:30
 M065;Ada Dellarocca;Squadra L6;Addetto cernita;L2|L6;2026-11-27;Presente;07:00;19:30
 M066;Rita Ubaldini;Squadra L6;Addetto cernita;L2|L6;2026-11-27;Presente;07:00;19:30
-M067;Bruna Venturoli;Carrellisti;Carrellista;;2026-11-27;Presente;07:00;19:30
-M068;Walter Quarenghi;Carrellisti;Carrellista;;2026-11-27;Presente;07:00;19:30
-M069;Fatima Salvioli;Carrellisti;Carrellista;;2026-11-27;Presente;07:00;19:30
-M070;Fabio El Amrani;Carrellisti;Carrellista;;2026-11-27;Presente;07:00;19:30
-M071;Lara Pratesi;Carrellisti;Carrellista;;2026-11-27;Presente;07:00;19:30
-M072;Luca Salvioli;Carrellisti;Carrellista;;2026-11-27;Presente;07:00;19:30
-M073;Ada Caminati;Qualita';Controllo qualita';;2026-11-27;Presente;07:00;19:30
-M074;Ilaria Imbriali;Qualita';Controllo qualita';;2026-11-27;Presente;07:00;19:30
-M075;Amina Lodesani;Qualita';Controllo qualita';;2026-11-27;Presente;07:00;19:30
-M076;Fatima Caminati;Confezionamento;Addetto pedane;;2026-11-27;Presente;07:00;19:30
-M077;Fatima Fontechiara;Confezionamento;Addetto pedane;;2026-11-27;Presente;07:00;19:30
-M078;Ilaria Bergoli;Confezionamento;Addetto pedane;;2026-11-27;Presente;07:00;19:30
-M079;Marta Imbriali;Confezionamento;Addetto pedane;;2026-11-27;Presente;07:00;19:30
-M080;Rita Kovaci;Confezionamento;Addetto pedane;;2026-11-27;Presente;07:00;19:30
+M067;Elira Salvioli;Squadra L6;Addetto cernita;L2|L6;2026-11-27;Presente;07:00;19:30
+M068;Fatima Salvioli;Squadra L6;Addetto confezionamento;L2|L6;2026-11-27;Presente;07:00;19:30
+M069;Fabio El Amrani;Carrellisti;Carrellista;;2026-11-27;Presente;07:00;19:30
+M070;Lara Pratesi;Carrellisti;Carrellista;;2026-11-27;Presente;07:00;19:30
+M071;Luca Salvioli;Carrellisti;Carrellista;;2026-11-27;Presente;07:00;19:30
+M072;Ada Caminati;Carrellisti;Carrellista;;2026-11-27;Presente;07:00;19:30
+M073;Ilaria Imbriali;Carrellisti;Carrellista;;2026-11-27;Presente;07:00;19:30
+M074;Amina Lodesani;Carrellisti;Carrellista;;2026-11-27;Presente;07:00;19:30
+M075;Fatima Caminati;Qualita';Controllo qualita';;2026-11-27;Presente;07:00;19:30
+M076;Fatima Fontechiara;Qualita';Controllo qualita';;2026-11-27;Presente;07:00;19:30
+M077;Ilaria Bergoli;Qualita';Controllo qualita';;2026-11-27;Presente;07:00;19:30
+M078;Marta Imbriali;Confezionamento;Addetto pedane;;2026-11-27;Presente;07:00;19:30
+M079;Rita Kovaci;Confezionamento;Addetto pedane;;2026-11-27;Presente;07:00;19:30
+M080;Bogdan Tommasini;Confezionamento;Addetto pedane;;2026-11-27;Presente;07:00;19:30

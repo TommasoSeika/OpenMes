@@ -13,6 +13,9 @@ export const eur = (v, digits = 2) => (missing(v) ? '—' : `${fmt(digits).forma
 export const eurKg = (v) => (missing(v) ? '—' : `${fmt(3).format(Number(v))} €/kg`);
 export const pct = (v, digits = 1) => (missing(v) ? '—' : `${fmt(digits).format(Number(v) * 100)}%`);
 
+// "1 ordine", "3 ordini".
+export const plural = (n, one, many) => `${num(n)} ${Number(n) === 1 ? one : many}`;
+
 export const ORDER_TYPES = { axa: 'A per A', axb: 'A per B', stock: 'Scorta' };
 
 export const SETUP_LABELS = {

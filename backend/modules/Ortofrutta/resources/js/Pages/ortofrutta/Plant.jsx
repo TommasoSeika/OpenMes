@@ -3,7 +3,7 @@ import { Link } from '@inertiajs/react';
 import AppLayout from '@core/layouts/AppLayout';
 import Shell from '../../ortofrutta/Shell';
 import { Card, Chip, Stat, Table } from '../../ortofrutta/ui';
-import { BASE, kg, num, pct } from '../../ortofrutta/format';
+import { BASE, kg, num, pct, plural } from '../../ortofrutta/format';
 
 // Colours follow the plant drawing: cells orange, lines pink, packing area green, buildings blue.
 const building = 'rounded-2xl border border-sky-300 bg-sky-100 p-4 dark:border-sky-800 dark:bg-sky-950/40';
@@ -82,7 +82,7 @@ function LineBar({ line }) {
                         ? <><div className="font-semibold">{line.next.customer}</div><div>{line.next.variety} {line.next.size} · dalle {line.next.start}</div></>
                         : <div className="opacity-70">nient'altro in piano</div>}
                 </div>
-                <div className="opacity-80">{line.blocks} ordini · {num(line.pallets)} pedane{line.end ? ` · fine ${line.end}` : ''}</div>
+                <div className="opacity-80">{plural(line.blocks, 'ordine', 'ordini')} · {plural(line.pallets, 'pedana', 'pedane')}{line.end ? ` · fine ${line.end}` : ''}</div>
             </div>
         </Link>
     );
@@ -147,8 +147,8 @@ export default function Plant({ cells, lines, trucks, summary }) {
                                                 <span className="text-sm font-bold tabular-nums">Camion {t.time}</span>
                                                 {t.late > 0 ? <Chip tone="bad">{t.late} a rischio</Chip> : t.unplanned > 0 ? <Chip tone="warn">{t.unplanned} da pianificare</Chip> : <Chip tone="ok">in orario</Chip>}
                                             </div>
-                                            <div>{t.orders} ordini · {num(t.pallets)} pedane</div>
-                                            <div className="opacity-80">{t.packed} di {t.orders} ordini confezionati</div>
+                                            <div>{plural(t.orders, 'ordine', 'ordini')} · {plural(t.pallets, 'pedana', 'pedane')}</div>
+                                            <div className="opacity-80">{t.packed} di {t.orders} già confezionati</div>
                                         </div>
                                     ))}
                                     {trucks.length === 0 && <div className="text-xs opacity-80">Nessun camion oggi.</div>}
