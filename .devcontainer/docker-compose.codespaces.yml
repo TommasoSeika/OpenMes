@@ -1,0 +1,11 @@
+# Codespaces overlay for docker-compose.yml.
+#
+# start.sh lists this file in COMPOSE_FILE (in .env) when it runs inside a
+# codespace, so a plain `docker compose ...` from the repository root picks it
+# up as well. Paths are relative to the repository root.
+
+services:
+  caddy:
+    volumes:
+      # Same mount target as the base file, so this replaces the stock Caddyfile.
+      - ./.devcontainer/Caddyfile.codespaces:/etc/caddy/Caddyfile:ro

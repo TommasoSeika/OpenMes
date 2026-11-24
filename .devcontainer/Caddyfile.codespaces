@@ -1,0 +1,41 @@
+# OpenMES reverse proxy inside a GitHub Codespace.
+#
+# Replaces the repository's Caddyfile only in a codespace (mounted by
+# docker-compose.codespaces.yml). The browser reaches the application at
+# https://<codespace>-8080.app.github.dev: GitHub terminates TLS and forwards
+# plain HTTP to port 8080 here, without reliably passing the public hostname on.
+# Left alone, the application would build its links and asset URLs for
+# http://localhost:8080 and the page would load blank.
+#
+# So the public address is stated here instead of being read from the request.
+# The DOMAIN environment variable holds the codespace's forwarded hostname;
+# start.sh writes it to .env and docker-compose.yml passes it to this container.
+# The backend already trusts X-Forwarded-* from Docker's private network
+# (backend/bootstrap/app.php).
+
+{
+	# GitHub provides HTTPS in front of the codespace; nothing to issue here.
+	auto_https off
+}
+
+:80 {
+	# Reverb WebSocket (live sync), same as the main Caddyfile.
+	handle /app/* {
+		reverse_proxy reverb:8080
+	}
+
+	handle {
+		reverse_proxy backend:8000 {
+			header_up X-Forwarded-Proto https
+			header_up X-Forwarded-Host {$DOMAIN}
+			header_up X-Forwarded-Port 443
+		}
+	}
+
+	# The backend is unreachable while it creates the database on first start.
+	# Show a page that reloads itself instead of a bare 502.
+	handle_errors {
+		header Content-Type "text/html; charset=utf-8"
+		respond "<!doctype html><meta charset=utf-8><meta http-equiv=refresh content=5><title>OpenMES is starting</title><p style='font-family:sans-serif;margin:3rem'>OpenMES is still starting. This page reloads by itself.</p>" 503
+	}
+}

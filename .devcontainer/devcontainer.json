@@ -1,0 +1,36 @@
+// GitHub Codespaces / Dev Containers setup for OpenMES.
+// How to use it: .devcontainer/README.md
+{
+	"name": "OpenMES",
+	"image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+
+	// OpenMES runs as a Docker Compose stack (see docker-compose.yml), so the
+	// codespace needs a Docker engine of its own.
+	"features": {
+		"ghcr.io/devcontainers/features/docker-in-docker:4": {}
+	},
+
+	// The smallest Codespaces machine. Pick a 4-core machine when creating the
+	// codespace if the first build feels slow.
+	"hostRequirements": {
+		"cpus": 2,
+		"memory": "8gb",
+		"storage": "32gb"
+	},
+
+	// 8080 is the only port meant for the browser (Caddy → the application).
+	"forwardPorts": [8080],
+	"portsAttributes": {
+		"8080": {
+			"label": "OpenMES",
+			"onAutoForward": "silent"
+		}
+	},
+	"otherPortsAttributes": {
+		"onAutoForward": "ignore"
+	},
+
+	// Writes .env on first run, then builds and starts the stack. Runs on every
+	// start of the codespace and is safe to run by hand.
+	"postStartCommand": "bash .devcontainer/start.sh"
+}
