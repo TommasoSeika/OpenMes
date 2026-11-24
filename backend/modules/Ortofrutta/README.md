@@ -79,10 +79,18 @@ Verifica:
 # nell'applicazione in esecuzione, senza PHPUnit
 docker compose exec backend php artisan ortofrutta:verifica
 
-# test automatici (PHPUnit), in un contenitore usa e getta
-docker compose run --rm --no-deps --entrypoint sh backend -c \
-  "composer install --no-interaction -q && vendor/bin/phpunit tests/Unit/Ortofrutta"
+# test automatici (PHPUnit), in un contenitore isolato che si cancella da solo
+docker run --rm --entrypoint sh ghcr.io/mes-open/openmes:latest -c \
+  "composer install --no-interaction --no-scripts -q && vendor/bin/phpunit tests/Unit/Ortofrutta"
+
+# tutte le schermate e le azioni della demo, sull'applicazione in esecuzione
+bash backend/modules/Ortofrutta/bin/prova-http.sh
 ```
+
+Il comando dei test usa l'immagine già costruita e nessun volume: non va
+sostituito con `docker compose run backend ... composer install`, che scrive
+nella cache condivisa con l'applicazione in esecuzione e la lascia con pacchetti
+di sviluppo che non ha.
 
 Il caso dell'incontro è coperto: acquisto 1,00 € + lavorazione 0,20 € a resa
 piena = prezzo minimo 1,20 €.

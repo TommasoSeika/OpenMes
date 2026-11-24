@@ -166,7 +166,8 @@ if [ "$FIRST_RUN" = "1" ]; then
 else
     say "Starting OpenMES (rebuilding only what changed)..."
 fi
-docker compose up -d --build
+# --remove-orphans: leaving development mode drops the frontend watcher container.
+docker compose up -d --build --remove-orphans
 
 # ── Wait until it answers ─────────────────────────────────────────────────────
 # A 200 from the login page means the entrypoint finished migrating and seeding
