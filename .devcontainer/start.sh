@@ -135,6 +135,17 @@ else
     ok ".env kept (passwords and data preserved)"
 fi
 
+# In development mode backend/config is bind-mounted into every PHP container,
+# while the Codespaces overlay mounts octane.php into the backend only. Docker
+# creates that mount point as an empty file in the shared directory, and the
+# other containers then load an empty config and crash. Put the real file there.
+if [ "$DEV_MODE" = "1" ] && [ -n "${CODESPACE_NAME:-}" ]; then
+    if ! cmp -s .devcontainer/octane.php backend/config/octane.php; then
+        cp .devcontainer/octane.php backend/config/octane.php 2> /dev/null \
+            || sudo cp .devcontainer/octane.php backend/config/octane.php
+    fi
+fi
+
 # ── Docker ────────────────────────────────────────────────────────────────────
 
 say "Waiting for Docker..."
