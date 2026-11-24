@@ -2,7 +2,7 @@ import { router, usePage } from '@inertiajs/react';
 import AppLayout from '@core/layouts/AppLayout';
 import Shell from '../../ortofrutta/Shell';
 import { Btn, Card, Chip, Stat } from '../../ortofrutta/ui';
-import { BASE, num } from '../../ortofrutta/format';
+import { BASE, num, plural } from '../../ortofrutta/format';
 
 const options = { preserveScroll: true };
 
@@ -67,7 +67,7 @@ export default function Crews({ crews, load }) {
                             title={`${line.name} · ${line.description}`}
                             aside={(
                                 <span className="flex items-center gap-1.5">
-                                    {work?.blocks > 0 && <Chip>{work.blocks} ordini · {num(work.pallets)} pedane · fine {work.end}</Chip>}
+                                    {work?.blocks > 0 && <Chip>{plural(work.blocks, 'ordine', 'ordini')} · {plural(work.pallets, 'pedana', 'pedane')} · fine {work.end}</Chip>}
                                     <Chip tone={line.missing > 0 ? 'bad' : 'ok'}>{line.assigned.length} / {line.required}{line.missing > 0 ? ` · mancano ${line.missing}` : ' · al completo'}</Chip>
                                 </span>
                             )}

@@ -8,12 +8,14 @@
 # Signs in as the administrator from .env, opens every screen, runs the main
 # actions of the demo (arrivals, proposed sequence, crews, launch, simulator)
 # and puts the demo data back. Prints one line per check; exits 1 if any fails.
+#
+# ORTO_URL overrides the address (default: http://localhost:<HTTP_PORT from .env>).
 
 set -uo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")/../../../.."
 
 env_get() { grep -E "^$1=" .env 2>/dev/null | head -n1 | cut -d= -f2-; }
-BASE="http://localhost:$(env_get HTTP_PORT || true)"
+BASE="${ORTO_URL:-http://localhost:$(env_get HTTP_PORT || true)}"
 [ "$BASE" = "http://localhost:" ] && BASE="http://localhost"
 ORTO="$BASE/admin/ortofrutta"
 JAR="$(mktemp)"
