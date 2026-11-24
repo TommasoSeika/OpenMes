@@ -24,6 +24,12 @@
 		"8080": {
 			"label": "OpenMES",
 			"onAutoForward": "silent"
+		},
+		// Caddy's HTTPS port from docker-compose.yml. Nothing listens on it in a
+		// codespace, but Codespaces still lists it; the label says so.
+		"8443": {
+			"label": "Unused (ignore)",
+			"onAutoForward": "ignore"
 		}
 	},
 	"otherPortsAttributes": {

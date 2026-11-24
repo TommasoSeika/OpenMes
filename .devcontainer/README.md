@@ -9,11 +9,16 @@ builds OpenMES from this repository and runs it there.
 1. On the repository page: **Code → Codespaces → Create codespace** (pick the
    branch that contains this folder).
 2. Wait. The first start builds the application and takes roughly 10 to 15
-   minutes. To watch it: Command Palette (`Ctrl/Cmd+Shift+P`) →
+   minutes. The Terminal panel shows `Running postStartCommand...` while it
+   works and prints the address and the login when it is done. For the full
+   output: Command Palette (`Ctrl/Cmd+Shift+P`) →
    **Codespaces: View Creation Log**.
 3. Open the **Ports** tab at the bottom, find **OpenMES (8080)** and click the
-   globe icon. If the application is still starting you get a page that reloads
-   by itself.
+   globe icon.
+
+Opened too early, the address shows `HTTP ERROR 401` (nothing is running on the
+port yet) or an "OpenMES is starting" page that reloads by itself. Both mean the
+build has not finished: wait and reload.
 
 Open the application in a normal browser tab, not in the editor's built-in
 preview: the login cookie is not sent inside the preview.
@@ -58,6 +63,8 @@ Private when you are done.
   off (`OPENMES_TELEMETRY=false`) and the plant timezone is `Europe/Rome`
   (`APP_TIMEZONE`). Both can be changed in `.env` before the first start, or
   later in Settings → System.
+- **Port 8443.** The Ports tab may list a second port, 8443. Nothing answers
+  on it in a codespace (GitHub provides HTTPS on the 8080 address); ignore it.
 - **Machine connectivity** (MQTT, Modbus, OPC UA) is not started. Those services
   are in the `connectivity` profile of `docker-compose.yml`.
 
