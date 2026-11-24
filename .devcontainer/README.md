@@ -63,6 +63,10 @@ Private when you are done.
   off (`OPENMES_TELEMETRY=false`) and the plant timezone is `Europe/Rome`
   (`APP_TIMEZONE`). Both can be changed in `.env` before the first start, or
   later in Settings → System.
+- **Example companies.** Installing one (first sign-in, or Settings → Data)
+  takes up to a minute here and shows no progress while it runs. Click once and
+  wait. The server's 30-second request limit is raised to 5 minutes in a
+  codespace (`octane.php`) so the install is not cut off partway.
 - **Port 8443.** The Ports tab may list a second port, 8443. Nothing answers
   on it in a codespace (GitHub provides HTTPS on the 8080 address); ignore it.
 - **Machine connectivity** (MQTT, Modbus, OPC UA) is not started. Those services
@@ -76,6 +80,7 @@ Private when you are done.
 | `start.sh` | Writes `.env`, builds and starts the stack, prints the address and login |
 | `docker-compose.codespaces.yml` | Swaps in the Caddyfile below when running in a codespace |
 | `Caddyfile.codespaces` | Tells the application its public HTTPS address behind GitHub's port forwarding |
+| `octane.php` | Raises the application server's request time limit from 30 seconds to 5 minutes |
 
 Nothing outside this folder is changed, so updates from the upstream OpenMES
 repository merge without conflicts.

@@ -5,6 +5,13 @@
 # up as well. Paths are relative to the repository root.
 
 services:
+  backend:
+    volumes:
+      # Raises Octane's 30-second request limit, which stopped example-company
+      # installs partway. The entrypoint rebuilds the config cache on every
+      # container start, so no image rebuild is needed. See octane.php.
+      - ./.devcontainer/octane.php:/var/www/html/config/octane.php:ro
+
   caddy:
     volumes:
       # Same mount target as the base file, so this replaces the stock Caddyfile.
