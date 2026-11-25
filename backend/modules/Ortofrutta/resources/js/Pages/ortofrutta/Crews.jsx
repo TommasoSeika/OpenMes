@@ -177,7 +177,7 @@ export default function Crews({ crews, focus }) {
             )}
         >
             <div className="mb-4 grid grid-cols-2 gap-3 lg:grid-cols-5">
-                <Stat label="Presenti tutto il turno" value={`${num(summary.present)} / ${num(summary.people)}`} tone="ok" />
+                <Stat label="Presenti tutto il turno" value={`${num(summary.present)} / ${num(summary.people)}`} tone="ok" hint={`${num(summary.clocked_in)} timbrature di entrata stamattina`} />
                 <Stat label="Escono prima" value={num(summary.early_exit)} tone={summary.early_exit > 0 ? 'bad' : undefined} />
                 <Stat label="Assenti" value={num(summary.absent)} tone={summary.absent > 0 ? 'bad' : undefined} />
                 <Stat
@@ -325,7 +325,9 @@ export default function Crews({ crews, focus }) {
                                         </td>
                                         <td className="px-2 py-1.5 text-xs text-om-muted">{person.enabled_lines.join(', ')}</td>
                                         <td className="px-2 py-1.5">
-                                            <Chip tone={person.status === 'present' ? 'ok' : 'bad'}>{person.status === 'present' ? 'Tutto il turno' : person.reason}</Chip>
+                                            <Chip tone={person.status === 'present' ? 'ok' : 'bad'} title="Dalle timbrature e dall'app turni">
+                                                {person.status === 'present' ? (person.clock_in ? `Entrata ${person.clock_in}` : 'Tutto il turno') : person.reason}
+                                            </Chip>
                                         </td>
                                         <td className="px-2 py-1.5">
                                             {mine.length === 0

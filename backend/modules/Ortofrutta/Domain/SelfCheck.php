@@ -117,6 +117,17 @@ final class SelfCheck
         // the same time, and person 4 (L2 only) is on an order that moved to L1.
         $rearranged = CrewPlanner::propose([$run(10, 'L1', 450, 600, 3, [2, 4]), $run(20, 'L2', 480, 660, 2, [2])], $staff);
 
+        // Forklift work lists. Missions: id, due (minutes), priority, line, bins. Driver 71 leaves at 07:20.
+        $trip = fn (int $id, int $due, int $priority, string $line, int $bins) => [
+            'id' => $id, 'due' => $due, 'priority' => $priority, 'line' => $line, 'bins' => $bins, 'driver' => null,
+        ];
+        $trips = [$trip(1, 450, 2, 'L1', 6), $trip(2, 430, 2, 'L2', 4), $trip(3, 430, 1, 'L4', 5), $trip(4, 500, 2, 'L1', 8)];
+        $shared = MissionPlanner::assign($trips, [
+            ['id' => 70, 'badge' => 'M070', 'until' => null], ['id' => 71, 'badge' => 'M071', 'until' => 440],
+        ]);
+        $toPick = ['status' => 'todo', 'lot' => 'LT26-034', 'line' => 'L1'];
+        $toDeliver = ['status' => 'picked'] + $toPick;
+
         // Traceability: a sheet packs 3,000 kg of lot A and 1,000 kg of lot B for two orders, 6 and 2 pallets.
         $shares = Traceability::allocate(['A' => 3000, 'B' => 1000], ['first' => 6, 'second' => 2]);
 
@@ -202,6 +213,32 @@ final class SelfCheck
             ],
             'Squadre: chi esce durante la produzione si può assegnare, ma è segnalato' => [
                 'partial', CrewPlanner::issues([$run(11, 'L1', 600, 780, 3, [3])], $staff)[11][3]['issue'] ?? null,
+            ],
+            'Liste di lavoro: prima quello che serve prima; a pari orario, l\'ordine con priorità più alta' => [
+                [3, 2, 1, 4], array_column(MissionPlanner::order($trips), 'id'),
+            ],
+            'Liste di lavoro: la missione va al carrellista che ha meno bins da portare' => [71, $shared[2]],
+            'Liste di lavoro: chi esce alle 07:20 non riceve una missione delle 07:30' => [70, $shared[1]],
+            'Scansione: l\'etichetta del bins giusto conferma il prelievo' => [
+                'pick', MissionPlanner::scan($toPick, 'LOT:LT26-034')['ok'] ? 'pick' : 'refused',
+            ],
+            'Scansione: un bins di un altro lotto viene rifiutato' => [
+                'wrong_lot', MissionPlanner::scan($toPick, 'LOT:LT26-018')['problem'],
+            ],
+            'Scansione: alla cella non vale il codice di una linea' => [
+                'not_a_bin', MissionPlanner::scan($toPick, 'LINE:L1')['problem'],
+            ],
+            'Scansione: la linea sbagliata viene rifiutata' => [
+                'wrong_line', MissionPlanner::scan($toDeliver, 'LINE:L2')['problem'],
+            ],
+            'Scansione: il codice della linea giusta chiude la missione, anche scritto in minuscolo' => [
+                true, MissionPlanner::scan($toDeliver, ' line:l1 ')['ok'],
+            ],
+            'Scansione: un QR qualsiasi non è un codice dello stabilimento' => [
+                'unreadable', MissionPlanner::scan($toPick, 'https://example.com/x')['problem'],
+            ],
+            'Scansione: una missione consegnata non si legge due volte' => [
+                'done', MissionPlanner::scan(['status' => 'delivered'] + $toPick, 'LINE:L1')['problem'],
             ],
             'Lotto di confezionamento: foglio 1702 del 24 novembre 2026 = L26328-1702' => [
                 'L26328-1702', Traceability::packingLot(new DateTimeImmutable('2026-11-24'), 1702),

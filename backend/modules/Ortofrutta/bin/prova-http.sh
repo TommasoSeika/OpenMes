@@ -80,6 +80,13 @@ page /tracciabilita Trace
 page "/tracciabilita?vista=lotto" Trace
 page /margini Margins
 page /missioni Missions
+page /terminale Terminal
+get /etichette
+if [ "$STATUS" = 200 ] && printf '%s' "$BODY" | grep -qE '"code":"LINE:L1"[^}]*"qr":"data:image'; then
+    ok "etichette: ogni linea, cella e lotto ha il suo codice QR"
+else
+    fail "etichette senza QR -> HTTP $STATUS  $(why)"
+fi
 page "/ordini?giorno=2026-11-20" Orders
 SHEET="$(sql 'select id from orto_work_sheets order by number desc limit 1')"
 page "/fogli/$SHEET" WorkSheet
@@ -136,10 +143,51 @@ printf '%s' "$BODY" | grep -qE '"issue":"busy"' && fail "una persona è su due p
 get /piano
 printf '%s' "$BODY" | grep -qE '"understaffed":true' && ok "le produzioni senza squadra completa sono evidenziate nel piano" || fail "nessuna produzione risulta scoperta"
 
+echo "Liste di lavoro e scansioni"
+send POST /missioni/genera
+MISSIONS="$(sql 'select count(*) from orto_missions')"
+ALONE="$(sql 'select count(*) from orto_missions where person_id is null')"
+[ "$STATUS" = 302 ] && [ "${MISSIONS:-0}" -gt 0 ] && [ "$ALONE" = 0 ] && ok "genera liste di lavoro: $MISSIONS missioni, tutte con un carrellista" || fail "genera liste -> HTTP $STATUS, missioni $MISSIONS, senza carrellista $ALONE  $(why)"
+get /missioni
+printf '%s' "$BODY" | grep -qE '"stale":false' && ok "le liste corrispondono al piano" || fail "le liste appena generate risultano da rigenerare"
+
+# The bins for the production about to be launched: read at the cell, then at the line.
+FIRST="$(sql "select id from orto_orders where day = (select max(day) from orto_orders) and line_id = $LINE and work_sheet_id is null order by position limit 1")"
+TRIP="$(sql "select id from orto_missions where order_id = $FIRST order by id limit 1")"
+if [ -n "$TRIP" ]; then
+    RIGHT="$(sql "select l.code from orto_missions m join orto_lots l on l.id = m.lot_id where m.id = $TRIP")"
+    WRONG="$(sql "select code from orto_lots where code <> '$RIGHT' order by code limit 1")"
+    TO="$(sql "select l.code from orto_missions m join orto_lines l on l.id = m.line_id where m.id = $TRIP")"
+    ELSEWHERE="$(sql "select code from orto_lines where code <> '$TO' order by code limit 1")"
+    IN_CELL="$(sql "select net_kg from orto_lots where code = '$RIGHT'")"
+    state() { sql "select status from orto_missions where id = $TRIP"; }
+    scan() { send POST /terminale/scansiona "{\"mission_id\":$TRIP,\"code\":\"$1\"}"; }
+
+    scan "LOT:$WRONG"
+    [ "$STATUS" = 422 ] && [ "$(state)" = todo ] && ok "bins del lotto sbagliato ($WRONG invece di $RIGHT): rifiutato" || fail "lotto sbagliato -> HTTP $STATUS, stato $(state)"
+    scan "LINE:$TO"
+    [ "$STATUS" = 422 ] && [ "$(state)" = todo ] && ok "codice della linea letto prima del bins: rifiutato" || fail "linea prima del bins -> HTTP $STATUS, stato $(state)"
+    scan "LOT:$RIGHT"
+    [ "$STATUS" = 200 ] && [ "$(state)" = picked ] && ok "etichetta del bins giusto: prelievo confermato" || fail "lotto giusto -> HTTP $STATUS, stato $(state)  $(why)"
+    scan "LINE:$ELSEWHERE"
+    [ "$STATUS" = 422 ] && [ "$(state)" = picked ] && ok "linea sbagliata ($ELSEWHERE invece di $TO): rifiutata" || fail "linea sbagliata -> HTTP $STATUS, stato $(state)"
+    scan "LINE:$TO"
+    [ "$STATUS" = 200 ] && [ "$(state)" = delivered ] && ok "codice della linea giusta: missione consegnata" || fail "linea giusta -> HTTP $STATUS, stato $(state)  $(why)"
+    scan "LINE:$TO"
+    [ "$STATUS" = 422 ] && ok "una missione consegnata non si legge due volte" || fail "seconda lettura -> HTTP $STATUS"
+    page "/terminale?persona=$(sql "select person_id from orto_missions where id = $TRIP")" Terminal
+else
+    fail "nessuna missione per il primo ordine della linea"
+fi
+
 send POST /piano/lancia "{\"line_id\":$LINE}"
 NEW="$(field sheet_id)"
 [ "$STATUS" = 200 ] && [ -n "$NEW" ] && ok "lancia: creato un foglio di lavorazione" || fail "lancia -> HTTP $STATUS  $(printf '%s' "$BODY" | cut -c1-200) $(why)"
 [ -n "$NEW" ] && page "/fogli/$NEW" WorkSheet
+if [ -n "$NEW" ] && [ -n "$TRIP" ]; then
+    SCANNED="$(sql "select count(*) from orto_work_sheet_lots wl join orto_lots l on l.id = wl.lot_id where wl.work_sheet_id = $NEW and l.code = '$RIGHT'")"
+    [ "$SCANNED" = 1 ] && ok "il foglio nasce con il lotto letto alla linea ($RIGHT): nessuno l'ha digitato" || fail "il lotto $RIGHT non è sul foglio $NEW"
+fi
 
 # The crew of the production follows onto its sheet, and a change on the crews screen changes the sheet.
 if [ -n "$NEW" ]; then

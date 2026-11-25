@@ -7,13 +7,14 @@ import { Btn, Chip } from './ui';
 const TABS = [
     ['', 'Stabilimento'],
     ['/conferimenti', 'Conferimenti'],
-    ['/ordini', '1 · Ordini del giorno'],
-    ['/piano', '2 · Piano linee'],
-    ['/squadre', '3 · Squadre'],
-    ['/fogli', '4 · Fogli di lavorazione'],
-    ['/tracciabilita', '5 · Tracciabilità'],
-    ['/margini', '6 · Margini'],
-    ['/missioni', 'Missioni bins'],
+    ['/ordini', 'Ordini'],
+    ['/piano', 'Piano linee'],
+    ['/squadre', 'Squadre'],
+    ['/missioni', 'Liste di lavoro'],
+    ['/terminale', 'Terminale'],
+    ['/fogli', 'Fogli'],
+    ['/tracciabilita', 'Tracciabilità'],
+    ['/margini', 'Margini'],
 ];
 
 function resetDemo() {

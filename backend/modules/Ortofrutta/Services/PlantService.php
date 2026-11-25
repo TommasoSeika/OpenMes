@@ -11,14 +11,10 @@ use Modules\Ortofrutta\Support\Demo;
 
 /**
  * The plant as the shift leader sees it: what is in every cold-storage cell,
- * what each line is doing, what has to leave with each truck, and which bins
- * the forklift drivers have to bring.
+ * what each line is doing and what has to leave with each truck.
  */
 class PlantService
 {
-    /** Minutes before a block starts by which its fruit should be at the line. */
-    private const PICK_LEAD_MINUTES = 20;
-
     public function __construct(private PlanService $plan, private WorkSheetService $sheets) {}
 
     /**
@@ -106,74 +102,6 @@ class PlantService
                 'next' => $next,
             ];
         }, $board['lines']);
-    }
-
-    /**
-     * Bins to bring to the lines, generated from the plan: oldest lot of the
-     * right variety first. Read-only: nothing is reserved or moved.
-     *
-     * @return list<array<string, mixed>>
-     */
-    public function missions(CarbonImmutable $day): array
-    {
-        $remaining = $this->sheets->remainingByLot();
-        $yields = $this->sheets->yieldByVariety();
-        $lots = Lot::query()->with(['producer', 'cell'])->orderBy('received_at')->orderBy('id')->get()->groupBy('variety');
-
-        $blocks = [];
-        foreach ($this->plan->scheduled($day) as $entry) {
-            foreach ($entry['blocks'] as $block) {
-                // Fruit for a closed sheet has already been brought and weighed.
-                if ($block['order']->workSheet?->status === 'closed') {
-                    continue;
-                }
-                $blocks[] = $block + ['line' => $entry['line']];
-            }
-        }
-        usort($blocks, fn ($a, $b) => [$a['start'], $a['line']->code] <=> [$b['start'], $b['line']->code]);
-
-        $missions = [];
-        foreach ($blocks as $block) {
-            $order = $block['order'];
-            $variety = $order->item->variety;
-            $needed = $order->pallets * $order->item->kgPerPallet() / ($yields[$variety] ?? WorkSheetService::DEFAULT_YIELD);
-            foreach ($lots[$variety] ?? [] as $lot) {
-                $left = $remaining[$lot->id] ?? 0.0;
-                if ($needed < 1 || $left < 1) {
-                    continue;
-                }
-                $take = min($left, $needed);
-                $remaining[$lot->id] = $left - $take;
-                $needed -= $take;
-                $missions[] = [
-                    'by' => $block['start']->modify(sprintf('-%d minutes', self::PICK_LEAD_MINUTES))->format('H:i'),
-                    'line' => $block['line']->name,
-                    'line_code' => $block['line']->code,
-                    'order' => $order->number,
-                    'customer' => $order->customer?->name,
-                    'item_code' => $order->item->code,
-                    'variety' => $variety,
-                    'lot' => $lot->code,
-                    'producer' => $lot->producer?->name,
-                    'cell' => $lot->cell?->code,
-                    'building' => $lot->cell?->building,
-                    'bins' => $this->binsFor($lot, $take),
-                    'kg' => round($take),
-                    'launched' => $order->work_sheet_id !== null,
-                    'short' => false,
-                ];
-            }
-            if ($needed >= 1) {
-                $missions[] = [
-                    'by' => $block['start']->format('H:i'), 'line' => $block['line']->name, 'line_code' => $block['line']->code,
-                    'order' => $order->number, 'customer' => $order->customer?->name, 'item_code' => $order->item->code,
-                    'variety' => $variety, 'lot' => null, 'producer' => null, 'cell' => null, 'building' => null,
-                    'bins' => 0, 'kg' => round($needed), 'launched' => $order->work_sheet_id !== null, 'short' => true,
-                ];
-            }
-        }
-
-        return $missions;
     }
 
     /** The cell to propose for a delivery: one that already holds the variety and has room, else an empty one. */

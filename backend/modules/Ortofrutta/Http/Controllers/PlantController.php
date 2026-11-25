@@ -17,8 +17,7 @@ use Modules\Ortofrutta\Services\PlantService;
 use Modules\Ortofrutta\Support\Demo;
 
 /**
- * The plant map, the deliveries weighed at the gate, the bin missions and the
- * demo controls.
+ * The plant map, the deliveries weighed at the gate and the demo controls.
  */
 class PlantController extends OrtoController
 {
@@ -86,15 +85,6 @@ class PlantController extends OrtoController
             'Conferimento registrato: lotto %s, %s kg netti in cella %s.',
             $lot->code, number_format($lot->net_kg, 0, ',', '.'), Cell::query()->find($lot->cell_id)?->code,
         ));
-    }
-
-    public function missions(Request $request): Response
-    {
-        $day = $this->day($request);
-
-        return $this->page('Missions', [
-            'missions' => Demo::loaded() ? $this->plant->missions($day) : [],
-        ], $day);
     }
 
     /** The screens used to live under /admin/ortofrutta: send old links to the new address. */

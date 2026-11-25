@@ -21,7 +21,7 @@ use Throwable;
 class DemoLoader
 {
     private const TABLES = [
-        'orto_production_crew', 'orto_price_list', 'orto_orders', 'orto_work_sheet_lots', 'orto_work_sheet_people',
+        'orto_missions', 'orto_production_crew', 'orto_price_list', 'orto_orders', 'orto_work_sheet_lots', 'orto_work_sheet_people',
         'orto_work_sheets', 'orto_attendances', 'orto_people', 'orto_lots', 'orto_changeover_rules',
         'orto_packaging_components', 'orto_items', 'orto_producers', 'orto_customers', 'orto_cells',
         'orto_line_capacities', 'orto_lines',

@@ -21,13 +21,14 @@ la cartella si chiama `Ortofrutta`: è un nome interno che l'utente non vede.
 |---|---|---|
 | Stabilimento | Capoturno | Planimetria dei due edifici: celle frigo, linee, zona confezionamento e carico |
 | Conferimenti | Pesa | Peso lordo, tara dei bins, netto, cella di destinazione: nasce il lotto |
-| 1 · Ordini del giorno | Ufficio | Ordini con tipo, arrivo, camion, priorità di uscita. Simulazione degli arrivi |
-| 2 · Piano linee | Responsabile | Una colonna per linea, ordini trascinabili, cambi, avviso sul camion, "Proponi sequenza" |
-| 3 · Squadre | Capoturno | Per ogni produzione: persone richieste, assegnate, mancanti; chi è libero in quell'orario; "Proponi squadre" |
-| 4 · Fogli di lavorazione | Responsabile | Lotti in ingresso, kg confezionati, scarto: il costo in €/kg appare al salvataggio |
-| 5 · Tracciabilità | Qualità, ufficio | Dal cliente al produttore (ordine → lotto di confezionamento → lotti → produttori) e dal produttore ai clienti (lotto → fogli → ordini) |
-| 6 · Margini | Direzione | Costo e margine per foglio, lotto, produttore, cliente. Simulatore di prezzo minimo |
-| Missioni bins | Carrellisti | Quale lotto prelevare, da quale cella, per quale linea, entro che ora (sola lettura) |
+| Ordini | Ufficio | Ordini con tipo, arrivo, camion, priorità di uscita. Simulazione degli arrivi |
+| Piano linee | Responsabile | Una colonna per linea, ordini trascinabili, cambi, avviso sul camion, "Proponi sequenza" |
+| Squadre | Capoturno | Per ogni produzione: persone richieste, assegnate, mancanti; chi è libero in quell'orario; "Proponi squadre" dalle timbrature del giorno |
+| Liste di lavoro | Capoturno | Dal piano: i bins che servono a ogni linea, da quale cella, entro che ora, in ordine di orario e priorità, divisi tra i carrellisti presenti. Stato di ogni missione |
+| Terminale | Carrellisti, operatori | Il carrellista vede la sua lista ed esegue ogni missione leggendo l'etichetta del bins e il codice della linea (fotocamera simulata, o lettore a pistola). L'operatore di linea vede le sue produzioni |
+| Fogli | Responsabile | Lotti in ingresso (già scritti se letti alla linea), kg confezionati, scarto: il costo in €/kg appare al salvataggio |
+| Tracciabilità | Qualità, ufficio | Dal cliente al produttore (ordine → lotto di confezionamento → lotti → produttori) e dal produttore ai clienti (lotto → fogli → ordini) |
+| Margini | Direzione | Costo e margine per foglio, lotto, produttore, cliente. Simulatore di prezzo minimo |
 
 ## Avvio in tre comandi
 
@@ -59,16 +60,16 @@ dati, con gli ordini A per B della sera prima già in sequenza.
 
 ## Copione della demo (15 minuti)
 
-1. **Ore 10:00.** In *2 · Piano linee* ci sono solo gli ordini A per B arrivati la
+1. **Ore 10:00.** In *Piano linee* ci sono solo gli ordini A per B arrivati la
    sera prima, già in sequenza.
-2. **Arrivano gli ordini A per A.** In *1 · Ordini del giorno*, "Simula arrivo
+2. **Arrivano gli ordini A per A.** In *Ordini del giorno*, "Simula arrivo
    ordini" ne fa entrare una decina; quelli per il camion delle 15:00 sono
    marcati "carico veloce".
-3. **Si pianifica.** In *2 · Piano linee*, "Proponi sequenza" ordina per camion e
+3. **Si pianifica.** In *Piano linee*, "Proponi sequenza" ordina per camion e
    mette vicini gli articoli uguali. Trascinando un ordine delle 15:00 in fondo
    alla linea, dopo un cambio, il blocco diventa rosso: non chiude prima del
    camion.
-4. **Si organizzano le persone.** In *3 · Squadre* ogni linea ha le sue
+4. **Si organizzano le persone.** In *Squadre* ogni linea ha le sue
    produzioni in ordine di orario. "Proponi squadre" le riempie tenendo le stesse
    persone sulla linea da una produzione alla successiva. Sulla Linea 4 le
    produzioni di cestini restano scoperte: servono 14 specialisti, tre sono
@@ -77,16 +78,23 @@ dati, con gli ordini A per B della sera prima già in sequenza.
    chi è libero in quell'orario e, per chi non lo è, il motivo. In fondo, "Chi
    fa cosa oggi". Se dopo si rifà la sequenza, chi era su un ordine passato a
    un'altra linea viene liberato e "Proponi squadre" rimette tutto in ordine.
-5. **Si chiude un foglio.** Nel piano, "Lancia" sul primo gruppo di una linea crea
-   il foglio, con la squadra di quella produzione. In *4 · Fogli di lavorazione*:
-   "Usa i lotti suggeriti", si inserisce lo scarto, "Salva e calcola il costo":
-   appare il costo in €/kg.
-6. **Si traccia.** Dal foglio, "Tracciabilità": cliente, lotto di confezionamento,
+5. **Si asservono le linee.** In *Liste di lavoro*, "Genera liste di lavoro": per
+   ogni ordine i bins da portare, dalla cella alla linea, entro 20 minuti prima
+   dell'inizio, divisi tra i sei carrellisti presenti. In *Terminale* il
+   carrellista apre la prima missione, tocca l'etichetta del bins (provare
+   quella sbagliata: "Lotto sbagliato"), poi il codice della linea: missione
+   consegnata. La giacenza della cella scende e la lista si aggiorna.
+6. **Si chiude un foglio.** Nel piano, "Lancia" sul primo gruppo di una linea crea
+   il foglio, con la squadra di quella produzione e con i lotti letti alla
+   linea già scritti. In *Fogli*: si inserisce lo scarto (o "Usa i lotti
+   suggeriti" se nessuno ha scansionato), "Salva e calcola il costo": appare il
+   costo in €/kg.
+7. **Si traccia.** Dal foglio, "Tracciabilità": cliente, lotto di confezionamento,
    lotti entrati, produttori, kg. Cliccando un lotto si passa all'altra vista:
-   tutti i fogli in cui è entrato e tutti i clienti a cui è arrivato. In *5 ·
-   Tracciabilità* si cerca per ordine, cliente, lotto stampato sulla pedana
+   tutti i fogli in cui è entrato e tutti i clienti a cui è arrivato. In
+   *Tracciabilità* si cerca per ordine, cliente, lotto stampato sulla pedana
    (es. `L26328-1702`) o produttore, sulle due settimane di storico.
-7. **Si guarda il margine.** In *6 · Margini*, classifica dei produttori: i due a
+8. **Si guarda il margine.** In *Margini*, classifica dei produttori: i due a
    resa bassa sono in fondo. Nel simulatore si prova il prezzo di una settimana
    in scontistica.
 
@@ -104,6 +112,9 @@ Stanno in `Domain/` e non dipendono dal database:
   presente in quell'orario, non impegnato altrove) e la proposta delle squadre.
 - `Traceability` — il lotto di confezionamento di un foglio e la ripartizione dei
   kg di ogni lotto tra gli ordini del foglio.
+- `MissionPlanner` — l'ordine di lavoro delle missioni, la divisione tra i
+  carrellisti e cosa fa una lettura: il bins giusto conferma il prelievo, la
+  linea giusta chiude la missione, tutto il resto viene rifiutato.
 
 Verifica:
 

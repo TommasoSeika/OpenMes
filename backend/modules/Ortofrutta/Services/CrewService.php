@@ -97,6 +97,8 @@ class CrewService
             'summary' => [
                 'people' => $people->count(),
                 'present' => $attendance->where('status', 'present')->count(),
+                // Entries on the time clock this morning: what the crews are made from.
+                'clocked_in' => $attendance->whereNotNull('clock_in')->count(),
                 'early_exit' => $attendance->where('status', 'early_exit')->count(),
                 'absent' => $people->count() - $attendance->whereIn('status', ['present', 'early_exit'])->count(),
                 'productions' => count($rows),
@@ -363,6 +365,7 @@ class CrewService
             'is_leader' => $person->qualification === 'Capolinea',
             'enabled_lines' => $person->enabled_lines ?? [],
             'status' => $status,
+            'clock_in' => $in && $attendance->clock_in ? substr((string) $attendance->clock_in, 0, 5) : null,
             'from' => $in ? ($this->timeToMinutes($attendance->planned_in) ?? 0) : null,
             'until' => $status === 'early_exit' ? $this->timeToMinutes($attendance->planned_out) : null,
             'reason' => match ($status) {

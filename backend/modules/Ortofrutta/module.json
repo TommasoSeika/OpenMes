@@ -1,7 +1,7 @@
 {
     "name": "Ortofrutta",
     "display_name": "Packing house: traceability and crews",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "description": "Proof of concept for a fruit packing house. Traceability in both directions (from a delivered order back to the raw lots and producers, and from a raw lot forward to the customers it reached) and crews organised production by production. Around them: deliveries weighed into cold-storage cells, the orders of the day, a per-line plan with changeover times and truck deadlines, work sheets costed in €/kg, margins. Runs on simulated data loaded from CSV files. Screens are in Italian and carry the name of the company set when the data is loaded.",
     "author": "SEIKA Innovation",
     "provider": "Modules\\Ortofrutta\\Providers\\OrtofruttaServiceProvider",

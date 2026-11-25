@@ -9,6 +9,7 @@ use Modules\Ortofrutta\Domain\WorkSheetCosting;
 use Modules\Ortofrutta\Models\Attendance;
 use Modules\Ortofrutta\Models\Line;
 use Modules\Ortofrutta\Models\Lot;
+use Modules\Ortofrutta\Models\Mission;
 use Modules\Ortofrutta\Models\Order;
 use Modules\Ortofrutta\Models\Person;
 use Modules\Ortofrutta\Models\ProductionCrew;
@@ -55,6 +56,10 @@ class WorkSheetService
 
             Order::query()->whereIn('id', array_column($blocks, 'id'))->update(['work_sheet_id' => $sheet->id]);
             $this->syncCrew($sheet);
+            // Bins already scanned at the line for these orders: their lots are on the sheet from the start.
+            foreach (Mission::query()->whereIn('order_id', array_column($blocks, 'id'))->where('status', 'delivered')->get() as $mission) {
+                $this->addDeliveredFruit($sheet, $mission->lot_id, (float) $mission->kg);
+            }
             $this->recost($sheet);
 
             return $sheet;
@@ -193,6 +198,39 @@ class WorkSheetService
         );
     }
 
+    /**
+     * Fruit a forklift mission brought to the line: written on the sheet as
+     * kilograms in, with the packed kilograms following from them until the
+     * waste is entered.
+     */
+    public function addDeliveredFruit(WorkSheet $sheet, int $lotId, float $kg): void
+    {
+        $row = WorkSheetLot::query()->firstOrNew(['work_sheet_id' => $sheet->id, 'lot_id' => $lotId]);
+        $waste = (float) $row->kg_waste_cider + (float) $row->kg_waste_industry;
+        $row->kg_in = (float) $row->kg_in + $kg;
+        $row->kg_waste_cider = (float) $row->kg_waste_cider;
+        $row->kg_waste_industry = (float) $row->kg_waste_industry;
+        $row->kg_packed = max(0.0, (float) $row->kg_in - $waste);
+        $row->save();
+    }
+
+    /**
+     * Kilograms that have left their cell on a forklift and are not on a work
+     * sheet yet: picked and on the way, or delivered to a production that has
+     * not been launched. Per lot id.
+     *
+     * @return array<int, float>
+     */
+    public function onTheMove(): array
+    {
+        return DB::table('orto_missions as m')
+            ->join('orto_orders as o', 'o.id', '=', 'm.order_id')
+            ->where(fn ($q) => $q->where('m.status', 'picked')
+                ->orWhere(fn ($q) => $q->where('m.status', 'delivered')->whereNull('o.work_sheet_id')))
+            ->selectRaw('m.lot_id, sum(m.kg) as kg')->groupBy('m.lot_id')
+            ->pluck('kg', 'lot_id')->map(fn ($kg) => (float) $kg)->all();
+    }
+
     /** Kilograms of a lot still in its cell, optionally ignoring one sheet's own rows. */
     public function remainingKg(Lot $lot, ?int $exceptSheetId = null): float
     {
@@ -200,7 +238,7 @@ class WorkSheetService
             ->when($exceptSheetId, fn ($q) => $q->where('work_sheet_id', '!=', $exceptSheetId))
             ->sum('kg_in');
 
-        return max(0.0, (float) $lot->net_kg - (float) $used);
+        return max(0.0, (float) $lot->net_kg - (float) $used - ($this->onTheMove()[$lot->id] ?? 0.0));
     }
 
     /**
@@ -211,9 +249,12 @@ class WorkSheetService
     public function remainingByLot(): array
     {
         $used = WorkSheetLot::query()->selectRaw('lot_id, sum(kg_in) as kg')->groupBy('lot_id')->pluck('kg', 'lot_id');
+        $moving = $this->onTheMove();
 
         return Lot::query()->get(['id', 'net_kg'])
-            ->mapWithKeys(fn (Lot $l) => [$l->id => max(0.0, (float) $l->net_kg - (float) ($used[$l->id] ?? 0))])->all();
+            ->mapWithKeys(fn (Lot $l) => [
+                $l->id => max(0.0, (float) $l->net_kg - (float) ($used[$l->id] ?? 0) - ($moving[$l->id] ?? 0.0)),
+            ])->all();
     }
 
     /**

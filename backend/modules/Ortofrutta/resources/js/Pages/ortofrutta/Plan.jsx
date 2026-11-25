@@ -259,7 +259,7 @@ export default function Plan({ board: initial }) {
                 ))}
                 {board.waiting > 0 && (
                     <span className="text-sm text-om-muted">
-                        {board.waiting} ordini A per A devono ancora arrivare: entrano da <Link className="text-om-accent hover:underline" href={`${BASE}/ordini`}>1 · Ordini del giorno</Link>.
+                        {board.waiting} ordini A per A devono ancora arrivare: entrano da <Link className="text-om-accent hover:underline" href={`${BASE}/ordini`}>Ordini</Link>.
                     </span>
                 )}
             </div>

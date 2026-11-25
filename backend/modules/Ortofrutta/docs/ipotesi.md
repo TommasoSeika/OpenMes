@@ -63,13 +63,25 @@ veri. Nessuna blocca la demo.
 | 27c | La catena non ha tabelle proprie: è ordine → foglio → lotti del foglio → lotto → produttore, cioè quello che i fogli già registrano. Un ordine è tracciabile da quando viene lanciato; i lotti compaiono quando si salvano sul foglio. | `Services/TraceService.php` |
 | 27d | La tracciabilità si ferma al conferimento pesato all'ingresso: non c'è l'appezzamento, la data di raccolta o i trattamenti. A valle si ferma al camion dell'ordine: non c'è il documento di trasporto. | Da fare con i dati veri |
 
+## Liste di lavoro e scansioni
+
+| # | Ipotesi | Come si cambia |
+|---|---|---|
+| 27e | Una missione è: i bins di **un lotto**, da **una cella** a **una linea**, per **un ordine**, entro 20 minuti prima che il blocco cominci. Il lotto è il più vecchio della varietà giusta che ha ancora frutta in cella. | `Services/MissionService.php` |
+| 27f | Le missioni si fanno in ordine di orario; a pari orario viene prima l'ordine a cui l'ufficio ha dato la priorità più alta. Si dividono tra i carrellisti presenti dando ogni missione a chi ha meno bins da portare. Il capoturno può passarne una a un altro. | `Domain/MissionPlanner.php` |
+| 27g | Le liste **si generano a comando** dal piano linee. Se il piano cambia la schermata lo segnala e si rigenerano: le missioni già prelevate o consegnate restano, quelle da fare vengono rifatte. | `Services/MissionService.php` |
+| 27h | I codici dicono cosa sono: `LOT:` l'etichetta sul bins (una per lotto, stampata alla pesa), `LINE:` il codice all'ingresso della linea, `CELL:` la porta della cella. Si legge il bins al prelievo e la linea alla consegna; la cella non si legge. Non c'è un codice per singolo bins: si conferma il lotto, non il numero di bins. | `Domain/MissionPlanner.php` |
+| 27i | La **fotocamera è simulata**: il terminale disegna le etichette che il carrellista avrebbe davanti, con i loro QR veri, e toccarne una equivale a leggerla. Un lettore a pistola funziona già, perché scrive il codice come una tastiera. La lettura con la fotocamera del telefono è da fare. | `Pages/ortofrutta/Terminal.jsx` |
+| 27j | Un bins letto alla cella esce dalla giacenza della cella. Una missione consegnata scrive il lotto, con i suoi kg, sul foglio di lavorazione di quella produzione: subito se è già lanciata, al lancio se non lo è. I kg sono quelli della missione, non una pesata. | `Services/WorkSheetService.php` |
+| 27k | Sul terminale la persona si sceglie da un elenco: sul campo entrerebbe con il badge. La lista di un operatore di linea sono le produzioni su cui è in squadra; per carrellisti e operatori non ci sono ancora liste per imballi, pedane finite o pulizie. | Da fare se servono |
+
 ## Demo
 
 | # | Ipotesi | Come si cambia |
 |---|---|---|
 | 28 | La giornata demo è l'ultima con ordini (27 novembre 2026) e l'orologio è simulato: parte dalle 10:00 e avanza quando si simulano gli arrivi. Non segue l'ora reale. | `Support/Demo.php` |
 | 29 | "Simula arrivo ordini" fa entrare gli ordini A per A a ondate: tutti quelli arrivati entro 70 minuti dal primo in attesa. Tre ondate nella giornata demo. | `OrderController` |
-| 30 | Le missioni bins prendono il lotto più vecchio della varietà giusta e chiedono il bin alla linea 20 minuti prima dell'inizio del blocco. La resa attesa è quella storica della varietà. | `Services/PlantService.php` |
+| 30 | Per sapere quanta frutta serve a un ordine si usa la resa storica della varietà. | `Services/MissionService.php` |
 | 31 | Il nome dell'azienda, nel menu e nell'intestazione, è un'impostazione nel database (`attiva-demo.sh "Nome"`), non è scritto nel codice. Le schermate stanno all'indirizzo `/admin/stabilimento`; il vecchio `/admin/ortofrutta` porta lì. | Il repository è pubblico |
 | 32 | Il brief di progetto **non è nel repository**: contiene informazioni dell'incontro con il cliente e il repository è pubblico. | Si aggiunge se il repository diventa privato |
 

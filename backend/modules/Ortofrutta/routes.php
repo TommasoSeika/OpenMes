@@ -3,9 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use Modules\Ortofrutta\Http\Controllers\CrewController;
 use Modules\Ortofrutta\Http\Controllers\MarginController;
+use Modules\Ortofrutta\Http\Controllers\MissionController;
 use Modules\Ortofrutta\Http\Controllers\OrderController;
 use Modules\Ortofrutta\Http\Controllers\PlanController;
 use Modules\Ortofrutta\Http\Controllers\PlantController;
+use Modules\Ortofrutta\Http\Controllers\TerminalController;
 use Modules\Ortofrutta\Http\Controllers\TraceController;
 use Modules\Ortofrutta\Http\Controllers\WorkSheetController;
 
@@ -21,11 +23,10 @@ Route::middleware(['web', 'auth', 'tab.access'])->get('admin/ortofrutta/{path?}'
     ->where('path', '.*')->name('ortofrutta.moved');
 
 Route::middleware(['web', 'auth', 'tab.access'])->prefix('admin/stabilimento')->name('ortofrutta.')->group(function () {
-    // Plant map, deliveries, bin missions, demo reset.
+    // Plant map, deliveries, demo reset.
     Route::get('/', [PlantController::class, 'index'])->name('plant');
     Route::get('/conferimenti', [PlantController::class, 'deliveries'])->name('deliveries');
     Route::post('/conferimenti', [PlantController::class, 'storeDelivery'])->name('deliveries.store');
-    Route::get('/missioni', [PlantController::class, 'missions'])->name('missions');
     Route::post('/demo/ripristina', [PlantController::class, 'reset'])->name('demo.reset');
 
     // 1. Orders of the day.
@@ -47,6 +48,14 @@ Route::middleware(['web', 'auth', 'tab.access'])->prefix('admin/stabilimento')->
     Route::post('/squadre/copia', [CrewController::class, 'copy'])->name('crews.copy');
     Route::post('/squadre/svuota', [CrewController::class, 'clear'])->name('crews.clear');
     Route::post('/squadre/proponi', [CrewController::class, 'propose'])->name('crews.propose');
+
+    // Work lists of the forklift drivers, the labels, and the terminal that carries the missions out.
+    Route::get('/missioni', [MissionController::class, 'index'])->name('missions');
+    Route::post('/missioni/genera', [MissionController::class, 'generate'])->name('missions.generate');
+    Route::post('/missioni/{mission}/assegna', [MissionController::class, 'assign'])->name('missions.assign');
+    Route::get('/etichette', [MissionController::class, 'labels'])->name('labels');
+    Route::get('/terminale', [TerminalController::class, 'index'])->name('terminal');
+    Route::post('/terminale/scansiona', [TerminalController::class, 'scan'])->name('terminal.scan');
 
     // 4. Work sheets.
     Route::get('/fogli', [WorkSheetController::class, 'index'])->name('sheets');

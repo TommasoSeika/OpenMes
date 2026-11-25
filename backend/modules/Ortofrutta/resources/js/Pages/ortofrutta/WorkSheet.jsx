@@ -165,7 +165,7 @@ export default function WorkSheet({ sheet, crew, components, lots, available_lot
                         </p>
                     )}
                     {crew.length === 0
-                        ? <p className="text-sm text-om-muted">Questa produzione non ha ancora una squadra: il costo di manodopera è zero. Le persone si assegnano in 3 · Squadre e il foglio si aggiorna da solo.</p>
+                        ? <p className="text-sm text-om-muted">Questa produzione non ha ancora una squadra: il costo di manodopera è zero. Le persone si assegnano in Squadre e il foglio si aggiorna da solo.</p>
                         : (
                             <div className="max-h-80 overflow-y-auto">
                                 <Table

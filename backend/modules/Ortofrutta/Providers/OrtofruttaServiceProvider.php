@@ -65,13 +65,14 @@ class OrtofruttaServiceProvider extends ServiceProvider
         $items = [
             ['Stabilimento', ''],
             ['Conferimenti', '/conferimenti'],
-            ['1 · Ordini del giorno', '/ordini'],
-            ['2 · Piano linee', '/piano'],
-            ['3 · Squadre', '/squadre'],
-            ['4 · Fogli di lavorazione', '/fogli'],
-            ['5 · Tracciabilità', '/tracciabilita'],
-            ['6 · Margini', '/margini'],
-            ['Missioni bins', '/missioni'],
+            ['Ordini del giorno', '/ordini'],
+            ['Piano linee', '/piano'],
+            ['Squadre', '/squadre'],
+            ['Liste di lavoro', '/missioni'],
+            ['Terminale', '/terminale'],
+            ['Fogli di lavorazione', '/fogli'],
+            ['Tracciabilità', '/tracciabilita'],
+            ['Margini', '/margini'],
         ];
         foreach ($items as $i => [$label, $path]) {
             $menu->addGroupItem('ortofrutta', $label, url(self::BASE.$path), order: ($i + 1) * 10);
