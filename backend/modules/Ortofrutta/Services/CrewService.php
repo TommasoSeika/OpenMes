@@ -232,13 +232,18 @@ class CrewService
                 if ($production['closed']) {
                     continue;
                 }
+                // Bookings that no longer hold after the plan changed: wrong line, not in, two places at once.
+                $gone = $proposal['released'][$production['key']] ?? [];
+                if ($gone !== []) {
+                    ProductionCrew::query()->whereIn('order_id', $production['order_ids'])->whereIn('person_id', $gone)->delete();
+                }
                 $new = array_diff($proposal['crews'][$production['key']] ?? [], $production['crew']);
                 foreach ($new as $personId) {
                     foreach ($production['order_ids'] as $orderId) {
                         ProductionCrew::query()->firstOrCreate(['order_id' => $orderId, 'person_id' => $personId]);
                     }
                 }
-                if ($new !== []) {
+                if ($new !== [] || $gone !== []) {
                     $touched[] = $production;
                 }
             }
@@ -371,6 +376,7 @@ class CrewService
     private function issueNote(array $issue, ?Attendance $attendance, array $byKey): string
     {
         return match ($issue['issue']) {
+            'line' => 'Non è abilitato su questa linea',
             'busy' => 'Anche su '.$this->label($byKey[$issue['with']] ?? null),
             'partial' => 'Esce alle '.substr((string) $attendance?->planned_out, 0, 5),
             default => $attendance?->status === 'early_exit'

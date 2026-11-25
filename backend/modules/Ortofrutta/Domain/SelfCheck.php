@@ -113,6 +113,9 @@ final class SelfCheck
         $other = $run(20, 'L2', 480, 660, 2);    // L2 08:00–11:00, two people: overlaps both
         $crews = CrewPlanner::propose([$morning, $noon, $other], $staff);
         $booked = [$run(10, 'L1', 450, 600, 3, [1, 2, 3]), $noon, $other];
+        // The plan was rearranged after the crews were made: person 2 is now booked on L1 and L2 at
+        // the same time, and person 4 (L2 only) is on an order that moved to L1.
+        $rearranged = CrewPlanner::propose([$run(10, 'L1', 450, 600, 3, [2, 4]), $run(20, 'L2', 480, 660, 2, [2])], $staff);
 
         // Traceability: a sheet packs 3,000 kg of lot A and 1,000 kg of lot B for two orders, 6 and 2 pallets.
         $shares = Traceability::allocate(['A' => 3000, 'B' => 1000], ['first' => 6, 'second' => 2]);
@@ -181,6 +184,12 @@ final class SelfCheck
             'Squadre: la linea tiene le stesse persone dalla produzione prima a quella dopo' => [[1, 2], $crews['crews'][11]],
             'Squadre: chi esce alle 12:30 non è proposto per una produzione che finisce alle 13:00' => [
                 false, in_array(3, $crews['crews'][11], true),
+            ],
+            'Squadre: dopo un cambio di piano, chi è finito su una linea non sua viene liberato' => [
+                [4], $rearranged['released'][10] ?? [],
+            ],
+            'Squadre: chi risulta su due produzioni insieme resta sulla prima e lascia la seconda' => [
+                [2], $rearranged['released'][20] ?? [],
             ],
             'Squadre: chi non è abilitato sulla linea non si può assegnare' => [
                 'line', CrewPlanner::refusal($staff[3], $morning, $booked)['reason'] ?? null,

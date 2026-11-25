@@ -117,6 +117,26 @@ class CrewAndTraceRulesTest extends TestCase
         $this->assertSame(0, $result['missing']['open']);
     }
 
+    public function test_a_proposal_leaves_no_issue_behind_even_when_the_day_starts_inconsistent(): void
+    {
+        [$productions, $people] = $this->day();
+        // Bookings left over from a plan that has since been rearranged: everybody on the first
+        // production of every line at once, whatever line they are enabled for.
+        foreach ($productions as $i => $production) {
+            if (str_ends_with($production['id'], '-0')) {
+                $productions[$i]['crew'] = array_column($people, 'id');
+            }
+        }
+
+        $result = CrewPlanner::propose($productions, $people);
+        foreach ($productions as $i => $production) {
+            $productions[$i]['crew'] = $result['crews'][$production['id']];
+        }
+
+        $this->assertSame([], CrewPlanner::issues($productions, $people));
+        $this->assertNotEmpty($result['released']);
+    }
+
     public function test_the_kilograms_of_every_lot_are_shared_out_exactly(): void
     {
         $packed = ['LT-1' => 4321.5, 'LT-2' => 987.3, 'LT-3' => 15.0];

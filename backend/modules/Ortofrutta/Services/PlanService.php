@@ -378,6 +378,10 @@ class PlanService
             if ($from !== null && $from !== $line?->id) {
                 $this->renumber($day, $from);
             }
+            // The crew was organised for the line the order was on.
+            if ($from !== $line?->id) {
+                ProductionCrew::query()->where('order_id', $order->id)->delete();
+            }
         });
     }
 
@@ -399,13 +403,22 @@ class PlanService
         $proposal = $this->planner()->propose($definitions, $free, Demo::dayStart($day), $locked);
 
         DB::transaction(function () use ($proposal, $lines) {
+            // An order that changes line leaves its crew behind: it was organised for the line it was on.
+            $moved = [];
             foreach ($lines as $line) {
                 foreach ($proposal['lines'][$line->code] as $i => $block) {
+                    if ($block['order']->line_id !== null && (int) $block['order']->line_id !== (int) $line->id) {
+                        $moved[] = $block['order']->id;
+                    }
                     $block['order']->update(['line_id' => $line->id, 'position' => $i]);
                 }
             }
             foreach ($proposal['unplaced'] as $block) {
+                $moved[] = $block['order']->id;
                 $block['order']->update(['line_id' => null, 'position' => null]);
+            }
+            if ($moved !== []) {
+                ProductionCrew::query()->whereIn('order_id', $moved)->delete();
             }
         });
 

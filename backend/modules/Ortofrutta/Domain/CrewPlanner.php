@@ -76,9 +76,9 @@ final class CrewPlanner
     }
 
     /**
-     * What is wrong with the crews as they are: people booked on two
-     * productions at once, people who leave before the end, people who are
-     * not in at all.
+     * What is wrong with the crews as they are: people booked on a line they
+     * are not enabled for (their order moved there), on two productions at
+     * once, people who leave before the end, people who are not in at all.
      *
      * @param  list<array>  $productions
      * @param  list<array>  $people
@@ -93,6 +93,11 @@ final class CrewPlanner
                 $person = $people[$personId] ?? null;
                 if ($person === null || ! self::attends($person, $production)) {
                     $issues[$production['id']][$personId] = ['issue' => 'away'];
+
+                    continue;
+                }
+                if (! in_array($production['line'], $person['lines'] ?? [], true)) {
+                    $issues[$production['id']][$personId] = ['issue' => 'line'];
 
                     continue;
                 }
@@ -117,17 +122,24 @@ final class CrewPlanner
     /**
      * Fill every production up to its requirement, earliest first.
      *
-     * People already on a production stay there. The others are chosen so
-     * that a line keeps the same faces from one production to the next: first
-     * who was on the production before on that line, then who has already
-     * worked on that line today, then who can work on the fewest lines (so the
-     * flexible ones stay free for the lines that need them). A crew gets a
-     * line leader first when it has none. Nobody is put on a production they
-     * would have to leave before the end, or on two productions at once.
+     * People already on a production stay there, as long as the booking still
+     * holds: when the plan is rearranged a booking can end up on a line the
+     * person is not enabled for, at a time they are not in, or on top of
+     * another production. Those are released first (of two productions at the
+     * same time, the earlier one keeps the person), so a proposal always
+     * leaves the day consistent. Fixed productions are closed: never touched.
+     *
+     * The others are chosen so that a line keeps the same faces from one
+     * production to the next: first who was on the production before on that
+     * line, then who has already worked on that line today, then who can work
+     * on the fewest lines (so the flexible ones stay free for the lines that
+     * need them). A crew gets a line leader first when it has none. Nobody is
+     * put on a production they would have to leave before the end, or on two
+     * productions at once.
      *
      * @param  list<array>  $productions
      * @param  list<array>  $people
-     * @return array{crews: array<int|string, list<int>>, missing: array<int|string, int>}
+     * @return array{crews: array<int|string, list<int>>, missing: array<int|string, int>, released: array<int|string, list<int>>}
      */
     public static function propose(array $productions, array $people): array
     {
@@ -143,12 +155,39 @@ final class CrewPlanner
         usort($productions, fn (array $a, array $b) => [$a['start'], $eligible[$a['line']], $a['end'], (string) $a['id']]
             <=> [$b['start'], $eligible[$b['line']], $b['end'], (string) $b['id']]);
 
+        // What is closed cannot change: its people are taken for that time, whatever else they are booked on.
         $crews = [];
         $busy = [];
+        $released = [];
         foreach ($productions as $production) {
-            $crews[$production['id']] = array_values(array_unique($production['crew'] ?? []));
-            foreach ($crews[$production['id']] as $personId) {
-                $busy[$personId][] = $production;
+            if ($production['fixed'] ?? false) {
+                $crews[$production['id']] = array_values(array_unique($production['crew'] ?? []));
+                foreach ($crews[$production['id']] as $personId) {
+                    $busy[$personId][] = $production;
+                }
+            }
+        }
+        // The rest keeps the bookings that still hold, earliest production first.
+        foreach ($productions as $production) {
+            if ($production['fixed'] ?? false) {
+                continue;
+            }
+            $id = $production['id'];
+            $crews[$id] = [];
+            foreach (array_values(array_unique($production['crew'] ?? [])) as $personId) {
+                $person = $people[$personId] ?? null;
+                $holds = $person !== null
+                    && in_array($production['line'], $person['lines'] ?? [], true)
+                    && self::attends($person, $production);
+                foreach ($holds ? ($busy[$personId] ?? []) : [] as $other) {
+                    $holds = $holds && ! self::overlaps($other, $production);
+                }
+                if ($holds) {
+                    $crews[$id][] = $personId;
+                    $busy[$personId][] = $production;
+                } else {
+                    $released[$id][] = $personId;
+                }
             }
         }
 
@@ -218,6 +257,6 @@ final class CrewPlanner
             $missing[$id] = max(0, (int) $production['required'] - count($crews[$id]));
         }
 
-        return ['crews' => $crews, 'missing' => $missing];
+        return ['crews' => $crews, 'missing' => $missing, 'released' => $released];
     }
 }
