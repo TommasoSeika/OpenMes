@@ -5,8 +5,8 @@
 #
 #   docker compose exec backend sh modules/Ortofrutta/bin/attiva-demo.sh "Nome Azienda"
 #
-# The company name is optional: it is what the header of every screen shows, and
-# it is kept in the database, not in the repository. Safe to run again: it
+# The company name is optional: it is what the menu and the header of every
+# screen show, and it is kept in the database, not in the repository. Safe to run again: it
 # reloads the simulated data from the CSV files in seed/.
 set -e
 
@@ -34,4 +34,4 @@ php artisan config:cache > /dev/null
 php artisan route:cache > /dev/null
 php artisan octane:reload > /dev/null 2>&1 || true
 
-echo "[Ortofrutta] Fatto. Apri /admin/ortofrutta."
+echo "[Ortofrutta] Fatto. Apri /admin/stabilimento."

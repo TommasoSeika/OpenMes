@@ -21,8 +21,8 @@ use Throwable;
 class DemoLoader
 {
     private const TABLES = [
-        'orto_price_list', 'orto_orders', 'orto_work_sheet_lots', 'orto_work_sheet_people', 'orto_work_sheets',
-        'orto_crew_assignments', 'orto_attendances', 'orto_people', 'orto_lots', 'orto_changeover_rules',
+        'orto_production_crew', 'orto_price_list', 'orto_orders', 'orto_work_sheet_lots', 'orto_work_sheet_people',
+        'orto_work_sheets', 'orto_attendances', 'orto_people', 'orto_lots', 'orto_changeover_rules',
         'orto_packaging_components', 'orto_items', 'orto_producers', 'orto_customers', 'orto_cells',
         'orto_line_capacities', 'orto_lines',
     ];
@@ -75,11 +75,15 @@ class DemoLoader
                     'building' => $r['edificio'], 'required_people' => (int) $r['persone_richieste'],
                     'startup_minutes' => (int) $r['minuti_avvio'], 'sort' => count($lineRows),
                 ] + $stamp;
-                $capacities[] = [$r['codice'], $r['formato'], (float) $r['pedane_ora']];
+                // People needed for this format; without the column, the line's own requirement.
+                $capacities[] = [
+                    $r['codice'], $r['formato'], (float) $r['pedane_ora'],
+                    (int) (($r['persone_formato'] ?? '') !== '' ? $r['persone_formato'] : $r['persone_richieste']),
+                ];
             }
             $lines = $this->insertKeyed('orto_lines', array_values($lineRows));
             DB::table('orto_line_capacities')->insert(array_map(fn ($c) => [
-                'line_id' => $lines[$c[0]], 'format' => $c[1], 'pallets_per_hour' => $c[2],
+                'line_id' => $lines[$c[0]], 'format' => $c[1], 'pallets_per_hour' => $c[2], 'required_people' => $c[3],
             ], $capacities));
 
             $itemRows = [];
@@ -189,14 +193,11 @@ class DemoLoader
             $orders = DB::table('orto_orders')->pluck('id', 'number')->all();
 
             // ── History: crews, work sheets and what the sizers measured ────
+            // The crew of a past day goes on that day's work sheets, which is
+            // where it is read from: the productions of the past are closed.
             $crews = [];
-            $rows = [];
             foreach ($this->rows('squadre_storico.csv') as $r) {
                 $crews[$r['data'].'|'.$r['linea']][] = $r['matricola'];
-                $rows[] = ['day' => $r['data'], 'line_id' => $lines[$r['linea']], 'person_id' => $people[$r['matricola']]];
-            }
-            foreach (array_chunk($rows, 400) as $chunk) {
-                DB::table('orto_crew_assignments')->insert($chunk);
             }
 
             $measured = [];

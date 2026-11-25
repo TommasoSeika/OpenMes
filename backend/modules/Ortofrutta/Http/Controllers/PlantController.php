@@ -9,6 +9,7 @@ use Inertia\Response;
 use Modules\Ortofrutta\Http\Requests\StoreDeliveryRequest;
 use Modules\Ortofrutta\Models\Cell;
 use Modules\Ortofrutta\Models\Item;
+use Modules\Ortofrutta\Providers\OrtofruttaServiceProvider;
 use Modules\Ortofrutta\Services\CrewService;
 use Modules\Ortofrutta\Services\DemoLoader;
 use Modules\Ortofrutta\Services\PlanService;
@@ -96,6 +97,14 @@ class PlantController extends OrtoController
         ], $day);
     }
 
+    /** The screens used to live under /admin/ortofrutta: send old links to the new address. */
+    public function moved(Request $request, string $path = ''): RedirectResponse
+    {
+        $query = $request->getQueryString();
+
+        return redirect(rtrim(OrtofruttaServiceProvider::BASE.'/'.$path, '/').($query ? '?'.$query : ''));
+    }
+
     /** "Ripristina dati demo": rebuild everything from the CSV files. */
     public function reset(DemoLoader $loader): RedirectResponse
     {
@@ -105,7 +114,7 @@ class PlantController extends OrtoController
             return back()->with('error', 'Dati demo non caricati: '.$e->getMessage());
         }
 
-        return redirect('/admin/ortofrutta')->with('success', sprintf(
+        return redirect(OrtofruttaServiceProvider::BASE)->with('success', sprintf(
             'Dati demo ripristinati: %d ordini, %d fogli di lavorazione, %d lotti, %d persone. Sono le %s.',
             $counts['orders'], $counts['sheets'], $counts['lots'], $counts['people'], Demo::clock(),
         ));

@@ -7,10 +7,11 @@ use DomainException;
 use Illuminate\Support\Facades\DB;
 use Modules\Ortofrutta\Domain\WorkSheetCosting;
 use Modules\Ortofrutta\Models\Attendance;
-use Modules\Ortofrutta\Models\CrewAssignment;
 use Modules\Ortofrutta\Models\Line;
 use Modules\Ortofrutta\Models\Lot;
 use Modules\Ortofrutta\Models\Order;
+use Modules\Ortofrutta\Models\Person;
+use Modules\Ortofrutta\Models\ProductionCrew;
 use Modules\Ortofrutta\Models\WorkSheet;
 use Modules\Ortofrutta\Models\WorkSheetLot;
 use Modules\Ortofrutta\Models\WorkSheetPerson;
@@ -61,33 +62,36 @@ class WorkSheetService
     }
 
     /**
-     * The crew of the sheet is the crew assigned to its line that day. Hours
-     * are the part of the sheet each person was present for.
+     * The crew of the sheet is the crew organised for its production: the
+     * people booked on its orders. Hours are the part of the sheet each
+     * person was present for.
      */
     public function syncCrew(WorkSheet $sheet): void
     {
         $day = CarbonImmutable::parse($sheet->day);
-        $assignments = CrewAssignment::query()->with('person')
-            ->whereDate('day', $day->toDateString())->where('line_id', $sheet->line_id)->get();
+        $personIds = ProductionCrew::query()
+            ->whereIn('order_id', Order::query()->where('work_sheet_id', $sheet->id)->select('id'))
+            ->distinct()->pluck('person_id');
+        $people = Person::query()->whereIn('id', $personIds)->get();
         $attendance = Attendance::query()->whereDate('day', $day->toDateString())
-            ->whereIn('person_id', $assignments->pluck('person_id'))->get()->keyBy('person_id');
+            ->whereIn('person_id', $personIds)->get()->keyBy('person_id');
 
         WorkSheetPerson::query()->where('work_sheet_id', $sheet->id)->delete();
         $rows = [];
-        foreach ($assignments as $assignment) {
-            $a = $attendance[$assignment->person_id] ?? null;
+        foreach ($people as $person) {
+            $a = $attendance[$person->id] ?? null;
             $in = $a?->clock_in ?: $a?->planned_in;
             $out = $a?->clock_out ?: $a?->planned_out;
             $rows[] = [
                 'work_sheet_id' => $sheet->id,
-                'person_id' => $assignment->person_id,
+                'person_id' => $person->id,
                 'hours' => WorkSheetCosting::hoursOnSheet(
                     $sheet->started_at,
                     $sheet->ended_at,
                     $in ? Demo::at($day, substr((string) $in, 0, 5)) : null,
                     $out ? Demo::at($day, substr((string) $out, 0, 5)) : null,
                 ),
-                'hourly_cost' => (float) $assignment->person->hourly_cost,
+                'hourly_cost' => (float) $person->hourly_cost,
             ];
         }
         WorkSheetPerson::query()->insert($rows);

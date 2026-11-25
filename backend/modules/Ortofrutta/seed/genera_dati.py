@@ -61,6 +61,15 @@ LINEE = [
 CAP = {l[0]: l[6] for l in LINEE}
 AVVIO = {l[0]: l[5] for l in LINEE}
 RICHIESTE = {l[0]: l[4] for l in LINEE}
+# Persone che servono su una linea per un formato, quando sono meno del
+# fabbisogno pieno della linea: le cassette si riempiono piu' in fretta dei
+# cartoni con alveolo, i vassoi chiedono meno mani dei cestini.
+PERSONE_FORMATO = {
+    ("L1", "Cassetta 30x40"): 20,
+    ("L2", "Cassetta 30x40"): 14,
+    ("L4", "Vassoio 6 frutti"): 12,
+    ("L6", "Cassetta 30x40"): 9,
+}
 
 # ── Celle frigo (planimetria: 16 nell'Edificio 2, 8 nell'Edificio 1) ─────────
 CELLE = []
@@ -545,8 +554,9 @@ for g in GIORNI[:-1]:
 # ── Scrittura dei file ───────────────────────────────────────────────────────
 print("File scritti in", OUT)
 scrivi("linee.csv", ["codice", "nome", "descrizione", "edificio", "persone_richieste", "minuti_avvio",
-                     "formato", "pedane_ora"],
-       [(l[0], l[1], l[2], l[3], l[4], l[5], f, c) for l in LINEE for f, c in l[6].items()])
+                     "formato", "pedane_ora", "persone_formato"],
+       [(l[0], l[1], l[2], l[3], l[4], l[5], f, c, PERSONE_FORMATO.get((l[0], f), l[4]))
+        for l in LINEE for f, c in l[6].items()])
 scrivi("celle.csv", ["codice", "edificio", "blocco", "riga", "colonna", "capacita_bins", "temperatura_c"], CELLE)
 scrivi("clienti.csv", ["codice", "nome", "canale"], CLIENTI)
 scrivi("produttori.csv", ["codice", "ragione_sociale", "localita", "socio"],

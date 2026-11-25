@@ -27,4 +27,4 @@ export const SETUP_LABELS = {
 
 export const PRIORITIES = { 1: 'Alta', 2: 'Normale', 3: 'Bassa' };
 
-export const BASE = '/admin/ortofrutta';
+export const BASE = '/admin/stabilimento';

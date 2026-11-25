@@ -52,6 +52,19 @@ function Block({ block, index, count, line, lines, readOnly, busy, onMove, onDra
                     {canLaunch && <Btn small variant="primary" disabled={busy} onClick={onLaunch}>Lancia</Btn>}
                 </div>
             )}
+            {planned && firstOfLaunch && block.crew_required != null && block.sheet_status !== 'closed' && (
+                <Link
+                    href={`${BASE}/squadre?produzione=${block.id}`}
+                    title="Apri la squadra di questa produzione"
+                    className={`mb-1.5 inline-flex rounded-full px-2 py-0.5 text-[11px] font-medium hover:underline ${
+                        block.crew_people < block.crew_required
+                            ? 'bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-300'
+                            : 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300'
+                    }`}
+                >
+                    Squadra {block.crew_people}/{block.crew_required}
+                </Link>
+            )}
 
             <div className="flex items-start justify-between gap-2">
                 <div className="min-w-0">
@@ -277,10 +290,14 @@ export default function Plan({ board: initial }) {
                         <div className="flex items-center justify-between gap-2">
                             <h2 className="text-sm font-semibold text-om-ink">{line.name}</h2>
                             <Chip
-                                tone={line.understaffed ? 'bad' : line.blocks.length > 0 ? 'ok' : 'neutral'}
-                                title={line.understaffed ? `Sotto organico: mancano ${line.required_people - line.assigned_people} persone` : 'Persone assegnate / richieste'}
+                                tone={line.understaffed ? 'bad' : line.open_productions > 0 ? 'ok' : 'neutral'}
+                                title="Produzioni ancora da chiudere che hanno tutte le persone che servono"
                             >
-                                {line.understaffed ? 'Sotto organico ' : ''}{line.assigned_people}/{line.required_people} pers.
+                                {line.open_productions === 0
+                                    ? 'Nessuna produzione'
+                                    : line.understaffed
+                                        ? `Squadra incompleta: ${line.short_productions} su ${line.open_productions}`
+                                        : 'Squadre complete'}
                             </Chip>
                         </div>
                         <p className="mt-0.5 truncate text-xs text-om-muted">{line.description} · {line.formats.map((f) => f.format).join(', ')}</p>

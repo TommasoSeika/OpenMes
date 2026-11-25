@@ -1,8 +1,21 @@
-# Ortofrutta — POC per un magazzino di lavorazione frutta
+# POC per un magazzino di lavorazione frutta
 
-Modulo OpenMES che segue un ordine dall'arrivo in ufficio fino al costo di
-lavorazione in €/kg e al margine per produttore. Gira solo su **dati simulati**,
-senza collegamenti a gestionale, macchine o timbrature.
+Modulo OpenMES con due scopi:
+
+1. **Tracciabilità.** Da un prodotto finito consegnato a un cliente si risale a
+   quando è stato lavorato, su quale linea, da chi, con quali lotti, di quali
+   produttori e quanti kg; e da un lotto conferito si va avanti fino a tutti i
+   clienti che lo hanno ricevuto.
+2. **Squadre.** Il capoturno organizza le persone produzione per produzione:
+   chi lavora su cosa, dalle 07:30 all'ultimo camion.
+
+Intorno ci sono il piano linee, i fogli di lavorazione con il costo in €/kg e i
+margini. Gira solo su **dati simulati**, senza collegamenti a gestionale,
+macchine o timbrature.
+
+Nel menu e nelle schermate il modulo porta il **nome dell'azienda**, che si
+imposta quando si caricano i dati (vedi sotto) e sta nel database. Nel codice
+la cartella si chiama `Ortofrutta`: è un nome interno che l'utente non vede.
 
 | Schermata | Chi la usa | Cosa fa |
 |---|---|---|
@@ -10,9 +23,10 @@ senza collegamenti a gestionale, macchine o timbrature.
 | Conferimenti | Pesa | Peso lordo, tara dei bins, netto, cella di destinazione: nasce il lotto |
 | 1 · Ordini del giorno | Ufficio | Ordini con tipo, arrivo, camion, priorità di uscita. Simulazione degli arrivi |
 | 2 · Piano linee | Responsabile | Una colonna per linea, ordini trascinabili, cambi, avviso sul camion, "Proponi sequenza" |
-| 3 · Squadre | Responsabile | Richiesti, assegnati, mancanti per linea, dai presenti del giorno |
+| 3 · Squadre | Capoturno | Per ogni produzione: persone richieste, assegnate, mancanti; chi è libero in quell'orario; "Proponi squadre" |
 | 4 · Fogli di lavorazione | Responsabile | Lotti in ingresso, kg confezionati, scarto: il costo in €/kg appare al salvataggio |
-| 5 · Margini | Direzione | Costo e margine per foglio, lotto, produttore, cliente. Simulatore di prezzo minimo |
+| 5 · Tracciabilità | Qualità, ufficio | Dal cliente al produttore (ordine → lotto di confezionamento → lotti → produttori) e dal produttore ai clienti (lotto → fogli → ordini) |
+| 6 · Margini | Direzione | Costo e margine per foglio, lotto, produttore, cliente. Simulatore di prezzo minimo |
 | Missioni bins | Carrellisti | Quale lotto prelevare, da quale cella, per quale linea, entro che ora (sola lettura) |
 
 ## Avvio in tre comandi
@@ -25,10 +39,12 @@ docker compose exec backend sh modules/Ortofrutta/bin/attiva-demo.sh "Nome Azien
 
 Il primo scarica il codice, il secondo costruisce e avvia OpenMES (stampa
 indirizzo, utente e password), il terzo attiva il modulo e carica i dati demo.
-Poi si apre `/admin/ortofrutta`, oppure la voce **Ortofrutta** nel menu.
+Poi si apre `/admin/stabilimento`, oppure la voce con il nome dell'azienda nel
+menu.
 
-Il nome dell'azienda è facoltativo: è quello che compare nell'intestazione di
-ogni schermata. Sta nel database, non nel codice.
+Il nome dell'azienda è quello che compare nel menu e nell'intestazione di ogni
+schermata. Sta nel database, non nel codice; senza, il modulo si chiama
+"Azienda Demo". Per cambiarlo si rilancia il terzo comando con un altro nome.
 
 In GitHub Codespaces basta il terzo comando: i primi due li fa il codespace
 (vedi `.devcontainer/README.md`).
@@ -52,13 +68,23 @@ dati, con gli ordini A per B della sera prima già in sequenza.
    mette vicini gli articoli uguali. Trascinando un ordine delle 15:00 in fondo
    alla linea, dopo un cambio, il blocco diventa rosso: non chiude prima del
    camion.
-4. **Si assegnano le persone.** In *3 · Squadre*, "Proponi squadre": la Linea 4
-   resta sotto organico (mancano specialisti: tre assenti, uno esce prima) e il
-   sistema mostra chi è presente e abilitato. Nel piano la linea è evidenziata.
+4. **Si organizzano le persone.** In *3 · Squadre* ogni linea ha le sue
+   produzioni in ordine di orario. "Proponi squadre" le riempie tenendo le stesse
+   persone sulla linea da una produzione alla successiva. Le produzioni di
+   cestini della Linea 4 restano scoperte (servono 14 specialisti, tre sono
+   assenti e uno esce alle 12:30), quelle di vassoi no (ne bastano 12). Si
+   sceglie una produzione: a destra chi è in squadra, chi è libero in
+   quell'orario e, per chi non lo è, il motivo. In fondo, "Chi fa cosa oggi".
 5. **Si chiude un foglio.** Nel piano, "Lancia" sul primo gruppo di una linea crea
-   il foglio. In *4 · Fogli di lavorazione*: "Usa i lotti suggeriti", si inserisce
-   lo scarto, "Salva e calcola il costo": appare il costo in €/kg.
-6. **Si guarda il margine.** In *5 · Margini*, classifica dei produttori: i due a
+   il foglio, con la squadra di quella produzione. In *4 · Fogli di lavorazione*:
+   "Usa i lotti suggeriti", si inserisce lo scarto, "Salva e calcola il costo":
+   appare il costo in €/kg.
+6. **Si traccia.** Dal foglio, "Tracciabilità": cliente, lotto di confezionamento,
+   lotti entrati, produttori, kg. Cliccando un lotto si passa all'altra vista:
+   tutti i fogli in cui è entrato e tutti i clienti a cui è arrivato. In *5 ·
+   Tracciabilità* si cerca per ordine, cliente, lotto stampato sulla pedana
+   (es. `L26328-1702`) o produttore, sulle due settimane di storico.
+7. **Si guarda il margine.** In *6 · Margini*, classifica dei produttori: i due a
    resa bassa sono in fondo. Nel simulatore si prova il prezzo di una settimana
    in scontistica.
 
@@ -71,7 +97,11 @@ Stanno in `Domain/` e non dipendono dal database:
 - `LinePlanner` — durata dei blocchi, cambi, ora di fine, avviso sul camion,
   proposta di sequenza.
 - `WorkSheetCosting` — il costo di un foglio. È l'unico punto in cui un foglio
-  viene valorizzato: schermata 4 e schermata 5 leggono lo stesso numero.
+  viene valorizzato: fogli e margini leggono lo stesso numero.
+- `CrewPlanner` — chi può lavorare su una produzione (abilitato sulla linea,
+  presente in quell'orario, non impegnato altrove) e la proposta delle squadre.
+- `Traceability` — il lotto di confezionamento di un foglio e la ripartizione dei
+  kg di ogni lotto tra gli ordini del foglio.
 
 Verifica:
 
@@ -107,7 +137,7 @@ un'esportazione di quella fonte: passare ai dati veri vuol dire sostituire i fil
 | `timbrature.csv`, `costi_orari.csv` | Timbrature e paghe (costo medio per qualifica) |
 | `calibratrice_L1.csv` … `calibratrice_L6.csv`, `fogli_storico.csv`, `squadre_storico.csv` | Calibratrici e fogli di lavorazione |
 | `conferimenti_pesa.csv` | Pesa all'ingresso |
-| `linee.csv`, `celle.csv`, `regole_cambio.csv` | Anagrafiche di stabilimento |
+| `linee.csv`, `celle.csv`, `regole_cambio.csv` | Anagrafiche di stabilimento (in `linee.csv` anche le persone richieste per formato) |
 
 `seed/genera_dati.py` li rigenera (`python3 seed/genera_dati.py`). È
 deterministico: stesso seme, stessi file. **Tutto è inventato**: nomi, prezzi,

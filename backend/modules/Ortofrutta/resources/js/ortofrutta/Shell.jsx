@@ -11,7 +11,8 @@ const TABS = [
     ['/piano', '2 · Piano linee'],
     ['/squadre', '3 · Squadre'],
     ['/fogli', '4 · Fogli di lavorazione'],
-    ['/margini', '5 · Margini'],
+    ['/tracciabilita', '5 · Tracciabilità'],
+    ['/margini', '6 · Margini'],
     ['/missioni', 'Missioni bins'],
 ];
 
@@ -45,7 +46,7 @@ export default function Shell({ title, active = '', dayPicker = false, actions =
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-2 px-4 py-3">
                     <div className="min-w-0">
                         <div className="truncate text-lg font-semibold leading-tight text-om-ink">{orto.company}</div>
-                        <div className="text-xs text-om-muted">Ortofrutta · dall'ordine al margine per produttore</div>
+                        <div className="text-xs text-om-muted">Dal conferimento al cliente: tracciabilità del prodotto e squadre per ogni produzione</div>
                     </div>
                     <Chip tone="warn" title="Persone, produttori, clienti, prezzi e costi sono inventati.">DATI SIMULATI</Chip>
                     {orto.loaded && (

@@ -1,11 +1,11 @@
-codice;nome;descrizione;edificio;persone_richieste;minuti_avvio;formato;pedane_ora
-L1;Linea 1;Calibratrice grande;Edificio 2;22;15;Cartone 40x60;6.0
-L1;Linea 1;Calibratrice grande;Edificio 2;22;15;Cassetta 30x40;5.0
-L2;Linea 2;Calibratrice media;Edificio 2;16;15;Cartone 40x60;5.5
-L2;Linea 2;Calibratrice media;Edificio 2;16;15;Cassetta 30x40;4.5
-L2;Linea 2;Calibratrice media;Edificio 2;16;15;Vassoio 6 frutti;3.0
-L4;Linea 4;Cestini e vassoi;Edificio 2;14;20;Cestino 1 kg;2.5
-L4;Linea 4;Cestini e vassoi;Edificio 2;14;20;Vassoio 6 frutti;3.5
-L6;Linea 6;Polivalente;Edificio 2;10;10;Cartone 40x60;4.0
-L6;Linea 6;Polivalente;Edificio 2;10;10;Cassetta 30x40;3.5
-L6;Linea 6;Polivalente;Edificio 2;10;10;Cestino 1 kg;2.0
+codice;nome;descrizione;edificio;persone_richieste;minuti_avvio;formato;pedane_ora;persone_formato
+L1;Linea 1;Calibratrice grande;Edificio 2;22;15;Cartone 40x60;6.0;22
+L1;Linea 1;Calibratrice grande;Edificio 2;22;15;Cassetta 30x40;5.0;20
+L2;Linea 2;Calibratrice media;Edificio 2;16;15;Cartone 40x60;5.5;16
+L2;Linea 2;Calibratrice media;Edificio 2;16;15;Cassetta 30x40;4.5;14
+L2;Linea 2;Calibratrice media;Edificio 2;16;15;Vassoio 6 frutti;3.0;16
+L4;Linea 4;Cestini e vassoi;Edificio 2;14;20;Cestino 1 kg;2.5;14
+L4;Linea 4;Cestini e vassoi;Edificio 2;14;20;Vassoio 6 frutti;3.5;12
+L6;Linea 6;Polivalente;Edificio 2;10;10;Cartone 40x60;4.0;10
+L6;Linea 6;Polivalente;Edificio 2;10;10;Cassetta 30x40;3.5;9
+L6;Linea 6;Polivalente;Edificio 2;10;10;Cestino 1 kg;2.0;10

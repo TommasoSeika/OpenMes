@@ -6,6 +6,7 @@ use Modules\Ortofrutta\Http\Controllers\MarginController;
 use Modules\Ortofrutta\Http\Controllers\OrderController;
 use Modules\Ortofrutta\Http\Controllers\PlanController;
 use Modules\Ortofrutta\Http\Controllers\PlantController;
+use Modules\Ortofrutta\Http\Controllers\TraceController;
 use Modules\Ortofrutta\Http\Controllers\WorkSheetController;
 
 /*
@@ -14,7 +15,12 @@ use Modules\Ortofrutta\Http\Controllers\WorkSheetController;
  * the provider registers the "ortofrutta" tab, whose permission is
  * `tab:ortofrutta` (administrators always pass).
  */
-Route::middleware(['web', 'auth', 'tab.access'])->prefix('admin/ortofrutta')->name('ortofrutta.')->group(function () {
+
+// The address the screens had before: old links and open tabs still land.
+Route::middleware(['web', 'auth', 'tab.access'])->get('admin/ortofrutta/{path?}', [PlantController::class, 'moved'])
+    ->where('path', '.*')->name('ortofrutta.moved');
+
+Route::middleware(['web', 'auth', 'tab.access'])->prefix('admin/stabilimento')->name('ortofrutta.')->group(function () {
     // Plant map, deliveries, bin missions, demo reset.
     Route::get('/', [PlantController::class, 'index'])->name('plant');
     Route::get('/conferimenti', [PlantController::class, 'deliveries'])->name('deliveries');
@@ -34,10 +40,12 @@ Route::middleware(['web', 'auth', 'tab.access'])->prefix('admin/ortofrutta')->na
     Route::post('/piano/proponi', [PlanController::class, 'propose'])->name('plan.propose');
     Route::post('/piano/lancia', [PlanController::class, 'launch'])->name('plan.launch');
 
-    // 3. Crews.
+    // 3. Crews, one per production.
     Route::get('/squadre', [CrewController::class, 'index'])->name('crews');
     Route::post('/squadre/assegna', [CrewController::class, 'assign'])->name('crews.assign');
     Route::post('/squadre/rimuovi', [CrewController::class, 'unassign'])->name('crews.unassign');
+    Route::post('/squadre/copia', [CrewController::class, 'copy'])->name('crews.copy');
+    Route::post('/squadre/svuota', [CrewController::class, 'clear'])->name('crews.clear');
     Route::post('/squadre/proponi', [CrewController::class, 'propose'])->name('crews.propose');
 
     // 4. Work sheets.
@@ -46,7 +54,10 @@ Route::middleware(['web', 'auth', 'tab.access'])->prefix('admin/ortofrutta')->na
     Route::put('/fogli/{sheet}', [WorkSheetController::class, 'update'])->name('sheets.update');
     Route::post('/fogli/{sheet}/chiudi', [WorkSheetController::class, 'close'])->name('sheets.close');
 
-    // 5. Margins and the price simulator.
+    // 5. Traceability: customer → producer and raw lot → customers.
+    Route::get('/tracciabilita', [TraceController::class, 'index'])->name('trace');
+
+    // 6. Margins and the price simulator.
     Route::get('/margini', [MarginController::class, 'index'])->name('margins');
     Route::post('/margini/simula', [MarginController::class, 'simulate'])->name('margins.simulate');
 });

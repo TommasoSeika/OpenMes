@@ -66,7 +66,11 @@ function LineBar({ line }) {
                 <div className="text-[11px] leading-tight opacity-80">{line.description}</div>
             </div>
             <div className="flex flex-wrap gap-1">
-                <Chip tone={line.understaffed ? 'bad' : 'neutral'}>{line.assigned_people}/{line.required_people} pers.</Chip>
+                {line.open_productions > 0 && (
+                    <Chip tone={line.understaffed ? 'bad' : 'neutral'} title="Squadra della produzione in corso o della prossima: persone assegnate / richieste">
+                        {line.assigned_people}/{line.required_people} pers.
+                    </Chip>
+                )}
                 {line.late_count > 0 && <Chip tone="bad">{line.late_count} oltre il camion</Chip>}
             </div>
             <div className="mt-auto space-y-2 text-xs">
@@ -110,7 +114,12 @@ export default function Plant({ cells, lines, trucks, summary }) {
                 <Stat label="Da pianificare" value={num(summary.backlog)} tone={summary.backlog > 0 ? 'bad' : 'ok'} />
                 <Stat label="Oltre il camion" value={num(summary.late)} tone={summary.late > 0 ? 'bad' : 'ok'} />
                 <Stat label="Presenti" value={`${num(crew.present)} / ${num(crew.people)}`} hint={`${crew.absent} assenti · ${crew.early_exit} escono prima`} />
-                <Stat label="In linea" value={`${num(crew.assigned)} / ${num(crew.required)}`} tone={crew.assigned < crew.required ? 'bad' : 'ok'} hint="assegnati / richiesti" />
+                <Stat
+                    label="Produzioni con squadra"
+                    value={`${num(crew.covered)} / ${num(crew.productions)}`}
+                    tone={crew.short > 0 ? 'bad' : 'ok'}
+                    hint={crew.short > 0 ? `${crew.short} senza tutte le persone` : 'tutte complete'}
+                />
             </div>
 
             <div className="space-y-4">

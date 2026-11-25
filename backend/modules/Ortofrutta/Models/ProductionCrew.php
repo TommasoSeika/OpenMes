@@ -4,25 +4,22 @@ namespace Modules\Ortofrutta\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CrewAssignment extends Model
+/** One person on one order of a production. */
+class ProductionCrew extends Model
 {
-    protected $table = 'orto_crew_assignments';
+    protected $table = 'orto_production_crew';
 
     protected $guarded = [];
 
     public $timestamps = false;
-    protected function casts(): array
-    {
-        return ['day' => 'date'];
-    }
 
     public function person()
     {
         return $this->belongsTo(Person::class, 'person_id');
     }
 
-    public function line()
+    public function order()
     {
-        return $this->belongsTo(Line::class, 'line_id');
+        return $this->belongsTo(Order::class, 'order_id');
     }
 }

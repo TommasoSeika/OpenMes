@@ -95,6 +95,28 @@ final class SelfCheck
             13.0, 48, $bom,
         );
 
+        // Crews per production. Minutes from midnight: 450 = 07:30, 600 = 10:00, 750 = 12:30, 780 = 13:00.
+        $person = fn (int $id, array $lines, ?int $until = null, bool $leader = false) => [
+            'id' => $id, 'lines' => $lines, 'from' => 420, 'until' => $until, 'leader' => $leader, 'badge' => 'M00'.$id,
+        ];
+        $staff = [
+            $person(1, ['L1'], null, true),      // line leader of L1
+            $person(2, ['L1', 'L2']),
+            $person(3, ['L1', 'L2'], 750),       // leaves at 12:30
+            $person(4, ['L2']),
+        ];
+        $run = fn (int $id, string $line, int $start, int $end, int $required, array $crew = []) => [
+            'id' => $id, 'line' => $line, 'start' => $start, 'end' => $end, 'required' => $required, 'crew' => $crew,
+        ];
+        $morning = $run(10, 'L1', 450, 600, 3);  // L1 07:30–10:00, three people
+        $noon = $run(11, 'L1', 600, 780, 3);     // L1 10:00–13:00, three people
+        $other = $run(20, 'L2', 480, 660, 2);    // L2 08:00–11:00, two people: overlaps both
+        $crews = CrewPlanner::propose([$morning, $noon, $other], $staff);
+        $booked = [$run(10, 'L1', 450, 600, 3, [1, 2, 3]), $noon, $other];
+
+        // Traceability: a sheet packs 3,000 kg of lot A and 1,000 kg of lot B for two orders, 6 and 2 pallets.
+        $shares = Traceability::allocate(['A' => 3000, 'B' => 1000], ['first' => 6, 'second' => 2]);
+
         return [
             'Prezzo minimo: acquisto 1,00 € + lavorazione 0,20 € a resa piena = 1,20 €' => [
                 1.20, CostCalculator::minimumPrice(CostCalculator::materialCostPerKgSold(1.00, 1.0), 0.20),
@@ -152,6 +174,38 @@ final class SelfCheck
             'Proponi sequenza: nessun blocco oltre il camion' => [
                 0, count(array_filter($proposed, fn ($b) => $b['late'])),
             ],
+            'Squadre: la prima persona proposta su una produzione è un capolinea' => [1, $crews['crews'][10][0]],
+            'Squadre: una produzione riceve le persone che richiede' => [3, count($crews['crews'][10])],
+            'Squadre: nessuno è proposto su due produzioni nello stesso orario' => [[4], $crews['crews'][20]],
+            'Squadre: se i presenti non bastano, la produzione resta scoperta di chi manca' => [1, $crews['missing'][20]],
+            'Squadre: la linea tiene le stesse persone dalla produzione prima a quella dopo' => [[1, 2], $crews['crews'][11]],
+            'Squadre: chi esce alle 12:30 non è proposto per una produzione che finisce alle 13:00' => [
+                false, in_array(3, $crews['crews'][11], true),
+            ],
+            'Squadre: chi non è abilitato sulla linea non si può assegnare' => [
+                'line', CrewPlanner::refusal($staff[3], $morning, $booked)['reason'] ?? null,
+            ],
+            'Squadre: chi è già su un\'altra produzione in quell\'orario non si può assegnare' => [
+                'busy', CrewPlanner::refusal($staff[1], $other, $booked)['reason'] ?? null,
+            ],
+            'Squadre: chi è uscito prima che la produzione cominci non si può assegnare' => [
+                'away', CrewPlanner::refusal($staff[2], $run(12, 'L1', 780, 840, 3), $booked)['reason'] ?? null,
+            ],
+            'Squadre: chi esce durante la produzione si può assegnare, ma è segnalato' => [
+                'partial', CrewPlanner::issues([$run(11, 'L1', 600, 780, 3, [3])], $staff)[11][3]['issue'] ?? null,
+            ],
+            'Lotto di confezionamento: foglio 1702 del 24 novembre 2026 = L26328-1702' => [
+                'L26328-1702', Traceability::packingLot(new DateTimeImmutable('2026-11-24'), 1702),
+            ],
+            'Lotto di confezionamento: dal codice sulla pedana si risale al foglio' => [
+                1702, Traceability::sheetNumber('L26328-1702'),
+            ],
+            'Tracciabilità: all\'ordine con 6 pedane su 8 vanno i tre quarti di ogni lotto' => [
+                2250.0, $shares['first']['A'],
+            ],
+            'Tracciabilità: i kg ripartiti tra gli ordini tornano al totale del lotto' => [
+                1000.0, $shares['first']['B'] + $shares['second']['B'],
+            ],
         ];
     }
 
@@ -160,6 +214,7 @@ final class SelfCheck
         return match (true) {
             $value === null => 'nessun valore',
             is_bool($value) => $value ? 'sì' : 'no',
+            is_array($value) => '['.implode(', ', $value).']',
             is_float($value) => rtrim(rtrim(number_format($value, 4, ',', '.'), '0'), ','),
             default => (string) $value,
         };

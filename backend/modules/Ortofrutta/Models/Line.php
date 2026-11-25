@@ -22,4 +22,12 @@ class Line extends Model
 
         return $row ? (float) $row->pallets_per_hour : null;
     }
+
+    /** People a production of this format needs on this line. */
+    public function requiredFor(string $format): int
+    {
+        $row = $this->capacities->firstWhere('format', $format);
+
+        return (int) ($row?->required_people ?? $this->required_people);
+    }
 }

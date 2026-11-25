@@ -4,6 +4,7 @@ namespace Modules\Ortofrutta\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/** One person on, or off, one production. */
 class CrewRequest extends FormRequest
 {
     use ItalianMessages;
@@ -17,7 +18,8 @@ class CrewRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'line_id' => ['nullable', 'integer', 'exists:orto_lines,id'],
+            // A production is known by one of its orders.
+            'production' => ['required', 'integer', 'exists:orto_orders,id'],
             'person_id' => ['required', 'integer', 'exists:orto_people,id'],
         ];
     }
@@ -25,7 +27,7 @@ class CrewRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'line_id' => 'linea',
+            'production' => 'produzione',
             'person_id' => 'persona',
         ];
     }

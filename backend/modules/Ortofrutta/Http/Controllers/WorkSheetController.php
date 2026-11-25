@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
 use Modules\Ortofrutta\Domain\CostCalculator;
+use Modules\Ortofrutta\Domain\Traceability;
 use Modules\Ortofrutta\Http\Requests\UpdateWorkSheetRequest;
 use Modules\Ortofrutta\Models\Lot;
 use Modules\Ortofrutta\Models\WorkSheet;
@@ -120,6 +121,10 @@ class WorkSheetController extends OrtoController
         return [
             'id' => $sheet->id,
             'number' => $sheet->number,
+            // What is printed on the pallets: the finished product is traced by it.
+            'packing_lot' => Traceability::packingLot($sheet->day, $sheet->number),
+            // The production this sheet belongs to, as the crews screen knows it.
+            'production' => $sheet->orders->sortBy('position')->first()?->id,
             'day' => CarbonImmutable::parse($sheet->day)->toDateString(),
             'status' => $sheet->status,
             'line' => $sheet->line?->name,

@@ -96,6 +96,8 @@ class PlantService
                 'required_people' => $line['required_people'],
                 'assigned_people' => $line['assigned_people'],
                 'understaffed' => $line['understaffed'],
+                'open_productions' => $line['open_productions'],
+                'short_productions' => $line['short_productions'],
                 'blocks' => count($line['blocks']),
                 'pallets' => $line['pallets'],
                 'end' => $line['end'],

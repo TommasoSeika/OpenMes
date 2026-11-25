@@ -7,69 +7,98 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
 use Modules\Ortofrutta\Http\Requests\CrewRequest;
-use Modules\Ortofrutta\Models\Line;
+use Modules\Ortofrutta\Http\Requests\ProductionRequest;
 use Modules\Ortofrutta\Models\Person;
 use Modules\Ortofrutta\Services\CrewService;
-use Modules\Ortofrutta\Services\PlanService;
 use Modules\Ortofrutta\Support\Demo;
 
-/** Screen 3 — crews: required, assigned and missing people per line. */
+/** Screen 3 — crews: for every production of the day, who works on it. */
 class CrewController extends OrtoController
 {
     public function __construct(private CrewService $crews) {}
 
-    public function index(Request $request, PlanService $plan): Response
+    public function index(Request $request): Response
     {
         $day = $this->day($request);
-        if (! Demo::loaded()) {
-            return $this->page('Crews', ['crews' => null, 'load' => []], $day);
-        }
 
-        // What each line has to run today, so the crew is read against the work.
-        $load = [];
-        foreach ($plan->board($day)['lines'] as $line) {
-            $load[$line['id']] = ['blocks' => count($line['blocks']), 'pallets' => $line['pallets'], 'end' => $line['end']];
-        }
-
-        return $this->page('Crews', ['crews' => $this->crews->board($day), 'load' => $load], $day);
+        return $this->page('Crews', [
+            'crews' => Demo::loaded() ? $this->crews->board($day) : null,
+            // The production to open first (?produzione=<one of its orders>), e.g. coming from a work sheet.
+            'focus' => ctype_digit((string) $request->query('produzione')) ? (int) $request->query('produzione') : null,
+        ], $day);
     }
 
     public function assign(CrewRequest $request): RedirectResponse
     {
         $data = $request->validated();
         $person = Person::query()->findOrFail($data['person_id']);
-        $line = Line::query()->findOrFail($data['line_id'] ?? 0);
 
         try {
-            $this->crews->assign(Demo::day(), $line, $person);
+            $production = $this->crews->assign(Demo::day(), (int) $data['production'], $person);
         } catch (DomainException $e) {
             return back()->with('error', $e->getMessage());
         }
 
-        return back()->with('success', sprintf('%s assegnato a %s.', $person->name, $line->name));
+        return back()->with('success', sprintf('%s assegnato a %s.', $person->name, $this->crews->label($production)));
     }
 
     public function unassign(CrewRequest $request): RedirectResponse
     {
-        $person = Person::query()->findOrFail($request->validated('person_id'));
-        $this->crews->unassign(Demo::day(), $person);
+        $data = $request->validated();
+        $person = Person::query()->findOrFail($data['person_id']);
 
-        return back()->with('success', sprintf('%s tolto dalla linea.', $person->name));
+        try {
+            $production = $this->crews->unassign(Demo::day(), (int) $data['production'], $person);
+        } catch (DomainException $e) {
+            return back()->with('error', $e->getMessage());
+        }
+
+        return back()->with('success', sprintf('%s tolto da %s.', $person->name, $this->crews->label($production)));
+    }
+
+    public function copy(ProductionRequest $request): RedirectResponse
+    {
+        try {
+            $result = $this->crews->copyPrevious(Demo::day(), (int) $request->validated('production'));
+        } catch (DomainException $e) {
+            return back()->with('error', $e->getMessage());
+        }
+
+        $label = $this->crews->label($result['production']);
+        if ($result['added'] === 0 && $result['left'] === 0) {
+            return back()->with('success', sprintf('%s ha già la squadra della produzione precedente.', $label));
+        }
+
+        return back()->with($result['left'] > 0 ? 'error' : 'success', sprintf(
+            '%s: %d persone portate dalla produzione precedente%s.',
+            $label, $result['added'],
+            $result['left'] > 0 ? sprintf(', %d non disponibili in quell\'orario', $result['left']) : '',
+        ));
+    }
+
+    public function clear(ProductionRequest $request): RedirectResponse
+    {
+        try {
+            $production = $this->crews->clear(Demo::day(), (int) $request->validated('production'));
+        } catch (DomainException $e) {
+            return back()->with('error', $e->getMessage());
+        }
+
+        return back()->with('success', sprintf('Squadra di %s svuotata.', $this->crews->label($production)));
     }
 
     public function propose(): RedirectResponse
     {
-        $missing = array_filter($this->crews->propose(Demo::day()));
-        if ($missing === []) {
-            return back()->with('success', 'Squadre proposte: tutte le linee sono al completo.');
+        $short = $this->crews->propose(Demo::day());
+        if ($short === []) {
+            return back()->with('success', 'Squadre proposte: ogni produzione ha le persone che servono.');
         }
 
-        $names = Line::query()->whereIn('code', array_keys($missing))->pluck('name', 'code');
-        $parts = [];
-        foreach ($missing as $code => $count) {
-            $parts[] = sprintf('%s (mancano %d)', $names[$code] ?? $code, $count);
-        }
+        $parts = array_map(fn (array $p) => sprintf('%s (mancano %d)', $p['label'], $p['missing']), array_slice($short, 0, 6));
 
-        return back()->with('error', 'Squadre proposte, ma non bastano i presenti abilitati: '.implode(', ', $parts).'.');
+        return back()->with('error', sprintf(
+            'Squadre proposte, ma per %d produzioni non bastano i presenti abilitati: %s%s.',
+            count($short), implode(', ', $parts), count($short) > 6 ? '…' : '',
+        ));
     }
 }

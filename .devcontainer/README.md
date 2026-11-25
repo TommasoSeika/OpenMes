@@ -48,19 +48,21 @@ application.
 A public port lets anyone with the link reach the login page. Set it back to
 Private when you are done.
 
-## The Ortofrutta module (branch `ortofrutta-poc`)
+## The packing house module
 
-On that branch the repository also contains a fruit packing house module with
-simulated data. Once the application is up, one command enables it and loads the
-data; the name is what the header of its screens shows:
+The repository also contains a fruit packing house module (`backend/modules/Ortofrutta`)
+with simulated data: traceability from a delivered order back to the producers
+and from a raw lot forward to the customers, and crews organised production by
+production. Once the application is up, one command enables it and loads the
+data; the name is what the menu and the header of its screens show:
 
 ```text
 docker compose exec backend sh modules/Ortofrutta/bin/attiva-demo.sh "Company name"
 ```
 
-Then open **Ortofrutta** in the menu. `backend/modules/Ortofrutta/README.md` has
-the demo script, and `bash backend/modules/Ortofrutta/bin/prova-http.sh` checks
-every screen and action.
+Then open the group with that name in the menu (`/admin/stabilimento`).
+`backend/modules/Ortofrutta/README.md` has the demo script, and
+`bash backend/modules/Ortofrutta/bin/prova-http.sh` checks every screen and action.
 
 ## Development mode
 

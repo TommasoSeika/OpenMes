@@ -8,11 +8,12 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Modules\Ortofrutta\Domain\LinePlanner;
 use Modules\Ortofrutta\Models\ChangeoverRule;
-use Modules\Ortofrutta\Models\CrewAssignment;
 use Modules\Ortofrutta\Models\Item;
 use Modules\Ortofrutta\Models\Line;
 use Modules\Ortofrutta\Models\Order;
+use Modules\Ortofrutta\Models\ProductionCrew;
 use Modules\Ortofrutta\Models\WorkSheet;
+use Modules\Ortofrutta\Models\WorkSheetPerson;
 use Modules\Ortofrutta\Support\Demo;
 
 /**
@@ -114,16 +115,108 @@ class PlanService
         return $out;
     }
 
+    /**
+     * The productions of a day: on every line, the consecutive orders of the
+     * same item, which run together and become one work sheet. This is what a
+     * crew is organised for.
+     *
+     * A production is known by its first order (`key`). Before the launch its
+     * times are those of the plan; after, those written on its work sheet. Its
+     * crew is the people booked on its orders, or — once the sheet is closed —
+     * the people who are on the sheet, which no longer changes.
+     *
+     * @param  array<int, array{line: Line, blocks: list<array>}>|null  $scheduled  the result of scheduled(), when already at hand
+     * @return list<array{key: int, order_ids: list<int>, orders: list<Order>, line: Line, item: Item, pallets: int, start: CarbonImmutable, end: CarbonImmutable, late: bool, sheet: ?WorkSheet, closed: bool, required: int, crew: list<int>}>
+     */
+    public function productions(CarbonImmutable $day, ?array $scheduled = null): array
+    {
+        $productions = [];
+        foreach ($scheduled ?? $this->scheduled($day) as $entry) {
+            $current = null;
+            $previousKey = null;
+            foreach ($entry['blocks'] as $b) {
+                /** @var Order $order */
+                $order = $b['order'];
+                $key = $order->work_sheet_id ? 'sheet-'.$order->work_sheet_id : 'item-'.$b['item']['code'];
+                if ($key !== $previousKey) {
+                    if ($current !== null) {
+                        $productions[] = $current;
+                    }
+                    $previousKey = $key;
+                    $current = [
+                        'key' => $order->id, 'order_ids' => [], 'orders' => [], 'line' => $entry['line'],
+                        'item' => $order->item, 'pallets' => 0, 'start' => CarbonImmutable::instance($b['start']),
+                        'end' => CarbonImmutable::instance($b['end']), 'late' => false, 'sheet' => $order->workSheet,
+                    ];
+                }
+                $current['order_ids'][] = $order->id;
+                $current['orders'][] = $order;
+                $current['pallets'] += (int) $order->pallets;
+                $current['end'] = CarbonImmutable::instance($b['end']);
+                $current['late'] = $current['late'] || $b['late'];
+            }
+            if ($current !== null) {
+                $productions[] = $current;
+            }
+        }
+
+        $closedSheets = [];
+        $orderIds = [];
+        foreach ($productions as $production) {
+            if ($production['sheet']?->status === 'closed') {
+                $closedSheets[] = $production['sheet']->id;
+            } else {
+                array_push($orderIds, ...$production['order_ids']);
+            }
+        }
+        $onSheets = $closedSheets === [] ? collect()
+            : WorkSheetPerson::query()->whereIn('work_sheet_id', $closedSheets)->get(['work_sheet_id', 'person_id'])->groupBy('work_sheet_id');
+        $onOrders = $orderIds === [] ? collect()
+            : ProductionCrew::query()->whereIn('order_id', $orderIds)->get(['order_id', 'person_id'])->groupBy('order_id');
+
+        foreach ($productions as $i => $production) {
+            $sheet = $production['sheet'];
+            $closed = $sheet?->status === 'closed';
+            if ($sheet !== null) {
+                $production['start'] = $sheet->started_at->toImmutable();
+                $production['end'] = $sheet->ended_at->toImmutable();
+            }
+            if ($closed) {
+                $crew = ($onSheets[$sheet->id] ?? collect())->pluck('person_id');
+            } else {
+                $crew = collect($production['order_ids'])->flatMap(fn (int $id) => ($onOrders[$id] ?? collect())->pluck('person_id'));
+            }
+            $productions[$i] = $production + [
+                'closed' => $closed,
+                'required' => $production['line']->requiredFor($production['item']->format),
+                'crew' => $crew->map(fn ($id) => (int) $id)->unique()->values()->all(),
+            ];
+        }
+
+        return $productions;
+    }
+
     /** The whole plan of a day, ready for the screen. */
     public function board(CarbonImmutable $day): array
     {
         $orders = $this->orders($day);
-        $assigned = CrewAssignment::query()->whereDate('day', $day->toDateString())
-            ->selectRaw('line_id, count(*) as people')->groupBy('line_id')->pluck('people', 'line_id');
+        $scheduled = $this->scheduled($day);
+
+        // Per production, by its first order: how many people it has and needs.
+        $staffing = [];
+        $byLine = [];
+        foreach ($this->productions($day, $scheduled) as $production) {
+            $row = [
+                'key' => $production['key'], 'people' => count($production['crew']), 'required' => $production['required'],
+                'closed' => $production['closed'],
+            ];
+            $staffing[$production['key']] = $row;
+            $byLine[$production['line']->id][] = $row;
+        }
 
         $lines = [];
         $late = 0;
-        foreach ($this->scheduled($day) as $lineId => $entry) {
+        foreach ($scheduled as $lineId => $entry) {
             /** @var Line $line */
             $line = $entry['line'];
             $blocks = [];
@@ -153,10 +246,16 @@ class PlanService
                     'late' => $b['late'],
                     'late_minutes' => $b['late_minutes'],
                     'launch' => $launch,
+                    // Set on the first block of a production only.
+                    'crew_people' => $staffing[$order->id]['people'] ?? null,
+                    'crew_required' => $staffing[$order->id]['required'] ?? null,
                 ];
             }
 
-            $people = (int) ($assigned[$line->id] ?? 0);
+            // The line is read through its productions still to be closed: the
+            // one running or next gives the numbers, any short one raises the flag.
+            $open = array_values(array_filter($byLine[$line->id] ?? [], fn (array $p) => ! $p['closed']));
+            $short = count(array_filter($open, fn (array $p) => $p['people'] < $p['required']));
             $lines[] = [
                 'id' => $line->id,
                 'code' => $line->code,
@@ -165,9 +264,11 @@ class PlanService
                 'building' => $line->building,
                 'formats' => $line->capacities->map(fn ($c) => ['format' => $c->format, 'pallets_per_hour' => (float) $c->pallets_per_hour])->values()->all(),
                 'startup_minutes' => (int) $line->startup_minutes,
-                'required_people' => (int) $line->required_people,
-                'assigned_people' => $people,
-                'understaffed' => $blocks !== [] && $people < (int) $line->required_people,
+                'required_people' => $open[0]['required'] ?? (int) $line->required_people,
+                'assigned_people' => $open[0]['people'] ?? 0,
+                'understaffed' => $short > 0,
+                'open_productions' => count($open),
+                'short_productions' => $short,
                 'end' => $blocks !== [] ? end($blocks)['end'] : null,
                 'pallets' => array_sum(array_column($blocks, 'pallets')),
                 'late_count' => count(array_filter($blocks, fn ($b) => $b['late'])),

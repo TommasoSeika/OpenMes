@@ -18,6 +18,7 @@ trait ItalianMessages
             'array' => 'Il campo :attribute non è valido.',
             'string' => 'Il campo :attribute deve essere un testo.',
             'exists' => 'Il valore scelto per :attribute non esiste.',
+            'in' => 'Il valore scelto per :attribute non è valido.',
             'distinct' => 'Lo stesso :attribute compare più di una volta.',
             'date_format' => 'Il campo :attribute deve essere un orario nel formato HH:MM.',
             'gt.numeric' => 'Il campo :attribute deve essere maggiore di :value.',

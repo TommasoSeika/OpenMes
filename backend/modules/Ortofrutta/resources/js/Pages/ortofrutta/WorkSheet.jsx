@@ -103,8 +103,12 @@ export default function WorkSheet({ sheet, crew, components, lots, available_lot
                 </>
             )}
         >
-            <p className="mb-3 text-sm">
+            <p className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
                 <Link href={`${BASE}/fogli?giorno=${sheet.day}`} className="text-om-accent hover:underline">← Fogli della giornata</Link>
+                <span className="text-om-muted">
+                    Lotto di confezionamento <span className="font-semibold tabular-nums text-om-ink">{sheet.packing_lot}</span>
+                </span>
+                <Link href={`${BASE}/tracciabilita?foglio=${sheet.id}`} className="text-om-accent hover:underline">Tracciabilità: da dove viene, a chi va →</Link>
             </p>
 
             <div className="mb-4 grid grid-cols-2 gap-3 lg:grid-cols-5">
@@ -125,6 +129,7 @@ export default function WorkSheet({ sheet, crew, components, lots, available_lot
                 <Card title="Lancio" aside={<Chip tone={open ? 'info' : 'ok'}>{open ? 'Aperto' : 'Chiuso'}</Chip>}>
                     <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1.5 text-sm">
                         <dt className="text-om-muted">Linea</dt><dd className="text-om-ink">{sheet.line}</dd>
+                        <dt className="text-om-muted">Lotto</dt><dd className="tabular-nums text-om-ink">{sheet.packing_lot}</dd>
                         <dt className="text-om-muted">Articolo</dt><dd className="text-om-ink">{sheet.item_code} · {sheet.item}</dd>
                         <dt className="text-om-muted">Previsto</dt><dd className="text-om-ink">{num(sheet.pallets)} pedane · {kg(sheet.planned_kg)}</dd>
                         <dt className="text-om-muted">Inizio</dt>
@@ -154,8 +159,13 @@ export default function WorkSheet({ sheet, crew, components, lots, available_lot
                 </Card>
 
                 <Card title={`Squadra (${crew.length} persone)`} aside={<span className="text-sm font-medium tabular-nums text-om-ink">{eur(labour)}</span>}>
+                    {open && sheet.production && (
+                        <p className="mb-2 text-sm">
+                            <Link href={`${BASE}/squadre?produzione=${sheet.production}`} className="text-om-accent hover:underline">Organizza la squadra di questa produzione →</Link>
+                        </p>
+                    )}
                     {crew.length === 0
-                        ? <p className="text-sm text-om-muted">Nessuna persona era assegnata alla linea quando il foglio è stato creato: il costo di manodopera è zero. Assegna la squadra in 3 · Squadre e salva di nuovo gli orari.</p>
+                        ? <p className="text-sm text-om-muted">Questa produzione non ha ancora una squadra: il costo di manodopera è zero. Le persone si assegnano in 3 · Squadre e il foglio si aggiorna da solo.</p>
                         : (
                             <div className="max-h-80 overflow-y-auto">
                                 <Table
