@@ -112,16 +112,22 @@ function OrderChain({ detail, go, jump }) {
                             columns={[
                                 {
                                     key: 'code', label: 'Lotto', render: (l) => (
-                                        <button type="button" onClick={() => jump({ vista: 'lotto', lotto: l.lot_id })} className="font-medium text-om-accent hover:underline" title="Vedi a quali clienti è andato questo lotto">
+                                        <button type="button" onClick={() => jump({ vista: 'lotto', lotto: l.lot_id })} className="whitespace-nowrap font-medium text-om-accent hover:underline" title="Vedi a quali clienti è andato questo lotto">
                                             {l.code}
                                         </button>
                                     ),
                                 },
                                 { key: 'producer', label: 'Produttore', render: (l) => <div>{l.producer}<div className="text-xs text-om-muted">{l.locality}</div></div> },
-                                { key: 'received', label: 'Conferito', render: (l) => <div className="tabular-nums">{l.received}<div className="text-xs text-om-muted">cella {l.cell ?? '—'} · {l.days_stored} giorni</div></div> },
-                                { key: 'net_kg', label: 'Netto pesa', align: 'right', render: (l) => <div>{kg(l.net_kg)}<div className="text-xs text-om-muted">{num(l.bins)} bins</div></div> },
-                                { key: 'kg_in', label: 'Nel foglio', align: 'right', render: (l) => <div>{kg(l.kg_in)}<div className="text-xs text-om-muted">resa {pct(l.yield)}</div></div> },
-                                { key: 'kg_for_order', label: 'In questo ordine', align: 'right', render: (l) => kg(l.kg_for_order) },
+                                {
+                                    key: 'received', label: 'Conferito', render: (l) => (
+                                        <div>
+                                            <span className="whitespace-nowrap tabular-nums">{l.received}</span>
+                                            <div className="text-xs text-om-muted">{kg(l.net_kg)} netti in {num(l.bins)} bins · cella {l.cell ?? '—'}, {l.days_stored} giorni</div>
+                                        </div>
+                                    ),
+                                },
+                                { key: 'kg_in', label: 'Nel foglio', align: 'right', render: (l) => <div className="whitespace-nowrap">{kg(l.kg_in)}<div className="text-xs text-om-muted">resa {pct(l.yield)}</div></div> },
+                                { key: 'kg_for_order', label: 'In questo ordine', align: 'right', render: (l) => <span className="whitespace-nowrap">{kg(l.kg_for_order)}</span> },
                             ]}
                         />
                     </Step>
@@ -334,8 +340,14 @@ export default function Trace({ mode, filters, options, results, selected, detai
                                         ),
                                     },
                                     { key: 'producer', label: 'Produttore', render: (l) => <div>{l.producer}<div className="text-xs text-om-muted">{l.variety}</div></div> },
-                                    { key: 'net_kg', label: 'Netto', align: 'right', render: (l) => <div className="whitespace-nowrap">{kg(l.net_kg)}<div className="text-xs text-om-muted">restano {kg(l.kg_left)}</div></div> },
-                                    { key: 'customers', label: 'Clienti', align: 'right', render: (l) => (l.sheets > 0 ? <div className="whitespace-nowrap">{num(l.customers)}<div className="text-xs text-om-muted">{plural(l.sheets, 'foglio', 'fogli')}</div></div> : <span className="whitespace-nowrap text-xs text-om-muted">in cella</span>) },
+                                    {
+                                        key: 'net_kg', label: 'Netto', align: 'right', render: (l) => (
+                                            <div className="whitespace-nowrap">
+                                                {kg(l.net_kg)}
+                                                <div className="text-xs text-om-muted">{l.sheets > 0 ? `${plural(l.customers, 'cliente', 'clienti')} · ${plural(l.sheets, 'foglio', 'fogli')}` : 'tutto in cella'}</div>
+                                            </div>
+                                        ),
+                                    },
                                 ]}
                             />
                         ) : (
@@ -353,11 +365,18 @@ export default function Trace({ mode, filters, options, results, selected, detai
                                             </div>
                                         ),
                                     },
-                                    { key: 'item', label: 'Prodotto', render: (o) => <div>{o.variety}<div className="whitespace-nowrap text-xs text-om-muted">{o.pallets} ped. · {kg(o.kg)}</div></div> },
                                     {
-                                        key: 'packing_lot', label: 'Lotto confez. e produttori', render: (o) => (o.packing_lot
-                                            ? <div><span className="whitespace-nowrap tabular-nums">{o.packing_lot}</span><div className="text-xs text-om-muted">{o.producers.length > 0 ? o.producers.join(', ') : o.line}</div></div>
-                                            : <Chip tone={ORDER_STATUS[o.status].tone}>{ORDER_STATUS[o.status].label}</Chip>),
+                                        key: 'item', label: 'Prodotto e lotto', render: (o) => (
+                                            <div>
+                                                {o.variety} <span className="whitespace-nowrap text-xs text-om-muted">{o.pallets} ped. · {kg(o.kg)}</span>
+                                                <div className="mt-0.5">
+                                                    {o.packing_lot
+                                                        ? <span className="whitespace-nowrap text-xs tabular-nums text-om-ink">{o.packing_lot}</span>
+                                                        : <Chip tone={ORDER_STATUS[o.status].tone}>{ORDER_STATUS[o.status].label}</Chip>}
+                                                </div>
+                                                {o.producers.length > 0 && <div className="text-xs text-om-muted">{o.producers.join(', ')}</div>}
+                                            </div>
+                                        ),
                                     },
                                 ]}
                             />

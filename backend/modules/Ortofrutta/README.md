@@ -70,11 +70,13 @@ dati, con gli ordini A per B della sera prima già in sequenza.
    camion.
 4. **Si organizzano le persone.** In *3 · Squadre* ogni linea ha le sue
    produzioni in ordine di orario. "Proponi squadre" le riempie tenendo le stesse
-   persone sulla linea da una produzione alla successiva. Le produzioni di
-   cestini della Linea 4 restano scoperte (servono 14 specialisti, tre sono
-   assenti e uno esce alle 12:30), quelle di vassoi no (ne bastano 12). Si
-   sceglie una produzione: a destra chi è in squadra, chi è libero in
-   quell'orario e, per chi non lo è, il motivo. In fondo, "Chi fa cosa oggi".
+   persone sulla linea da una produzione alla successiva. Sulla Linea 4 le
+   produzioni di cestini restano scoperte: servono 14 specialisti, tre sono
+   assenti e uno esce alle 12:30, quindi ce ne sono 13 al mattino e 12 dopo; ai
+   vassoi ne bastano 12. Si sceglie una produzione: a destra chi è in squadra,
+   chi è libero in quell'orario e, per chi non lo è, il motivo. In fondo, "Chi
+   fa cosa oggi". Se dopo si rifà la sequenza, chi era su un ordine passato a
+   un'altra linea viene liberato e "Proponi squadre" rimette tutto in ordine.
 5. **Si chiude un foglio.** Nel piano, "Lancia" sul primo gruppo di una linea crea
    il foglio, con la squadra di quella produzione. In *4 · Fogli di lavorazione*:
    "Usa i lotti suggeriti", si inserisce lo scarto, "Salva e calcola il costo":
