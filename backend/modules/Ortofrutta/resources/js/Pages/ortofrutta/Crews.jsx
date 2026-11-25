@@ -70,21 +70,16 @@ function ProductionRow({ production, selected, onSelect }) {
                     selected ? 'border-om-accent bg-om-chip ring-1 ring-om-accent' : 'border-om-line bg-om-card hover:bg-om-chip'
                 }`}
             >
-                <div className="flex items-start justify-between gap-2">
-                    <div className="min-w-0">
-                        <div className="text-sm font-medium tabular-nums text-om-ink">
-                            {production.start}–{production.end}
-                            <span className="ml-2 font-normal text-om-muted">{plural(production.pallets, 'pedana', 'pedane')}</span>
-                        </div>
-                        <div className="truncate text-sm text-om-ink">{production.variety} {production.size} · {production.format}</div>
-                        <div className="truncate text-xs text-om-muted">{production.customers.join(', ')}</div>
-                    </div>
-                    <div className="flex shrink-0 flex-col items-end gap-1">
-                        <Chip tone={production.status === 'closed' ? 'neutral' : short ? 'bad' : 'ok'}>
-                            {production.crew.length}/{production.required} pers.
-                        </Chip>
-                        <Chip tone={status.tone}>{status.label}{production.sheet_number ? ` · ${production.sheet_number}` : ''}</Chip>
-                    </div>
+                <div className="flex items-center justify-between gap-2">
+                    <span className="whitespace-nowrap text-sm font-semibold tabular-nums text-om-ink">{production.start}–{production.end}</span>
+                    <Chip tone={production.status === 'closed' ? 'neutral' : short ? 'bad' : 'ok'}>
+                        {production.crew.length}/{production.required} pers.
+                    </Chip>
+                </div>
+                <div className="mt-0.5 truncate text-sm text-om-ink">{production.variety} {production.size} · {production.format}</div>
+                <div className="truncate text-xs text-om-muted">{plural(production.pallets, 'pedana', 'pedane')} · {production.customers.join(', ')}</div>
+                <div className="mt-1 flex flex-wrap gap-1">
+                    <Chip tone={status.tone}>{status.label}{production.sheet_number ? ` · foglio ${production.sheet_number}` : ''}</Chip>
                 </div>
                 {production.status !== 'closed' && (short || !production.has_leader || production.crew.some((c) => c.issue)) && (
                     <div className="mt-1 flex flex-wrap gap-1">

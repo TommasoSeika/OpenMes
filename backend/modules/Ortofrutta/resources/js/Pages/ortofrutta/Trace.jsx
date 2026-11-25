@@ -240,7 +240,7 @@ export default function Trace({ mode, filters, options, results, selected, detai
     const set = (field) => (e) => setForm({ ...form, [field]: e.target.value });
 
     // Every move is a normal page visit: the address always says what is on screen, so it can be sent to a colleague.
-    const visit = (params) => router.get(HERE, clean(params), { preserveScroll: true, preserveState: true });
+    const visit = (params, keepScroll = true) => router.get(HERE, clean(params), { preserveScroll: keepScroll, preserveState: true });
     const search = (e) => {
         e?.preventDefault();
         visit({ vista: mode, ...form });
@@ -248,7 +248,7 @@ export default function Trace({ mode, filters, options, results, selected, detai
     // Pick a row of the list: the search stays as it is.
     const go = (target) => visit({ vista: mode, ...filters, ...target });
     // Follow the chain into the other view: the search of this one does not apply there.
-    const jump = (target) => visit(target);
+    const jump = (target) => visit(target, false);
     const switchTo = (vista) => visit({ vista, q: '', cliente: form.cliente, produttore: form.produttore });
     const reset = () => visit({ vista: mode });
 
@@ -274,10 +274,12 @@ export default function Trace({ mode, filters, options, results, selected, detai
                     {tab('cliente', 'Dal cliente al produttore')}
                     {tab('lotto', 'Dal produttore ai clienti')}
                 </div>
-                <form onSubmit={search} className="grid gap-3 md:grid-cols-2 xl:grid-cols-[2fr_1fr_1fr_auto_auto_auto] xl:items-end">
-                    <Field label={byLot ? 'Cerca un lotto, un produttore, una varietà' : 'Cerca un ordine, un cliente, un lotto di confezionamento, un produttore'}>
-                        <input type="search" value={form.q ?? ''} onChange={set('q')} placeholder={byLot ? 'es. LT26-012' : 'es. OV48321 oppure L26328-1702'} className={inputClass} />
-                    </Field>
+                <form onSubmit={search} className="grid items-end gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                    <div className="sm:col-span-2">
+                        <Field label={byLot ? 'Cerca un lotto, un produttore, una varietà' : 'Cerca un ordine, un cliente, un lotto di confezionamento, un produttore'}>
+                            <input type="search" value={form.q ?? ''} onChange={set('q')} placeholder={byLot ? 'es. LT26-012' : 'es. OV48321 oppure L26328-1702'} className={inputClass} />
+                        </Field>
+                    </div>
                     <Field label="Cliente">
                         <select value={form.cliente ?? ''} onChange={set('cliente')} className={inputClass}>
                             <option value="">Tutti</option>
@@ -300,14 +302,14 @@ export default function Trace({ mode, filters, options, results, selected, detai
                             </Field>
                         </>
                     )}
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 sm:col-span-2">
                         <Btn type="submit" variant="primary">Cerca</Btn>
                         <Btn onClick={reset}>Azzera</Btn>
                     </div>
                 </form>
             </Card>
 
-            <div className="grid items-start gap-4 xl:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]">
+            <div className="grid items-start gap-4 lg:grid-cols-[minmax(0,4fr)_minmax(0,6fr)]">
                 <Card
                     title={byLot ? 'Lotti conferiti' : 'Ordini'}
                     aside={(
@@ -323,11 +325,17 @@ export default function Trace({ mode, filters, options, results, selected, detai
                                 empty="Nessun lotto corrisponde alla ricerca."
                                 rowClass={(l) => (l.id === selected ? 'bg-om-chip' : '')}
                                 columns={[
-                                    { key: 'code', label: 'Lotto', render: (l) => <button type="button" onClick={() => go({ lotto: l.id })} className="font-medium text-om-accent hover:underline">{l.code}</button> },
+                                    {
+                                        key: 'code', label: 'Lotto', render: (l) => (
+                                            <div className="whitespace-nowrap">
+                                                <button type="button" onClick={() => go({ lotto: l.id })} className="font-medium text-om-accent hover:underline">{l.code}</button>
+                                                <div className="text-xs tabular-nums text-om-muted">{l.received}</div>
+                                            </div>
+                                        ),
+                                    },
                                     { key: 'producer', label: 'Produttore', render: (l) => <div>{l.producer}<div className="text-xs text-om-muted">{l.variety}</div></div> },
-                                    { key: 'received', label: 'Conferito', render: (l) => <span className="tabular-nums">{l.received}</span> },
-                                    { key: 'net_kg', label: 'Netto', align: 'right', render: (l) => <div>{kg(l.net_kg)}<div className="text-xs text-om-muted">restano {kg(l.kg_left)}</div></div> },
-                                    { key: 'customers', label: 'Clienti', align: 'right', render: (l) => (l.sheets > 0 ? <div>{num(l.customers)}<div className="text-xs text-om-muted">{plural(l.sheets, 'foglio', 'fogli')}</div></div> : <span className="text-xs text-om-muted">in cella</span>) },
+                                    { key: 'net_kg', label: 'Netto', align: 'right', render: (l) => <div className="whitespace-nowrap">{kg(l.net_kg)}<div className="text-xs text-om-muted">restano {kg(l.kg_left)}</div></div> },
+                                    { key: 'customers', label: 'Clienti', align: 'right', render: (l) => (l.sheets > 0 ? <div className="whitespace-nowrap">{num(l.customers)}<div className="text-xs text-om-muted">{plural(l.sheets, 'foglio', 'fogli')}</div></div> : <span className="whitespace-nowrap text-xs text-om-muted">in cella</span>) },
                                 ]}
                             />
                         ) : (
@@ -345,13 +353,12 @@ export default function Trace({ mode, filters, options, results, selected, detai
                                             </div>
                                         ),
                                     },
-                                    { key: 'item', label: 'Prodotto', render: (o) => <div>{o.variety}<div className="text-xs text-om-muted">{o.pallets} ped. · {kg(o.kg)}</div></div> },
+                                    { key: 'item', label: 'Prodotto', render: (o) => <div>{o.variety}<div className="whitespace-nowrap text-xs text-om-muted">{o.pallets} ped. · {kg(o.kg)}</div></div> },
                                     {
-                                        key: 'packing_lot', label: 'Lotto confez.', render: (o) => (o.packing_lot
-                                            ? <div className="tabular-nums">{o.packing_lot}<div className="text-xs text-om-muted">{o.line}</div></div>
+                                        key: 'packing_lot', label: 'Lotto confez. e produttori', render: (o) => (o.packing_lot
+                                            ? <div><span className="whitespace-nowrap tabular-nums">{o.packing_lot}</span><div className="text-xs text-om-muted">{o.producers.length > 0 ? o.producers.join(', ') : o.line}</div></div>
                                             : <Chip tone={ORDER_STATUS[o.status].tone}>{ORDER_STATUS[o.status].label}</Chip>),
                                     },
-                                    { key: 'producers', label: 'Produttori', render: (o) => (o.producers.length > 0 ? <span className="text-xs">{o.producers.join(', ')}</span> : <span className="text-xs text-om-muted">—</span>) },
                                 ]}
                             />
                         )}

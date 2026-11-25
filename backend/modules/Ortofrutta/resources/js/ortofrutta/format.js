@@ -1,6 +1,7 @@
 // Number and label formatting shared by every screen of the module (Italian).
 
-const nf = (digits) => new Intl.NumberFormat('it-IT', { minimumFractionDigits: digits, maximumFractionDigits: digits });
+// Always group thousands: Italian formatting leaves four-digit numbers ungrouped (5590), which reads badly next to 22.220.
+const nf = (digits) => new Intl.NumberFormat('it-IT', { minimumFractionDigits: digits, maximumFractionDigits: digits, useGrouping: 'always' });
 const cache = {};
 const fmt = (digits) => (cache[digits] ??= nf(digits));
 

@@ -70,8 +70,9 @@ class CrewController extends OrtoController
         }
 
         return back()->with($result['left'] > 0 ? 'error' : 'success', sprintf(
-            '%s: %d persone portate dalla produzione precedente%s.',
-            $label, $result['added'],
+            '%s: %s dalla produzione precedente%s.',
+            $label,
+            $result['added'] === 1 ? 'una persona portata' : $result['added'].' persone portate',
             $result['left'] > 0 ? sprintf(', %d non disponibili in quell\'orario', $result['left']) : '',
         ));
     }
@@ -97,8 +98,9 @@ class CrewController extends OrtoController
         $parts = array_map(fn (array $p) => sprintf('%s (mancano %d)', $p['label'], $p['missing']), array_slice($short, 0, 6));
 
         return back()->with('error', sprintf(
-            'Squadre proposte, ma per %d produzioni non bastano i presenti abilitati: %s%s.',
-            count($short), implode(', ', $parts), count($short) > 6 ? '…' : '',
+            'Squadre proposte, ma per %s non bastano i presenti abilitati: %s%s.',
+            count($short) === 1 ? 'una produzione' : count($short).' produzioni',
+            implode(', ', $parts), count($short) > 6 ? '…' : '',
         ));
     }
 }
