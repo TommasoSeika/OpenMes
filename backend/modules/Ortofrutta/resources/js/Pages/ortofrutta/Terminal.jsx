@@ -130,6 +130,16 @@ function Mission({ mission, labels, onDone, list }) {
             </div>
 
             <div className="space-y-3">
+            <div aria-live="polite">
+                {phase === 'idle' && <p className="rounded-lg border border-dashed border-om-line px-3 py-2 text-sm text-om-muted">In attesa di una lettura.</p>}
+                {phase === 'reading' && <p className="rounded-lg bg-sky-100 px-3 py-2 text-sm font-medium text-sky-900 dark:bg-sky-900/40 dark:text-sky-200">Lettura in corso…</p>}
+                {phase === 'answer' && answer && (
+                    <p className={`rounded-lg px-3 py-2 text-sm font-medium ${answer.ok ? 'bg-emerald-100 text-emerald-900 dark:bg-emerald-900/40 dark:text-emerald-200' : 'bg-red-100 text-red-900 dark:bg-red-900/40 dark:text-red-200'}`}>
+                        {answer.ok ? '✓ ' : '✕ '}{answer.message}
+                    </p>
+                )}
+            </div>
+
             <div className="rounded-xl p-3" style={{ backgroundColor: '#171717' }}>
                 <div className="mb-2 flex items-center justify-between gap-2 text-xs" style={{ color: '#d4d4d4' }}>
                     <span className="font-medium">{pick ? 'Inquadra l\'etichetta del bins' : 'Inquadra il codice della linea'}</span>
@@ -145,15 +155,6 @@ function Mission({ mission, labels, onDone, list }) {
                         ? 'Sono le etichette che il carrellista ha davanti alla cella: toccane una per leggerla. Prova anche quella sbagliata.'
                         : 'Sono i codici all\'ingresso delle linee: tocca quello della linea a cui stai consegnando.'}
                 </p>
-            </div>
-
-            <div aria-live="polite">
-                {phase === 'reading' && <p className="rounded-lg bg-sky-100 px-3 py-2 text-sm font-medium text-sky-900 dark:bg-sky-900/40 dark:text-sky-200">Lettura in corso…</p>}
-                {phase === 'answer' && answer && (
-                    <p className={`rounded-lg px-3 py-2 text-sm font-medium ${answer.ok ? 'bg-emerald-100 text-emerald-900 dark:bg-emerald-900/40 dark:text-emerald-200' : 'bg-red-100 text-red-900 dark:bg-red-900/40 dark:text-red-200'}`}>
-                        {answer.ok ? '✓ ' : '✕ '}{answer.message}
-                    </p>
-                )}
             </div>
 
             <form
