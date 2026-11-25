@@ -14,7 +14,7 @@ function State({ mission }) {
         return <Chip tone="info">In viaggio dalle {mission.picked_at}</Chip>;
     }
 
-    return mission.late ? <Chip tone="bad">In ritardo</Chip> : <Chip>Da fare</Chip>;
+    return mission.late ? <Chip tone="bad" title="La produzione è stata lanciata e i suoi bins non sono ancora alla linea">Linea in attesa</Chip> : <Chip>Da fare</Chip>;
 }
 
 /** One line of a driver's list: by when, from where to where, what. */
@@ -70,7 +70,12 @@ export default function Missions({ board }) {
                 <Stat label="Da fare" value={num(summary.todo)} hint={`${num(summary.bins_open)} bins ancora da portare`} />
                 <Stat label="In viaggio" value={num(summary.picked)} tone={summary.picked > 0 ? 'ok' : undefined} hint="bins letti alla cella" />
                 <Stat label="Consegnate" value={`${num(summary.delivered)} / ${num(summary.total)}`} tone={summary.total > 0 && summary.delivered === summary.total ? 'ok' : undefined} />
-                <Stat label="In ritardo" value={num(summary.late)} tone={summary.late > 0 ? 'bad' : 'ok'} hint={`rispetto alle ${orto.clock}`} />
+                <Stat
+                    label="Linee in attesa"
+                    value={num(summary.late)}
+                    tone={summary.late > 0 ? 'bad' : 'ok'}
+                    hint={summary.late > 0 ? 'produzioni lanciate senza i loro bins' : summary.next_due ? `prossima consegna entro le ${summary.next_due}` : 'nessuna consegna in sospeso'}
+                />
                 <Stat label="Carrellisti presenti" value={num(drivers.length)} hint="dalle timbrature di oggi" />
             </div>
 

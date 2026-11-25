@@ -236,11 +236,10 @@ class MissionService
     /** Everything the work lists screen shows for a day. */
     public function board(CarbonImmutable $day): array
     {
-        $now = Demo::now();
         $missions = Mission::query()->with(['order.customer', 'order.item', 'line', 'lot.producer', 'cell', 'person'])
             ->whereDate('day', $day->toDateString())->get();
         $ordered = collect(MissionPlanner::order($missions->map(fn (Mission $m) => $this->shape($m))->all()))->pluck('id');
-        $rows = $ordered->map(fn ($id) => $this->present($missions->firstWhere('id', $id), $now))->values();
+        $rows = $ordered->map(fn ($id) => $this->present($missions->firstWhere('id', $id)))->values();
 
         $drivers = $this->drivers($day)->map(function (array $driver) use ($rows) {
             $mine = $rows->where('person_id', $driver['id']);
@@ -271,15 +270,15 @@ class MissionService
                 'delivered' => $rows->where('status', 'delivered')->count(),
                 'bins_open' => (int) $rows->where('status', '!=', 'delivered')->sum('bins'),
                 'late' => $rows->where('late', true)->count(),
+                'next_due' => $rows->where('status', '!=', 'delivered')->min('due'),
                 'unassigned' => $rows->where('status', '!=', 'delivered')->whereNull('person_id')->count(),
             ],
         ];
     }
 
     /** One mission, flattened for the screens. */
-    public function present(Mission $mission, ?CarbonImmutable $now = null): array
+    public function present(Mission $mission): array
     {
-        $now ??= Demo::now();
         $order = $mission->order;
 
         return [
@@ -287,7 +286,8 @@ class MissionService
             'code' => $mission->code(),
             'status' => $mission->status,
             'due' => $mission->due_at->format('H:i'),
-            'late' => $mission->status !== 'delivered' && $mission->due_at->lessThan($now),
+            // The production has been launched and its bins are not at the line: the line is waiting.
+            'late' => $mission->status !== 'delivered' && $order?->work_sheet_id !== null,
             'priority' => (int) $mission->priority,
             'line_id' => $mission->line_id,
             'line' => $mission->line?->name,

@@ -36,7 +36,7 @@ function Steps({ step }) {
 }
 
 /** The mission in hand: what to do now, and the labels in front of the driver to read. */
-function Mission({ mission, labels, onDone }) {
+function Mission({ mission, labels, onDone, list }) {
     const [phase, setPhase] = useState('idle');   // idle | reading | answer
     const [target, setTarget] = useState(null);
     const [answer, setAnswer] = useState(null);
@@ -94,11 +94,12 @@ function Mission({ mission, labels, onDone }) {
     };
 
     return (
-        <div className="space-y-3">
+        <div className="grid items-start gap-3 md:grid-cols-2">
+            <div className="space-y-3">
             <div className="rounded-xl border border-om-line bg-om-card p-3">
                 <div className="mb-2 flex items-center justify-between gap-2">
                     <span className="text-sm font-semibold tabular-nums text-om-ink">Missione {mission.code}</span>
-                    <Chip tone={mission.late ? 'bad' : 'neutral'}>entro {mission.due}</Chip>
+                    <Chip tone={mission.late ? 'bad' : 'neutral'}>{mission.late ? 'linea in attesa · ' : ''}entro {mission.due}</Chip>
                 </div>
                 <Steps step={mission.step} />
 
@@ -125,18 +126,21 @@ function Mission({ mission, labels, onDone }) {
                     )}
                 </div>
             </div>
+            {list}
+            </div>
 
-            <div className="rounded-xl bg-neutral-900 p-3">
-                <div className="mb-2 flex items-center justify-between gap-2 text-xs text-neutral-300">
-                    <span>{pick ? 'Inquadra l\'etichetta del bins' : 'Inquadra il codice della linea'}</span>
-                    <span className="rounded bg-neutral-700 px-1.5 py-0.5 text-[10px] uppercase tracking-wide">fotocamera simulata</span>
+            <div className="space-y-3">
+            <div className="rounded-xl p-3" style={{ backgroundColor: '#171717' }}>
+                <div className="mb-2 flex items-center justify-between gap-2 text-xs" style={{ color: '#d4d4d4' }}>
+                    <span className="font-medium">{pick ? 'Inquadra l\'etichetta del bins' : 'Inquadra il codice della linea'}</span>
+                    <span className="rounded px-1.5 py-0.5 text-[10px] uppercase tracking-wide" style={{ backgroundColor: '#404040' }}>fotocamera simulata</span>
                 </div>
-                <div className="space-y-2">
+                <div className={pick ? 'space-y-2' : 'grid grid-cols-2 gap-2'}>
                     {labels.map((label) => (
-                        <Label key={label.code} label={label} onClick={(l) => read(l.code)} state={stateOf(label)} disabled={phase === 'reading'} />
+                        <Label key={label.code} label={label} small={!pick} onClick={(l) => read(l.code)} state={stateOf(label)} disabled={phase === 'reading'} />
                     ))}
                 </div>
-                <p className="mt-2 text-[11px] leading-snug text-neutral-400">
+                <p className="mt-2 text-[11px] leading-snug" style={{ color: '#a3a3a3' }}>
                     {pick
                         ? 'Sono le etichette che il carrellista ha davanti alla cella: toccane una per leggerla. Prova anche quella sbagliata.'
                         : 'Sono i codici all\'ingresso delle linee: tocca quello della linea a cui stai consegnando.'}
@@ -169,6 +173,7 @@ function Mission({ mission, labels, onDone }) {
                 <Btn type="submit" disabled={phase === 'reading' || typed.trim() === ''}>Leggi</Btn>
             </form>
             <p className="text-[11px] text-om-muted">Con un lettore a pistola il codice arriva qui come se fosse scritto sulla tastiera.</p>
+            </div>
         </div>
     );
 }
@@ -194,7 +199,7 @@ function MissionList({ missions, activeId, onOpen }) {
                             </span>
                             {done
                                 ? <span className="text-xs tabular-nums text-om-muted">{m.delivered_at}</span>
-                                : m.status === 'picked' ? <Chip tone="info">in viaggio</Chip> : m.late ? <Chip tone="bad">in ritardo</Chip> : null}
+                                : m.status === 'picked' ? <Chip tone="info">in viaggio</Chip> : m.late ? <Chip tone="bad">linea in attesa</Chip> : null}
                         </button>
                     </li>
                 );
@@ -238,36 +243,38 @@ export default function Terminal({ terminal }) {
 
     return (
         <Shell title="Terminale" active="/terminale">
-            <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,26rem)_minmax(0,1fr)]">
-                {/* The device in the hand of the person on the floor. */}
-                <div className="mx-auto w-full max-w-[26rem] rounded-[2rem] border-[6px] border-neutral-800 bg-om-panel p-3 shadow-xl dark:border-neutral-600">
+            <div className="grid items-start gap-5 xl:grid-cols-[minmax(0,1fr)_21rem]">
+                {/* The tablet on the forklift, or in the hand of the person on the floor. */}
+                <div className="w-full rounded-[1.75rem] border-[6px] bg-om-panel p-3 shadow-xl" style={{ borderColor: '#262626' }}>
                     <div className="mb-3 flex items-center justify-between gap-2 px-1 text-xs text-om-muted">
                         <span className="font-semibold tabular-nums text-om-ink">{terminal.now}</span>
                         <span className="truncate">{person ? `${person.name} · ${person.badge}` : 'Nessuno in turno'}</span>
                     </div>
 
-                    {person?.role === 'driver' && (
-                        <div className="space-y-3">
-                            {active
-                                ? <Mission mission={active} labels={labels} onDone={() => router.reload({ preserveScroll: true })} />
-                                : (
+                    {person?.role === 'driver' && (() => {
+                        const list = missions.length > 0 && (
+                            <div>
+                                <h3 className="mb-1.5 px-1 text-xs font-medium uppercase tracking-wide text-om-muted">La mia lista · {plural(open.length, 'missione da fare', 'missioni da fare')}</h3>
+                                <MissionList missions={missions} activeId={active?.id} onOpen={(id) => go({ persona: person.id, missione: id })} />
+                            </div>
+                        );
+
+                        return active
+                            ? <Mission mission={active} labels={labels} list={list} onDone={() => router.reload({ preserveScroll: true })} />
+                            : (
+                                <div className="space-y-3">
                                     <p className="rounded-xl border border-dashed border-om-line bg-om-card px-4 py-8 text-center text-sm text-om-muted">
                                         {missions.length === 0
                                             ? 'Nessuna missione per te: le liste si generano dal piano linee.'
                                             : 'Hai finito: tutte le tue missioni sono consegnate.'}
                                     </p>
-                                )}
-                            {missions.length > 0 && (
-                                <>
-                                    <h3 className="px-1 text-xs font-medium uppercase tracking-wide text-om-muted">La mia lista · {plural(open.length, 'missione da fare', 'missioni da fare')}</h3>
-                                    <MissionList missions={missions} activeId={active?.id} onOpen={(id) => go({ persona: person.id, missione: id })} />
-                                </>
-                            )}
-                        </div>
-                    )}
+                                    {list}
+                                </div>
+                            );
+                    })()}
 
                     {person?.role === 'line' && (
-                        <div className="space-y-2">
+                        <div className="mx-auto max-w-xl space-y-2">
                             <h3 className="px-1 text-xs font-medium uppercase tracking-wide text-om-muted">La mia giornata · {plural(productions.length, 'produzione', 'produzioni')}</h3>
                             <Day productions={productions} />
                         </div>
